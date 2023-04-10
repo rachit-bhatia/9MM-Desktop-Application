@@ -7,15 +7,16 @@ public class MainDriver {
 
     public MainDriver(){
 
-        // Frame initialization
-        JFrame jFrame = new JFrame();
-        jFrame.setSize(new Dimension(500,500));
+        JFrame mainWindow = new JFrame("9 Men's Morris");  //initialising the main application window
+        mainWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  //default closing action
 
-
+        Dimension screenDimension = Toolkit.getDefaultToolkit().getScreenSize();  //accessing the dimensions of the screen
+        mainWindow.setSize(screenDimension.width, screenDimension.height);  //window size is of the screen size
+        mainWindow.setLocation(0,0);
+        mainWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  //default closing action
 
         JPanel panel = new JPanel();
         panel.setLayout(null);
-
 
         // Intersection Points
         IntersectionPoint intersectionPoint1 = new IntersectionPoint(50,50,20,20);
@@ -29,19 +30,13 @@ public class MainDriver {
         panel.add(intersectionPoint1);
         panel.add(intersectionPoint2);
 
+        panel.setBackground(Color.GRAY);   //setting background colour of application
 
         // Adding the panel container that has all the tokens and intersection points to the frame
-        jFrame.add(panel,BorderLayout.CENTER);
+        mainWindow.add(panel,BorderLayout.CENTER);
 
-
-
-        // Frame default options
-        jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        jFrame.setTitle("9MM");
-        jFrame.setVisible(true);
-
+        mainWindow.setVisible(true);    //application window visibility
     }
-
 
     public static void main(String[] args) {
         new MainDriver();
