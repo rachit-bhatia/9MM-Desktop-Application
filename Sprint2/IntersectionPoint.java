@@ -3,32 +3,31 @@ package project.Sprint2;
 import javax.swing.*;
 import java.awt.*;
 
-public class IntersectionPoint extends JLabel {
+public class IntersectionPoint extends JComponent {
 
     // Coordinates of Intersection Point (Might not be needed as attributes. Can remove later if necessary)
     private int xCoordinate;
     private int yCoordinate;
+    private final int RADIUS = 25;
 
-
-    public IntersectionPoint(int x,int y ,int width,int height) {
+    public IntersectionPoint(int x,int y) {
         this.xCoordinate = x;
         this.yCoordinate = y;
 
-//        setLayout(null);
 
-        setBounds(this.xCoordinate,this.yCoordinate,width,height);
+        setBounds(this.xCoordinate,this.yCoordinate,RADIUS+7,RADIUS+7);
+//        this.setBorder(BorderFactory.createLineBorder(Color.black, 2));
     }
 
+    @Override
+    public void paintComponent(Graphics tokenShape) {
+        tokenShape.setColor(Color.ORANGE);
+        tokenShape.fillOval(3, 3, RADIUS, RADIUS);  //fill the position to be of orange colour
 
-    public void paintComponent(Graphics g) {
-        super.paintComponent(g);
-        int radius = this.getWidth()/2;
-
-        // drawing intersection point as circle
-        drawCircle(g, radius, radius, radius); // center (30,30) r=20
-    }
-    public void drawCircle(Graphics cg, int xCenter, int yCenter, int r) {
-        cg.fillOval(xCenter-r, yCenter-r, 2*r, 2*r);
+        Graphics2D tokenShapeEnhance = (Graphics2D) tokenShape;  //Graphics2D class used to change thickness of borders
+        tokenShapeEnhance.setStroke(new BasicStroke(3));   //border thickness set to 4
+        tokenShapeEnhance.setColor(Color.BLACK);
+        tokenShapeEnhance.drawOval(3, 3, RADIUS, RADIUS);  //outline border
     }
 
 }
