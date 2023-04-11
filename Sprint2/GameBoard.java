@@ -2,8 +2,11 @@ package project.Sprint2;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 public class GameBoard extends JPanel {
+
+    private ArrayList<IntersectionPoint> intersectionPoints;
 
     private static GameBoard instance ;
 
@@ -11,6 +14,7 @@ public class GameBoard extends JPanel {
         setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
         setLayout(null);
         setBackground(new Color(110, 65, 40).brighter());
+        intersectionPoints = new ArrayList<IntersectionPoint>();
     }
 
     public static GameBoard getInstance(){
@@ -35,9 +39,18 @@ public class GameBoard extends JPanel {
         IntersectionPoint intersectionPoint1 = new IntersectionPoint(70,50);
         IntersectionPoint intersectionPoint2 = new IntersectionPoint(70 + ((boardWidth-180)/2),50);
         IntersectionPoint intersectionPoint3 = new IntersectionPoint(boardWidth - 110,50);
+
         this.add(intersectionPoint1);
         this.add(intersectionPoint2);
         this.add(intersectionPoint3);
 
+        intersectionPoints.add(intersectionPoint1);
+        intersectionPoints.add(intersectionPoint2);
+        intersectionPoints.add(intersectionPoint3);
+
+    }
+
+    public ArrayList<IntersectionPoint> getIntersectionPoints(){
+        return intersectionPoints;
     }
 }

@@ -10,6 +10,8 @@ public class IntersectionPoint extends JComponent {
     private int yCoordinate;
     private final int RADIUS = 30;
 
+    // The token belongs to this intersection point
+    private Token tokenInstance = null;
 
 
     public IntersectionPoint(int x,int y) {
@@ -32,6 +34,19 @@ public class IntersectionPoint extends JComponent {
         tokenShapeEnhance.drawOval(3, 3, RADIUS, RADIUS);  //outline border
     }
 
+    // Add a token to this intersection point
+    public void addToken(Token token){
+        this.tokenInstance = token;
+    }
 
+    // Remove a token from this intersection point
+    public void removeToken(){
+        this.tokenInstance = null;
+    }
+
+    // Check if this intersection point has a token
+    public boolean hasToken(){
+        return this.tokenInstance != null;
+    }
 
 }
