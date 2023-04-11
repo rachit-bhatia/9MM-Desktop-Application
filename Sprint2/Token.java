@@ -9,27 +9,27 @@ public class Token extends JComponent {
 
     private int xCoordinate;
     private int yCoordinate;
+    private Color tokenColour;
     private final int radius = 37;
 
-    public Token(int x, int y){
+    public Token(int x, int y, Color color){
 
         xCoordinate = x;
         yCoordinate = y;
-        setBounds(xCoordinate,yCoordinate,50,50);
+        tokenColour = color;
+        setBounds(xCoordinate,yCoordinate,radius,radius);  //setting the position and size of the token
 
+        //enabling the tokens to be moved by mouse actions
         ModMouseAdapter mouseActionRecorder = new ModMouseAdapter(this, xCoordinate,yCoordinate);
         this.addMouseListener(mouseActionRecorder);
         this.addMouseMotionListener(mouseActionRecorder);
-        this.setPreferredSize(new Dimension(50, 50));
     }
 
     //used for creating a filled oval
     @Override
     public void paintComponent(Graphics tokenShape) {
-        super.paintComponent(tokenShape);
-        tokenShape.setColor(Color.WHITE);
-        tokenShape.fillOval(xCoordinate, yCoordinate, 30, 30);  //fill token shape with white colour
-        this.setBorder(BorderFactory.createLineBorder(Color.black, 2));  //rectangular border around the token component
+        tokenShape.setColor(tokenColour);
+        tokenShape.fillOval(0, 0, getWidth(), getHeight());  //painting an oval
     }
 
 }
