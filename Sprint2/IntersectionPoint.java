@@ -10,6 +10,8 @@ public class IntersectionPoint extends JComponent {
     private int yCoordinate;
     private final int RADIUS = 30;
 
+
+
     public IntersectionPoint(int x,int y) {
         this.xCoordinate = x;
         this.yCoordinate = y;
@@ -29,5 +31,7 @@ public class IntersectionPoint extends JComponent {
         tokenShapeEnhance.setColor(Color.BLACK);
         tokenShapeEnhance.drawOval(3, 3, RADIUS, RADIUS);  //outline border
     }
+
+
 
 }

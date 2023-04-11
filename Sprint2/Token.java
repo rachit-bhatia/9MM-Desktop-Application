@@ -8,7 +8,7 @@ public class Token extends JComponent {
     private int xCoordinate;
     private int yCoordinate;
     private Color tokenColour;
-    private final int RADIUS = 40;
+    private final int RADIUS = 50;
 
     public Token(int x, int y, Color color){
 

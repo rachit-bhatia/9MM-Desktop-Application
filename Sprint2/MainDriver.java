@@ -35,7 +35,14 @@ public class MainDriver {
 
 
         //TODO: creating the Board Panel (temporary board added for now)
-        this.addGameBoard(mainPanel, screenDimension);
+
+        GameBoard gameBoard = GameBoard.getInstance();
+        gameBoard.setDimensionsOfBoard(screenDimension);
+        gameBoard.addIntersections(gameBoard.getWidth(),gameBoard.getHeight());
+
+        mainPanel.add(gameBoard);
+
+
 
 //      Adding intersection points to the panel container
 //        mainPanel.add(intersectionPoint1);
@@ -45,32 +52,6 @@ public class MainDriver {
         mainWindow.getContentPane().add(mainPanel);
 
         mainWindow.setVisible(true);    //application window visibility
-    }
-
-    public void addGameBoard(JPanel mainPanel, Dimension screenDimension){
-        JPanel board = new JPanel(null);
-        board.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
-
-        int boardWidth = (int) (screenDimension.width/1.52);
-        int boardHeight = (int) (screenDimension.height/1.2);
-        int boardX = (int) (screenDimension.width/5.7);
-        int boardY = (int) (screenDimension.height/25);
-
-        board.setBounds(boardX, boardY, boardWidth, boardHeight);
-
-        this.addIntersections(board, board.getWidth(), board.getHeight());
-        mainPanel.add(board);
-    }
-
-    public void addIntersections (JPanel board, int boardWidth, int boardHeight){
-
-        IntersectionPoint intersectionPoint1 = new IntersectionPoint(70,50);
-        IntersectionPoint intersectionPoint2 = new IntersectionPoint(70 + ((boardWidth-180)/2),50);
-        IntersectionPoint intersectionPoint3 = new IntersectionPoint(boardWidth - 110,50);
-        board.add(intersectionPoint1);
-        board.add(intersectionPoint2);
-        board.add(intersectionPoint3);
-
     }
 
     public static void main(String[] args) {
