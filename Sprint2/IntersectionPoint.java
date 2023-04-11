@@ -8,7 +8,7 @@ public class IntersectionPoint extends JComponent {
     // Coordinates of Intersection Point (Might not be needed as attributes. Can remove later if necessary)
     private int xCoordinate;
     private int yCoordinate;
-    private final int RADIUS = 25;
+    private final int RADIUS = 30;
 
     public IntersectionPoint(int x,int y) {
         this.xCoordinate = x;
@@ -25,7 +25,7 @@ public class IntersectionPoint extends JComponent {
         tokenShape.fillOval(3, 3, RADIUS, RADIUS);  //fill the position to be of orange colour
 
         Graphics2D tokenShapeEnhance = (Graphics2D) tokenShape;  //Graphics2D class used to change thickness of borders
-        tokenShapeEnhance.setStroke(new BasicStroke(3));   //border thickness set to 4
+        tokenShapeEnhance.setStroke(new BasicStroke(4));   //border thickness set to 4
         tokenShapeEnhance.setColor(Color.BLACK);
         tokenShapeEnhance.drawOval(3, 3, RADIUS, RADIUS);  //outline border
     }
