@@ -8,8 +8,9 @@ public class GameBoard extends JPanel {
     private static GameBoard instance ;
 
     private GameBoard(){
-        setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
+        setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
         setLayout(null);
+        setBackground(new Color(110, 65, 40).brighter());
     }
 
     public static GameBoard getInstance(){
