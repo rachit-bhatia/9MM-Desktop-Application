@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 
 
 public class ModMouseAdapter extends MouseAdapter {
@@ -37,7 +38,6 @@ public class ModMouseAdapter extends MouseAdapter {
         // All the components in the panel
         Component[] components = GameBoard.getInstance().getComponents();
 
-
         boolean foundIntersectionPoint = false;
 
         // The coordinate system of the component(Intersection Point)
@@ -56,7 +56,9 @@ public class ModMouseAdapter extends MouseAdapter {
             }
 
             // If token is released at a valid intersection point , then set it as a new location of the token
-            if (component.getClass().equals(IntersectionPoint.class) && tokenInstance.getBounds().contains(pointToUse.getX(), pointToUse.getY(), component.getWidth(), component.getHeight())) {
+            if (component.getClass().equals(IntersectionPoint.class) &&
+                    tokenInstance.getBounds().contains(pointToUse.getX(), pointToUse.getY(), component.getWidth(), component.getHeight())) {
+
                 int newLocationX = component.getX() + (component.getWidth() / 2) - (tokenInstance.getWidth() / 2);
                 int newLocationY = component.getY() + (component.getHeight() / 2) - (tokenInstance.getHeight() / 2);
 
@@ -65,6 +67,10 @@ public class ModMouseAdapter extends MouseAdapter {
 
                 // Add the token into the GameBoard panel
                 GameBoard.getInstance().add(tokenInstance);
+
+                //setting the order of display on the game board: token appears above intersection point
+                GameBoard.getInstance().setComponentZOrder(tokenInstance, 0);
+                GameBoard.getInstance().setComponentZOrder(component, GameBoard.getInstance().getComponentCount()-1); //last element
 
                 // Set the token coordinate at the new location relative to the GameBoard's coordinate system
                 tokenInstance.setLocation(newLocationX, newLocationY);
