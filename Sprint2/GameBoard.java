@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public class GameBoard extends JPanel {
 
-    private ArrayList<IntersectionPoint> intersectionPoints;
+    private ArrayList<IntersectionPoint> intersectionPointsList;
 
     private static GameBoard instance ;
 
@@ -15,7 +15,7 @@ public class GameBoard extends JPanel {
         setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
         setLayout(null);
         setBackground(new Color(110, 65, 40).brighter());
-        intersectionPoints = new ArrayList<IntersectionPoint>();
+        intersectionPointsList = new ArrayList<IntersectionPoint>();
     }
 
     public static GameBoard getInstance(){
@@ -36,12 +36,6 @@ public class GameBoard extends JPanel {
     }
 
     public void addIntersections (int boardWidth, int boardHeight){
-        ArrayList<IntersectionPoint> intersectionPointsList = new ArrayList<IntersectionPoint>(8);
-//        intersectionPointsList.add(new IntersectionPoint(70,50));
-//        intersectionPointsList.add(new IntersectionPoint(70 + ((boardWidth-180)/2),50));
-//        intersectionPointsList.add(new IntersectionPoint(boardWidth - 110,50));
-//        intersectionPointsList.add(new IntersectionPoint(70, (boardHeight) / 2));
-//        intersectionPointsList.add(new IntersectionPoint(70, boardHeight - 110));
 
         // Add 8 points on the outer square
         intersectionPointsList.add(new IntersectionPoint(boardWidth/8, boardHeight/8));
@@ -53,7 +47,7 @@ public class GameBoard extends JPanel {
         intersectionPointsList.add(new IntersectionPoint(boardWidth/8, boardHeight-boardHeight/8));
         intersectionPointsList.add(new IntersectionPoint(boardWidth/8, boardHeight/2));
 
-// Add 8 points on the middle square
+    // Add 8 points on the middle square
         intersectionPointsList.add(new IntersectionPoint(boardWidth/4, boardHeight/4));
         intersectionPointsList.add(new IntersectionPoint(boardWidth/2, boardHeight/4));
         intersectionPointsList.add(new IntersectionPoint(boardWidth-boardWidth/4, boardHeight/4));
@@ -63,7 +57,7 @@ public class GameBoard extends JPanel {
         intersectionPointsList.add(new IntersectionPoint(boardWidth/4, boardHeight-boardHeight/4));
         intersectionPointsList.add(new IntersectionPoint(boardWidth/4, boardHeight/2));
 
-// Add 8 points on the inner square
+    // Add 8 points on the inner square
         intersectionPointsList.add(new IntersectionPoint(boardWidth/2 - boardWidth/8, boardHeight/2 - boardHeight/8));
         intersectionPointsList.add(new IntersectionPoint(boardWidth/2, boardHeight/2 - boardHeight/8));
         intersectionPointsList.add(new IntersectionPoint(boardWidth/2 + boardWidth/8, boardHeight/2 - boardHeight/8));
@@ -76,11 +70,70 @@ public class GameBoard extends JPanel {
 
         for (IntersectionPoint intersectionPoint : intersectionPointsList) {
             this.add(intersectionPoint);
-            intersectionPoints.add(intersectionPoint);
         }
     }
 
+    @Override
+    public void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        Graphics2D lineShapeEnhance = (Graphics2D) g;
+        lineShapeEnhance.setColor(Color.BLACK);
+        lineShapeEnhance.setStroke(new BasicStroke(8));
+
+        // iterate through intersectionPointsList
+        for (int i = 0; i < 7; i++) {
+            IntersectionPoint point1 = intersectionPointsList.get(i);
+            IntersectionPoint point2 = intersectionPointsList.get(i + 1);
+            // draw a line between point1 and point2
+            g.drawLine(point1.getX(), point1.getY(), point2.getX(), point2.getY());
+        }
+        for (int i = 8; i < 15; i++) {
+            IntersectionPoint point1 = intersectionPointsList.get(i);
+            IntersectionPoint point2 = intersectionPointsList.get(i + 1);
+            // draw a line between point1 and point2
+            g.drawLine(point1.getX(), point1.getY(), point2.getX(), point2.getY());
+        }
+        for (int i = 16; i < 23; i++) {
+            IntersectionPoint point1 = intersectionPointsList.get(i);
+            IntersectionPoint point2 = intersectionPointsList.get(i + 1);
+            // draw a line between point1 and point2
+            g.drawLine(point1.getX(), point1.getY(), point2.getX(), point2.getY());
+        }
+
+        // Joining final two points in each concentric square
+        for (int i = 7; i < 24; i+=8) {
+            IntersectionPoint point1 = intersectionPointsList.get(i);
+            IntersectionPoint point2 = intersectionPointsList.get(i - 7);
+            // draw a line between point1 and point2
+            g.drawLine(point1.getX(), point1.getY(), point2.getX(), point2.getY());
+        }
+
+        // Joining inner lines that are not part of the square
+        for (int i = 1; i < 10; i+=8) {
+            IntersectionPoint point1 = intersectionPointsList.get(i);
+            IntersectionPoint point2 = intersectionPointsList.get(i + 8);
+            // draw a line between point1 and point2
+            g.drawLine(point1.getX(), point1.getY(), point2.getX(), point2.getY());
+
+            point1 = intersectionPointsList.get(i + 4);
+            point2 = intersectionPointsList.get(i + 12);
+            // draw a line between point1 and point2
+            g.drawLine(point1.getX(), point1.getY(), point2.getX(), point2.getY());
+
+            point1 = intersectionPointsList.get(i + 2);
+            point2 = intersectionPointsList.get(i + 10);
+            // draw a line between point1 and point2
+            g.drawLine(point1.getX(), point1.getY(), point2.getX(), point2.getY());
+
+            point1 = intersectionPointsList.get(i + 6);
+            point2 = intersectionPointsList.get(i + 14);
+            // draw a line between point1 and point2
+            g.drawLine(point1.getX(), point1.getY(), point2.getX(), point2.getY());
+        }
+
+    }
+
     public ArrayList<IntersectionPoint> getIntersectionPoints(){
-        return intersectionPoints;
+        return intersectionPointsList;
     }
 }
