@@ -38,7 +38,7 @@ public class GameBoard extends JPanel {
     public void addIntersections (int boardWidth, int boardHeight){
 
         // Add 8 points on the outer square
-        intersectionPointsList.add(new IntersectionPoint(boardWidth/8, boardHeight/8));
+        intersectionPointsList.add(new IntersectionPoint(( boardWidth/8 ) , boardHeight/8));
         intersectionPointsList.add(new IntersectionPoint(boardWidth/2, boardHeight/8));
         intersectionPointsList.add(new IntersectionPoint(boardWidth-boardWidth/8, boardHeight/8));
         intersectionPointsList.add(new IntersectionPoint(boardWidth-boardWidth/8, boardHeight/2));
@@ -80,24 +80,25 @@ public class GameBoard extends JPanel {
         lineShapeEnhance.setColor(Color.BLACK);
         lineShapeEnhance.setStroke(new BasicStroke(8));
 
+        int adjustment = 19;
         // iterate through intersectionPointsList
         for (int i = 0; i < 7; i++) {
             IntersectionPoint point1 = intersectionPointsList.get(i);
             IntersectionPoint point2 = intersectionPointsList.get(i + 1);
             // draw a line between point1 and point2
-            g.drawLine(point1.getX(), point1.getY(), point2.getX(), point2.getY());
+            g.drawLine(point1.getX() + adjustment  , point1.getY() + adjustment, point2.getX() + adjustment, point2.getY() + adjustment);
         }
         for (int i = 8; i < 15; i++) {
             IntersectionPoint point1 = intersectionPointsList.get(i);
             IntersectionPoint point2 = intersectionPointsList.get(i + 1);
             // draw a line between point1 and point2
-            g.drawLine(point1.getX(), point1.getY(), point2.getX(), point2.getY());
+            g.drawLine(point1.getX() + adjustment, point1.getY()+ adjustment, point2.getX()+ adjustment, point2.getY()+ adjustment);
         }
         for (int i = 16; i < 23; i++) {
             IntersectionPoint point1 = intersectionPointsList.get(i);
             IntersectionPoint point2 = intersectionPointsList.get(i + 1);
             // draw a line between point1 and point2
-            g.drawLine(point1.getX(), point1.getY(), point2.getX(), point2.getY());
+            g.drawLine(point1.getX()+ adjustment, point1.getY()+ adjustment, point2.getX()+ adjustment, point2.getY()+ adjustment);
         }
 
         // Joining final two points in each concentric square
@@ -105,7 +106,7 @@ public class GameBoard extends JPanel {
             IntersectionPoint point1 = intersectionPointsList.get(i);
             IntersectionPoint point2 = intersectionPointsList.get(i - 7);
             // draw a line between point1 and point2
-            g.drawLine(point1.getX(), point1.getY(), point2.getX(), point2.getY());
+            g.drawLine(point1.getX()+ adjustment, point1.getY()+ adjustment, point2.getX()+ adjustment, point2.getY()+ adjustment);
         }
 
         // Joining inner lines that are not part of the square
@@ -113,22 +114,22 @@ public class GameBoard extends JPanel {
             IntersectionPoint point1 = intersectionPointsList.get(i);
             IntersectionPoint point2 = intersectionPointsList.get(i + 8);
             // draw a line between point1 and point2
-            g.drawLine(point1.getX(), point1.getY(), point2.getX(), point2.getY());
+            g.drawLine(point1.getX()+ adjustment, point1.getY()+ adjustment, point2.getX()+ adjustment, point2.getY()+ adjustment);
 
             point1 = intersectionPointsList.get(i + 4);
             point2 = intersectionPointsList.get(i + 12);
             // draw a line between point1 and point2
-            g.drawLine(point1.getX(), point1.getY(), point2.getX(), point2.getY());
+            g.drawLine(point1.getX()+ adjustment, point1.getY()+ adjustment, point2.getX()+ adjustment , point2.getY()+ adjustment);
 
             point1 = intersectionPointsList.get(i + 2);
             point2 = intersectionPointsList.get(i + 10);
             // draw a line between point1 and point2
-            g.drawLine(point1.getX(), point1.getY(), point2.getX(), point2.getY());
+            g.drawLine(point1.getX()+ adjustment, point1.getY()+ adjustment, point2.getX()+ adjustment, point2.getY()+ adjustment);
 
             point1 = intersectionPointsList.get(i + 6);
             point2 = intersectionPointsList.get(i + 14);
             // draw a line between point1 and point2
-            g.drawLine(point1.getX(), point1.getY(), point2.getX(), point2.getY());
+            g.drawLine(point1.getX()+ adjustment, point1.getY()+ adjustment, point2.getX()+ adjustment, point2.getY()+ adjustment);
         }
 
     }

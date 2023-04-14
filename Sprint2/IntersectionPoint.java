@@ -6,32 +6,29 @@ import java.awt.*;
 public class IntersectionPoint extends JComponent {
 
     // Coordinates of Intersection Point (Might not be needed as attributes. Can remove later if necessary)
-    private int xCoordinate;
-    private int yCoordinate;
-    private final int RADIUS = 30;
+
+    private final int DIAMETER = 30;
 
     // The token belongs to this intersection point
     private Token tokenInstance = null;
 
 
     public IntersectionPoint(int x,int y) {
-        this.xCoordinate = x;
-        this.yCoordinate = y;
 
-
-        setBounds(this.xCoordinate,this.yCoordinate,RADIUS+7,RADIUS+7);
+        GameBoard.getInstance().add(this);
+        setBounds(x  -  ( DIAMETER /2 ),y-  ( DIAMETER /2 ), DIAMETER + 8, DIAMETER + 8 );
 //        this.setBorder(BorderFactory.createLineBorder(Color.black, 2));
     }
 
     @Override
     public void paintComponent(Graphics tokenShape) {
         tokenShape.setColor(Color.ORANGE);
-        tokenShape.fillOval(3, 3, RADIUS, RADIUS);  //fill the position to be of orange colour
+        tokenShape.fillOval(3, 3, DIAMETER, DIAMETER);  //fill the position to be of orange colour
 
         Graphics2D tokenShapeEnhance = (Graphics2D) tokenShape;  //Graphics2D class used to change thickness of borders
         tokenShapeEnhance.setStroke(new BasicStroke(4));   //border thickness set to 4
         tokenShapeEnhance.setColor(Color.BLACK);
-        tokenShapeEnhance.drawOval(3, 3, RADIUS, RADIUS);  //outline border
+        tokenShapeEnhance.drawOval(3, 3, DIAMETER, DIAMETER);  //outline border
     }
 
     // Add a token to this intersection point
@@ -48,5 +45,7 @@ public class IntersectionPoint extends JComponent {
     public boolean hasToken(){
         return this.tokenInstance != null;
     }
+
+
 
 }
