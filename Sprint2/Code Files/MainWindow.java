@@ -11,6 +11,8 @@ public abstract class MainWindow {
     private static Dimension screenDimension = Toolkit.getDefaultToolkit().getScreenSize();  //accessing the dimensions of the screen;
     private static JPanel mainPanel = new JPanel();    //instantiating the panel for the main window display;
 
+    private static GameBoard gameBoard;
+
 
     public static void setupWindow(){
         /**
@@ -42,7 +44,7 @@ public abstract class MainWindow {
         }
 
         //creation and addition of game board into the main window panel
-        GameBoard gameBoard = GameBoard.getInstance();
+        gameBoard = GameBoard.getInstance();
         gameBoard.setDimensionsOfBoard(screenDimension);
         gameBoard.addIntersections(gameBoard.getWidth(),gameBoard.getHeight());  //adding intersection points
         mainPanel.add(gameBoard);
