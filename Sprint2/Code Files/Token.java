@@ -21,9 +21,9 @@ public class Token extends JComponent {
         setBounds(xCoordinate,yCoordinate, RADIUS, RADIUS);  //setting the position and size of the token
 
         //enabling the tokens to be moved by mouse actions
-        ModMouseAdapter mouseActionRecorder = new ModMouseAdapter(this, xCoordinate,yCoordinate);
-        this.addMouseListener(mouseActionRecorder);
-        this.addMouseMotionListener(mouseActionRecorder);
+        Move flyingMove = new FlyingMove(this, xCoordinate,yCoordinate);
+        this.addMouseListener(flyingMove);
+        this.addMouseMotionListener(flyingMove);
     }
 
     //used for creating a filled oval

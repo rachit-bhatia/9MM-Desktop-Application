@@ -4,11 +4,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 
-public class ModMouseAdapter extends MouseAdapter {
+public abstract class Move extends MouseAdapter {
 
     private Token tokenInstance;
     private int xCoordinate;
@@ -16,7 +15,7 @@ public class ModMouseAdapter extends MouseAdapter {
     private int offSetX;
     private int offSetY;
 
-    public ModMouseAdapter(Token tokenInstance, int xCord, int yCord) {
+    public Move(Token tokenInstance, int xCord, int yCord) {
         this.tokenInstance = tokenInstance;
         xCoordinate = xCord;
         yCoordinate = yCord;
