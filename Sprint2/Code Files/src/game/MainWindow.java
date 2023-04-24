@@ -22,9 +22,17 @@ public abstract class MainWindow {
         mainWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  //default closing action
 
         //setting preferences for the main window panel
-        mainPanel.setBackground(Color.GRAY);
+        mainPanel.setBackground(new Color(77, 100, 110).brighter());
         mainPanel.setLayout(null);
         mainPanel.setPreferredSize(new Dimension(screenDimension.width, screenDimension.height));
+
+        //setting preferences for the title text and adding it
+        JLabel titleText = new JLabel("9 Men's Morris");
+        titleText.setForeground(new Color(110, 190, 180).darker().darker());
+        titleText.setFont(new Font("Title", Font.BOLD, 50));
+        titleText.setVisible(true);
+        titleText.setBounds((int) (screenDimension.width/2.7), 40, 400, 50);
+        mainWindow.add(titleText);
     }
 
 
@@ -36,10 +44,28 @@ public abstract class MainWindow {
         //Adding both player's Tokens to the Panel container
         int tokenSpacing = 0;
         for (int i = 1; i <= 9; i++){
-            mainPanel.add(new Token(screenDimension.width/8,screenDimension.height/8 + tokenSpacing, Color.BLACK));
-            mainPanel.add(new Token(screenDimension.width - screenDimension.width/7,screenDimension.height/8 + tokenSpacing, Color.WHITE));
+            mainPanel.add(new Token((int) (screenDimension.width/4.5),screenDimension.height/7 + tokenSpacing, Color.BLACK));
+            mainPanel.add(new Token((3*screenDimension.width)/4,screenDimension.height/7 + tokenSpacing, Color.WHITE));
             tokenSpacing += 70;
         }
+
+        //adding the player 1 text label under all black tokens
+        JLabel playerLabel1 = new JLabel("Player 1");
+        playerLabel1.setForeground(Color.BLACK);    //color of the text
+        playerLabel1.setFont(new Font("Player 1", Font.BOLD, 20));   //size and style of the text
+        playerLabel1.setVisible(true);
+        playerLabel1.setBounds((int) (screenDimension.width/4.5 - 15), 760, 100, 20);   //size of the label bounds
+        mainWindow.add(playerLabel1);
+
+
+        //adding the player 2 text label under all white tokens
+        JLabel playerLabel2 = new JLabel("Player 2");
+        playerLabel2.setForeground(Color.WHITE);
+        playerLabel2.setFont(new Font("Player 2", Font.BOLD, 20));
+        playerLabel2.setVisible(true);
+        playerLabel2.setBounds((3*screenDimension.width)/4 - 15, 760, 100, 20);
+        mainWindow.add(playerLabel2);
+
 
         //creation and addition of game board into the main window panel
         gameBoard = GameBoard.getInstance();
