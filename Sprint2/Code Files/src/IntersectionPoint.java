@@ -1,4 +1,4 @@
-package project.Sprint2;
+package src;
 
 import javax.swing.*;
 import java.awt.*;

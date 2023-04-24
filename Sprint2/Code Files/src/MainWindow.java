@@ -1,6 +1,4 @@
-package project.Sprint2;
-
-import com.sun.tools.javac.Main;
+package src;
 
 import javax.swing.*;
 import java.awt.*;

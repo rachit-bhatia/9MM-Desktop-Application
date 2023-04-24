@@ -1,12 +1,8 @@
-package project.Sprint2;
-import javax.swing.*;
+package src;
 import java.awt.*;
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Graphics;
 import javax.swing.JComponent;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
 
 public class LineBetweenIntersections extends JComponent {
 

@@ -1,4 +1,4 @@
-package project.Sprint2;
+package src;
 
 
 public class FlyingMove extends Move {
