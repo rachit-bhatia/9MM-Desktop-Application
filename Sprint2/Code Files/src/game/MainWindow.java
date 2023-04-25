@@ -54,7 +54,7 @@ public abstract class MainWindow {
         playerLabel1.setForeground(Color.BLACK);    //color of the text
         playerLabel1.setFont(new Font("Player 1", Font.BOLD, 20));   //size and style of the text
         playerLabel1.setVisible(true);
-        playerLabel1.setBounds((int) (screenDimension.width/4.5 - 15), 760, 100, 20);   //size of the label bounds
+        playerLabel1.setBounds((int) (screenDimension.width/4.5 - 15), (int) (screenDimension.height / 1.35), 100, 20);   //size of the label bounds
         mainWindow.add(playerLabel1);
 
 
@@ -63,7 +63,7 @@ public abstract class MainWindow {
         playerLabel2.setForeground(Color.WHITE);
         playerLabel2.setFont(new Font("Player 2", Font.BOLD, 20));
         playerLabel2.setVisible(true);
-        playerLabel2.setBounds((3*screenDimension.width)/4 - 15, 760, 100, 20);
+        playerLabel2.setBounds((3*screenDimension.width)/4 - 15, (int) (screenDimension.height / 1.35), 100, 20);
         mainWindow.add(playerLabel2);
 
 
