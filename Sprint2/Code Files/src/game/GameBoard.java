@@ -6,10 +6,13 @@ import java.util.ArrayList;
 
 public class GameBoard extends JPanel {
 
+    // Intersection Points on the GameBoard
     private ArrayList<IntersectionPoint> intersectionPointsList;
 
+    // GameBoard instance
     private static GameBoard instance ;
 
+    // Constructor
     private GameBoard(){
         setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
         setLayout(null);
@@ -17,6 +20,7 @@ public class GameBoard extends JPanel {
         intersectionPointsList = new ArrayList<IntersectionPoint>();
     }
 
+    // Getter for static GameBoard instance
     public static GameBoard getInstance(){
         if (instance == null) {
             instance = new GameBoard();
@@ -25,6 +29,7 @@ public class GameBoard extends JPanel {
         return instance;
     }
 
+    // Set the dimensions of the GameBoard according to screen dimension
     public void setDimensionsOfBoard(Dimension screenDimension){
         int boardWidth = (int) (screenDimension.width/2.4);
         int boardHeight = (int) (screenDimension.height/1.35);
@@ -34,6 +39,7 @@ public class GameBoard extends JPanel {
         this.setBounds(boardX, boardY, boardWidth, boardHeight);
     }
 
+    // Add all the intersection points onto the board
     public void addIntersections (int boardWidth, int boardHeight){
 
         // Add 8 points on the outer square
@@ -46,7 +52,7 @@ public class GameBoard extends JPanel {
         intersectionPointsList.add(new IntersectionPoint(boardWidth/8, boardHeight-boardHeight/8));
         intersectionPointsList.add(new IntersectionPoint(boardWidth/8, boardHeight/2));
 
-    // Add 8 points on the middle square
+         // Add 8 points on the middle square
         intersectionPointsList.add(new IntersectionPoint(boardWidth/4, boardHeight/4));
         intersectionPointsList.add(new IntersectionPoint(boardWidth/2, boardHeight/4));
         intersectionPointsList.add(new IntersectionPoint(boardWidth-boardWidth/4, boardHeight/4));
@@ -56,7 +62,7 @@ public class GameBoard extends JPanel {
         intersectionPointsList.add(new IntersectionPoint(boardWidth/4, boardHeight-boardHeight/4));
         intersectionPointsList.add(new IntersectionPoint(boardWidth/4, boardHeight/2));
 
-    // Add 8 points on the inner square
+        // Add 8 points on the inner square
         intersectionPointsList.add(new IntersectionPoint(boardWidth/2 - boardWidth/8, boardHeight/2 - boardHeight/8));
         intersectionPointsList.add(new IntersectionPoint(boardWidth/2, boardHeight/2 - boardHeight/8));
         intersectionPointsList.add(new IntersectionPoint(boardWidth/2 + boardWidth/8, boardHeight/2 - boardHeight/8));
@@ -66,12 +72,13 @@ public class GameBoard extends JPanel {
         intersectionPointsList.add(new IntersectionPoint(boardWidth/2 - boardWidth/8, boardHeight/2 + boardHeight/8));
         intersectionPointsList.add(new IntersectionPoint(boardWidth/2 - boardWidth/8, boardHeight/2));
 
-
+        // Add the intersection points as components to the GameBoard Panel
         for (IntersectionPoint intersectionPoint : intersectionPointsList) {
             this.add(intersectionPoint);
         }
     }
 
+    // Drawing the UI of GameBoard
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -133,6 +140,7 @@ public class GameBoard extends JPanel {
 
     }
 
+    // Getter for the intersectionPointsList
     public ArrayList<IntersectionPoint> getIntersectionPoints(){
         return intersectionPointsList;
     }

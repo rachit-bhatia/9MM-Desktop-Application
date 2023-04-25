@@ -11,10 +11,13 @@ public class Token extends JComponent {
     // intersection point the token belongs to
     private IntersectionPoint intersectionPoint = null;
 
+    private boolean isTokenPlaced;
+
     public Token(int x, int y, Color color){
 
         tokenColour = color;
         setBounds(x,y, RADIUS, RADIUS);  //setting the position and size of the token
+        isTokenPlaced = false;
 
         //enabling the tokens to be moved by mouse actions
         Move flyingMove = new FlyingMove(this, x,y);
@@ -53,6 +56,16 @@ public class Token extends JComponent {
     // Remove the intersection point from token
     public void removeFromIntersectionPoint(){
         this.intersectionPoint = null;
+    }
+
+    // Setter for isTokenPlaced
+    public void setIsTokenPlaced(boolean bool){
+        this.isTokenPlaced = bool;
+    }
+
+    // Getter for isTokenPlaced
+    public boolean isTokenPlaced() {
+        return isTokenPlaced;
     }
 
 }

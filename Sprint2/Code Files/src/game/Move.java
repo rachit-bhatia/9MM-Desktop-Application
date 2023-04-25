@@ -1,6 +1,7 @@
 package game;
 
 import javax.swing.*;
+import javax.swing.plaf.synth.SynthTextAreaUI;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -75,6 +76,7 @@ public abstract class Move extends MouseAdapter {
                 // Add the token to intersection point as an attribute
                 tokenInstance.addTokenToIntersectionPoint(intersectionPoint);
 
+                tokenInstance.setIsTokenPlaced(true);
 
 
                 //setting the order of display on the game board: token appears above intersection point
@@ -91,28 +93,46 @@ public abstract class Move extends MouseAdapter {
             }
         }
 
+        // if token is dragged to a non valid intersection point
         if (!foundIntersectionPoint) {
+            // set it back to its original position
             tokenInstance.setLocation(xCoordinate, yCoordinate);
         }
     }
 
     @Override
     public void mouseDragged(MouseEvent cursor) {
-        Point location = SwingUtilities.convertPoint(tokenInstance,cursor.getPoint(), tokenInstance.getParent());
+        // Get the location of the cursor relative to the MainPanel coordinate system
+        Point location = SwingUtilities.convertPoint(tokenInstance,cursor.getPoint(), GameBoard.getInstance().getParent());
 
-        tokenInstance.setLocation(location.x - this.offSetX,location.y - this.offSetY);
+        // If token is not yet placed on board
+        if (!tokenInstance.isTokenPlaced()){
+            // set the location of the token using coordinates relative to the MainPanel coordinate system
+            tokenInstance.setLocation(location.x - this.offSetX,location.y - this.offSetY);
+        }else{ // if token is already placed on the board
+
+            // set the location of the token using coordinates relative to the GameBoard coordinate system
+            Point newLocation = SwingUtilities.convertPoint(tokenInstance,cursor.getPoint(), tokenInstance.getParent());
+            if (tokenInstance.getParent().getBounds().contains(location)){
+                tokenInstance.setLocation(newLocation.x - this.offSetX,newLocation.y - this.offSetY);
+            }
+        }
+
+
+
     }
 
+    // Getter for token instance
     public Token getTokenInstance() {
         return tokenInstance;
     }
 
-    public void setOffSetX(int offSetX) {
+    // Set offsets value
+    public void setOffSets(int offSetX,int offSetY) {
         this.offSetX = offSetX;
-    }
-
-    public void setOffSetY(int offSetY) {
         this.offSetY = offSetY;
     }
+
+
 
 }
