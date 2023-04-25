@@ -5,14 +5,19 @@ import java.awt.*;
 
 public class Token extends JComponent {
 
+    // Color of Token
     private Color tokenColour;
+
+    // Radius of Token
     private final int RADIUS = 50;
 
     // intersection point the token belongs to
     private IntersectionPoint intersectionPoint = null;
 
+    // If a token is already placed on board
     private boolean isTokenPlaced;
 
+    // Constructor
     public Token(int x, int y, Color color){
 
         tokenColour = color;
