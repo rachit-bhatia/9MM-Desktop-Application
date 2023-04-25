@@ -5,8 +5,6 @@ import java.awt.*;
 
 public class Token extends JComponent {
 
-    private int xCoordinate;
-    private int yCoordinate;
     private Color tokenColour;
     private final int RADIUS = 50;
 
@@ -15,13 +13,11 @@ public class Token extends JComponent {
 
     public Token(int x, int y, Color color){
 
-        xCoordinate = x;
-        yCoordinate = y;
         tokenColour = color;
-        setBounds(xCoordinate,yCoordinate, RADIUS, RADIUS);  //setting the position and size of the token
+        setBounds(x,y, RADIUS, RADIUS);  //setting the position and size of the token
 
         //enabling the tokens to be moved by mouse actions
-        Move flyingMove = new FlyingMove(this, xCoordinate,yCoordinate);
+        Move flyingMove = new FlyingMove(this, x,y);
         this.addMouseListener(flyingMove);
         this.addMouseMotionListener(flyingMove);
     }
