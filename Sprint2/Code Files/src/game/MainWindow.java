@@ -41,21 +41,35 @@ public abstract class MainWindow {
          * Creation and addition of the all items (tokens, intersections, game board) into the game
          */
 
+        //creation and addition of game board into the main window panel
+        gameBoard = GameBoard.getInstance();
+        gameBoard.setDimensionsOfBoard(screenDimension);
+        gameBoard.addIntersections(gameBoard.getWidth(),gameBoard.getHeight());  //adding intersection points
+        mainPanel.add(gameBoard);
+
+        //getting board dimensions to place other components according to the board height
+        int boardSpacing = gameBoard.getBounds().y;
+        int boardHeight = gameBoard.getBounds().height;
+
+
         //Adding both player's Tokens to the Panel container
         int tokenSpacing = 0;
         for (int i = 1; i <= 9; i++){
             mainPanel.add(new Token((int) (screenDimension.width/4.5),screenDimension.height/7 + tokenSpacing, Color.BLACK));
             mainPanel.add(new Token((3*screenDimension.width)/4,screenDimension.height/7 + tokenSpacing, Color.WHITE));
-            tokenSpacing += 70;
+            tokenSpacing += boardHeight/9 - 5;;
         }
+
+        //y-coordinate of the player level based on board height
+        int textYCoord = boardHeight + boardSpacing - 30;
 
         //adding the player 1 text label under all black tokens
         JLabel playerLabel1 = new JLabel("Player 1");
         playerLabel1.setForeground(Color.BLACK);    //color of the text
         playerLabel1.setFont(new Font("Player 1", Font.BOLD, 20));   //size and style of the text
         playerLabel1.setVisible(true);
-        playerLabel1.setBounds((int) (screenDimension.width/4.5 - 15), (int) (screenDimension.height / 1.35), 100, 20);   //size of the label bounds
-        mainWindow.add(playerLabel1);
+        playerLabel1.setBounds((int) (screenDimension.width/4.5 - 15), textYCoord, 100, 20);   //size of the label bounds
+        mainPanel.add(playerLabel1);
 
 
         //adding the player 2 text label under all white tokens
@@ -63,15 +77,8 @@ public abstract class MainWindow {
         playerLabel2.setForeground(Color.WHITE);
         playerLabel2.setFont(new Font("Player 2", Font.BOLD, 20));
         playerLabel2.setVisible(true);
-        playerLabel2.setBounds((3*screenDimension.width)/4 - 15, (int) (screenDimension.height / 1.35), 100, 20);
-        mainWindow.add(playerLabel2);
-
-
-        //creation and addition of game board into the main window panel
-        gameBoard = GameBoard.getInstance();
-        gameBoard.setDimensionsOfBoard(screenDimension);
-        gameBoard.addIntersections(gameBoard.getWidth(),gameBoard.getHeight());  //adding intersection points
-        mainPanel.add(gameBoard);
+        playerLabel2.setBounds((3*screenDimension.width)/4 - 15, textYCoord, 100, 20);
+        mainPanel.add(playerLabel2);
 
         // Adding the panel container that has all the tokens and intersection points to the frame
         mainWindow.getContentPane().add(mainPanel);
