@@ -31,7 +31,7 @@ public abstract class MainWindow {
         titleText.setForeground(new Color(110, 190, 180).darker().darker());
         titleText.setFont(new Font("Title", Font.BOLD, 50));
         titleText.setVisible(true);
-        titleText.setBounds((int) (screenDimension.width/2.7), 40, 400, 50);
+        titleText.setBounds((int) ((screenDimension.width - 400) / 2), 40, 400, 50);
         mainWindow.add(titleText);
     }
 
