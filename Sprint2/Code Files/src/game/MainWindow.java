@@ -32,7 +32,7 @@ public abstract class MainWindow {
         titleText.setFont(new Font("Title", Font.BOLD, 50));
         titleText.setVisible(true);
         titleText.setBounds((int) ((screenDimension.width - 400) / 2), 40, 400, 50);
-        mainWindow.add(titleText);
+        mainPanel.add(titleText);
     }
 
 
@@ -79,6 +79,9 @@ public abstract class MainWindow {
         playerLabel2.setVisible(true);
         playerLabel2.setBounds((3*screenDimension.width)/4 - 15, textYCoord, 100, 20);
         mainPanel.add(playerLabel2);
+
+        //setting the game board to be displayed at the bottom of all other elements
+        mainPanel.setComponentZOrder(gameBoard, mainPanel.getComponentCount()-1);
 
         // Adding the panel container that has all the tokens and intersection points to the frame
         mainWindow.getContentPane().add(mainPanel);
