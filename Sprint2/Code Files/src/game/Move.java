@@ -9,10 +9,13 @@ import java.util.ArrayList;
 
 public abstract class Move extends MouseAdapter {
 
+
     private Token tokenInstance;
     private int xCoordinate;
     private int yCoordinate;
+
     private int offSetX;
+
     private int offSetY;
 
     public Move(Token tokenInstance, int xCord, int yCord) {
@@ -21,13 +24,6 @@ public abstract class Move extends MouseAdapter {
         yCoordinate = yCord;
     }
 
-    @Override
-    public void mousePressed(MouseEvent cursor) {
-        // To find the offSet values so that the cursor can be at the same position of the token while being drag
-        Point startPoint = SwingUtilities.convertPoint(tokenInstance, cursor.getPoint(), tokenInstance.getParent());
-        this.offSetX = startPoint.x - tokenInstance.getBounds().x;
-        this.offSetY = startPoint.y - tokenInstance.getBounds().y;
-    }
 
     @Override
     public void mouseReleased(MouseEvent cursor) {
@@ -105,6 +101,18 @@ public abstract class Move extends MouseAdapter {
         Point location = SwingUtilities.convertPoint(tokenInstance,cursor.getPoint(), tokenInstance.getParent());
 
         tokenInstance.setLocation(location.x - this.offSetX,location.y - this.offSetY);
+    }
+
+    public Token getTokenInstance() {
+        return tokenInstance;
+    }
+
+    public void setOffSetX(int offSetX) {
+        this.offSetX = offSetX;
+    }
+
+    public void setOffSetY(int offSetY) {
+        this.offSetY = offSetY;
     }
 
 }
