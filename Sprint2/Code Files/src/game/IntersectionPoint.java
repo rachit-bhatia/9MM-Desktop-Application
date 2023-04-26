@@ -3,14 +3,32 @@ package game;
 import javax.swing.*;
 import java.awt.*;
 
+
+/**
+ * A JComponent representing the Intersection Point
+ * <p>
+ * Created  by Tan Jun Yu
+ *
+ * @author Tan Jun Yu
+ * Modified by: Shoumil, Rachit Bhatia
+ */
 public class IntersectionPoint extends JComponent {
 
+    /**
+     * The diameter of Intersection Point
+     */
     private final int DIAMETER = 30;
 
-    // The token belongs to this intersection point
+    /**
+     * The Token belongs to this intersection point
+     */
     private Token tokenInstance = null;
 
-    // Constructor
+    /**
+     * Constructor
+     * @param x xCoordinate of the intersection point
+     * @param y yCoordinate of the intersection point
+     */
     public IntersectionPoint(int x,int y) {
 
         GameBoard.getInstance().add(this);
@@ -18,7 +36,10 @@ public class IntersectionPoint extends JComponent {
 
     }
 
-    // Draw the UI of the Intersection Point
+    /**
+     * Draw the UI of the Intersection Point
+     * @param tokenShape the <code>Graphics</code> object to protect
+     */
     @Override
     public void paintComponent(Graphics tokenShape) {
         tokenShape.setColor(Color.ORANGE);
@@ -30,17 +51,25 @@ public class IntersectionPoint extends JComponent {
         tokenShapeEnhance.drawOval(3, 3, DIAMETER, DIAMETER);  //outline border
     }
 
-    // Add a token to this intersection point
+    /**
+     * Adding a Token instance to the IntersectionPoint
+     * @param token token to be added
+     */
     public void addToken(Token token){
         this.tokenInstance = token;
     }
 
-    // Remove a token from this intersection point
+    /**
+     * Remove a token from this intersection point
+     */
     public void removeToken(){
         this.tokenInstance = null;
     }
 
-    // Check if this intersection point has a token
+    /**
+     * Check if this intersection point has a token
+     * @return boolean True if intersection point has a token . False otherwise
+     */
     public boolean hasToken(){
         return this.tokenInstance != null;
     }

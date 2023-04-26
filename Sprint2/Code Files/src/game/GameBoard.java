@@ -4,15 +4,30 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
+
+/**
+ * A JPanel representing the GameBoard that has all the intersection points
+ * <p>
+ * Created  by Shoumil
+ *
+ * @author Shoumil, Tan Jun Yu
+ * Modified by: Rachit Bhatia
+ */
 public class GameBoard extends JPanel {
 
-    // Intersection Points on the GameBoard
+    /**
+     * An arrayList containing all the intersection points on the GameBoard
+     */
     private ArrayList<IntersectionPoint> intersectionPointsList;
 
-    // GameBoard instance
+    /**
+     * Singleton instance of GameBoard
+     */
     private static GameBoard instance ;
 
-    // Constructor
+    /**
+     * Constructor
+     */
     private GameBoard(){
         setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
         setLayout(null);
@@ -20,7 +35,10 @@ public class GameBoard extends JPanel {
         intersectionPointsList = new ArrayList<IntersectionPoint>();
     }
 
-    // Getter for static GameBoard instance
+    /**
+     * Access GameBoard singleton instance publicly
+     * @return
+     */
     public static GameBoard getInstance(){
         if (instance == null) {
             instance = new GameBoard();
@@ -29,7 +47,10 @@ public class GameBoard extends JPanel {
         return instance;
     }
 
-    // Set the dimensions of the GameBoard according to screen dimension
+    /**
+     * Set the dimensions of GameBoard according to the screen size of user
+     * @param screenDimension dimensions of the user's screen
+     */
     public void setDimensionsOfBoard(Dimension screenDimension){
         int boardWidth = (int) (screenDimension.width/2.4);
         int boardHeight = (int) (screenDimension.height/1.35);
@@ -39,7 +60,11 @@ public class GameBoard extends JPanel {
         this.setBounds(boardX, boardY, boardWidth, boardHeight);
     }
 
-    // Add all the intersection points onto the board
+    /**
+     * Adding all the intersection points into their respective positions on the GameBoard
+     * @param boardWidth width of GameBoard
+     * @param boardHeight height of GameBoard
+     */
     public void addIntersections (int boardWidth, int boardHeight){
 
         int[][] points = {
@@ -84,7 +109,10 @@ public class GameBoard extends JPanel {
         }
     }
 
-    // Drawing the UI of GameBoard
+    /**
+     * Drawing the UI of the GameBoard
+     * @param g the <code>Graphics</code> object to protect
+     */
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -146,7 +174,10 @@ public class GameBoard extends JPanel {
 
     }
 
-    // Getter for the intersectionPointsList
+    /**
+     * Getter for the intersectionPointsList attribute
+     * @return an ArrayList of Intersection Points
+     */
     public ArrayList<IntersectionPoint> getIntersectionPoints(){
         return intersectionPointsList;
     }

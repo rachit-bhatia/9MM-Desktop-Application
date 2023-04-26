@@ -7,18 +7,48 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
+/**
+ * An abstract class Move that has the implementations of the mouseEvents listened by Tokens
+ * <p>
+ * Created by Rachit Bhatia
+ *
+ * @author Tan Jun Yu
+ * Modified by: Rachit Bhatia, Shoumil
+ */
 
 public abstract class Move extends MouseAdapter {
 
-
+    /**
+     * Token instance
+     */
     private Token tokenInstance;
+
+    /**
+     * x coordinate of Token
+     */
     private int xCoordinate;
+
+    /**
+     * y coordinate of Token
+     */
     private int yCoordinate;
 
+    /**
+     * offset x value to set the location of Token so that the Token is always kept at the same position of it being pressed while being dragged
+     */
     private int offSetX;
 
+    /**
+     * offset y value to set the location of Token so that the Token is always kept at the same position of it being pressed while being dragged
+     */
     private int offSetY;
 
+    /**
+     * Constructor
+     * @param tokenInstance the Token listening to the mouseEvents of Move
+     * @param xCord x coordinate of the Token
+     * @param yCord y coordinate of the Token
+     */
     public Move(Token tokenInstance, int xCord, int yCord) {
         this.tokenInstance = tokenInstance;
         xCoordinate = xCord;
@@ -26,6 +56,10 @@ public abstract class Move extends MouseAdapter {
     }
 
 
+    /**
+     * Actions performed when the mouse is released
+     * @param cursor the event to be processed
+     */
     @Override
     public void mouseReleased(MouseEvent cursor) {
 
@@ -66,7 +100,7 @@ public abstract class Move extends MouseAdapter {
                 GameBoard.getInstance().add(tokenInstance);
 
                 // If this token previously belongs to another intersection point
-                if (tokenInstance.hasAnIntersectionPoint()){
+                if (tokenInstance.getIntersectionPoint() != null){
                     IntersectionPoint previousIntersectionPoint = tokenInstance.getIntersectionPoint();
                     // Remove the token from that Intersection Point
                     tokenInstance.removeFromIntersectionPoint();
@@ -100,6 +134,10 @@ public abstract class Move extends MouseAdapter {
         }
     }
 
+    /**
+     * Actions performed when mouse being dragged
+     * @param cursor the event to be processed
+     */
     @Override
     public void mouseDragged(MouseEvent cursor) {
         // Get the location of the cursor relative to the MainPanel coordinate system
@@ -122,12 +160,19 @@ public abstract class Move extends MouseAdapter {
 
     }
 
-    // Getter for token instance
+    /**
+     * Getter for token instance
+     * @return the Token instance
+     */
     public Token getTokenInstance() {
         return tokenInstance;
     }
 
-    // Set offsets value
+    /**
+     * Setter for offset values
+     * @param offSetX new offsetX value
+     * @param offSetY new offsetY value
+     */
     public void setOffSets(int offSetX,int offSetY) {
         this.offSetX = offSetX;
         this.offSetY = offSetY;

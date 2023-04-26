@@ -3,11 +3,30 @@ package game;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * A MainWindow of the Application
+ * <p>
+ * Created  by Rachit Bhatia
+ *
+ * @author Rachit Bhatia
+ * Modified by: Shoumil
+ */
 public abstract class MainWindow {
 
-    private static JFrame mainWindow = new JFrame("9 Men's Morris");  //initialising the main application window;
-    private static Dimension screenDimension = Toolkit.getDefaultToolkit().getScreenSize();  //accessing the dimensions of the screen;
-    private static JPanel mainPanel = new JPanel();    //instantiating the panel for the main window display;
+    /**
+     * instantiating the main application window
+     */
+    private static JFrame mainWindow = new JFrame("9 Men's Morris");
+
+    /**
+     * accessing the dimensions of the screen
+     */
+    private static Dimension screenDimension = Toolkit.getDefaultToolkit().getScreenSize();
+
+    /**
+     * instantiating the panel for the main window display
+     */
+    private static JPanel mainPanel = new JPanel();
 
 
 
