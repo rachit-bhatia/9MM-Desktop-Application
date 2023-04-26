@@ -42,35 +42,41 @@ public class GameBoard extends JPanel {
     // Add all the intersection points onto the board
     public void addIntersections (int boardWidth, int boardHeight){
 
-        // Add 8 points on the outer square
-        intersectionPointsList.add(new IntersectionPoint(( boardWidth/8 ) , boardHeight/8));
-        intersectionPointsList.add(new IntersectionPoint(boardWidth/2, boardHeight/8));
-        intersectionPointsList.add(new IntersectionPoint(boardWidth-boardWidth/8, boardHeight/8));
-        intersectionPointsList.add(new IntersectionPoint(boardWidth-boardWidth/8, boardHeight/2));
-        intersectionPointsList.add(new IntersectionPoint(boardWidth-boardWidth/8, boardHeight-boardHeight/8));
-        intersectionPointsList.add(new IntersectionPoint(boardWidth/2, boardHeight-boardHeight/8));
-        intersectionPointsList.add(new IntersectionPoint(boardWidth/8, boardHeight-boardHeight/8));
-        intersectionPointsList.add(new IntersectionPoint(boardWidth/8, boardHeight/2));
+        int[][] points = {
+            // Add 8 points to the outer square
+            {boardWidth/8 , boardHeight/8},
+            {boardWidth/2, boardHeight/8},
+            {boardWidth-boardWidth/8, boardHeight/8},
+            {boardWidth-boardWidth/8, boardHeight/2},
+            {boardWidth-boardWidth/8, boardHeight-boardHeight/8},
+            {boardWidth/2, boardHeight-boardHeight/8},
+            {boardWidth/8, boardHeight-boardHeight/8},
+            {boardWidth/8, boardHeight/2},
 
-         // Add 8 points on the middle square
-        intersectionPointsList.add(new IntersectionPoint(boardWidth/4, boardHeight/4));
-        intersectionPointsList.add(new IntersectionPoint(boardWidth/2, boardHeight/4));
-        intersectionPointsList.add(new IntersectionPoint(boardWidth-boardWidth/4, boardHeight/4));
-        intersectionPointsList.add(new IntersectionPoint(boardWidth-boardWidth/4, boardHeight/2));
-        intersectionPointsList.add(new IntersectionPoint(boardWidth-boardWidth/4, boardHeight-boardHeight/4));
-        intersectionPointsList.add(new IntersectionPoint(boardWidth/2, boardHeight-boardHeight/4));
-        intersectionPointsList.add(new IntersectionPoint(boardWidth/4, boardHeight-boardHeight/4));
-        intersectionPointsList.add(new IntersectionPoint(boardWidth/4, boardHeight/2));
+            // Add 8 points to the middle square
+            {boardWidth/4, boardHeight/4},
+            {boardWidth/2, boardHeight/4},
+            {boardWidth-boardWidth/4, boardHeight/4},
+            {boardWidth-boardWidth/4, boardHeight/2},
+            {boardWidth-boardWidth/4, boardHeight-boardHeight/4},
+            {boardWidth/2, boardHeight-boardHeight/4},
+            {boardWidth/4, boardHeight-boardHeight/4},
+            {boardWidth/4, boardHeight/2},
 
-        // Add 8 points on the inner square
-        intersectionPointsList.add(new IntersectionPoint(boardWidth/2 - boardWidth/8, boardHeight/2 - boardHeight/8));
-        intersectionPointsList.add(new IntersectionPoint(boardWidth/2, boardHeight/2 - boardHeight/8));
-        intersectionPointsList.add(new IntersectionPoint(boardWidth/2 + boardWidth/8, boardHeight/2 - boardHeight/8));
-        intersectionPointsList.add(new IntersectionPoint(boardWidth/2 + boardWidth/8, boardHeight/2));
-        intersectionPointsList.add(new IntersectionPoint(boardWidth/2 + boardWidth/8, boardHeight/2 + boardHeight/8));
-        intersectionPointsList.add(new IntersectionPoint(boardWidth/2, boardHeight/2 + boardHeight/8));
-        intersectionPointsList.add(new IntersectionPoint(boardWidth/2 - boardWidth/8, boardHeight/2 + boardHeight/8));
-        intersectionPointsList.add(new IntersectionPoint(boardWidth/2 - boardWidth/8, boardHeight/2));
+            // Add 8 points to the inner square
+            {boardWidth/2 - boardWidth/8, boardHeight/2 - boardHeight/8},
+            {boardWidth/2, boardHeight/2 - boardHeight/8},
+            {boardWidth/2 + boardWidth/8, boardHeight/2 - boardHeight/8},
+            {boardWidth/2 + boardWidth/8, boardHeight/2},
+            {boardWidth/2 + boardWidth/8, boardHeight/2 + boardHeight/8},
+            {boardWidth/2, boardHeight/2 + boardHeight/8},
+            {boardWidth/2 - boardWidth/8, boardHeight/2 + boardHeight/8},
+            {boardWidth/2 - boardWidth/8, boardHeight/2}
+        };
+
+        for (int[] point : points) {
+            intersectionPointsList.add(new IntersectionPoint(point[0], point[1]));
+        }
 
         // Add the intersection points as components to the GameBoard Panel
         for (IntersectionPoint intersectionPoint : intersectionPointsList) {
