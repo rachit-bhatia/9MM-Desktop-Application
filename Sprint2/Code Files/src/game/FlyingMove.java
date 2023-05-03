@@ -13,6 +13,7 @@ package game;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 
 public class FlyingMove extends Move {
 
@@ -32,9 +33,21 @@ public class FlyingMove extends Move {
      */
     @Override
     public void mousePressed(MouseEvent cursor) {
-        // To find the offSet values so that the cursor can be at the same position of the token while being drag
-        Point startPoint = SwingUtilities.convertPoint(super.getTokenInstance(), cursor.getPoint(), super.getTokenInstance().getParent());
-        super.setOffSets(startPoint.x - super.getTokenInstance().getBounds().x , startPoint.y - super.getTokenInstance().getBounds().y);
+
+        if (super.getTokenInstance().canBeUsed()){
+            // To find the offSet values so that the cursor can be at the same position of the token while being drag
+            Point startPoint = SwingUtilities.convertPoint(super.getTokenInstance(), cursor.getPoint(), super.getTokenInstance().getParent());
+            super.setOffSets(startPoint.x - super.getTokenInstance().getBounds().x , startPoint.y - super.getTokenInstance().getBounds().y);
+
+            // Find valid moves
+            ArrayList<IntersectionPoint> intersectionPoints = GameBoard.getInstance().getIntersectionPoints();
+            for (IntersectionPoint intersectionPoint : intersectionPoints){
+                if (!intersectionPoint.hasToken()){
+                    intersectionPoint.setMoveValid(true);
+                }
+            }
+        }
+
     }
 
 }

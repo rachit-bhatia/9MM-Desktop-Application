@@ -173,4 +173,10 @@ public class GameBoard extends JPanel {
     public ArrayList<IntersectionPoint> getIntersectionPoints(){
         return intersectionPointsList;
     }
+
+    public void resetAllIntersectionPoints(){
+        for (IntersectionPoint intersectionPoint : intersectionPointsList){
+            intersectionPoint.setMoveValid(false);
+        }
+    }
 }

@@ -73,8 +73,14 @@ public abstract class MainWindow {
         //Adding both player's Tokens to the Panel container
         int tokenSpacing = 0;
         for (int i = 1; i <= 9; i++){
-            mainPanel.add(new Token((int) (screenDimension.width/4.5),screenDimension.height/7 + tokenSpacing, Color.BLACK));
-            mainPanel.add(new Token((3*screenDimension.width)/4,screenDimension.height/7 + tokenSpacing, Color.WHITE));
+            Token tokenPlayer1 = new Token((int) (screenDimension.width/4.5),screenDimension.height/7 + tokenSpacing, Color.BLACK);
+            mainPanel.add(tokenPlayer1);
+            Game.getInstance().getPlayer1().addToken(tokenPlayer1);
+
+            Token tokenPlayer2 = new Token((3*screenDimension.width)/4,screenDimension.height/7 + tokenSpacing, Color.WHITE);
+            mainPanel.add(tokenPlayer2);
+            Game.getInstance().getPlayer2().addToken(tokenPlayer2);
+
             tokenSpacing += boardHeight/9 - 5;;
         }
 

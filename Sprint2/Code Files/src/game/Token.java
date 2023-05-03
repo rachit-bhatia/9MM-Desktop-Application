@@ -32,6 +32,11 @@ public class Token extends JComponent {
      */
     private boolean isTokenPlaced;
 
+
+    private boolean canBeUsed;
+
+    private Move currentMoveListener;
+
     /**
      * constructor
      * @param x x coordinate of the Token
@@ -46,6 +51,7 @@ public class Token extends JComponent {
         intersectionPoint = null;
         //enabling the tokens to be moved by mouse actions
         Move flyingMove = new FlyingMove(this, x,y);
+        currentMoveListener = flyingMove;
         this.addMouseListener(flyingMove);
         this.addMouseMotionListener(flyingMove);
     }
@@ -58,6 +64,14 @@ public class Token extends JComponent {
     public void paintComponent(Graphics tokenShape) {
         tokenShape.setColor(tokenColour);
         tokenShape.fillOval(0, 0, getWidth(), getHeight());  //painting an oval
+    }
+
+    public void changeListener(Move newMove){
+        this.removeMouseListener(this.currentMoveListener);
+        this.removeMouseMotionListener(this.currentMoveListener);
+        this.addMouseListener(newMove);
+        this.addMouseMotionListener(newMove);
+        this.currentMoveListener = newMove;
     }
 
     /**
@@ -100,5 +114,14 @@ public class Token extends JComponent {
     public boolean isTokenPlaced() {
         return isTokenPlaced;
     }
+
+    public void setCanBeUsed(boolean bool){
+        this.canBeUsed = bool;
+    }
+
+    public boolean canBeUsed(){
+        return this.canBeUsed;
+    }
+
 
 }

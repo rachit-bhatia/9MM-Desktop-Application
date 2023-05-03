@@ -1,0 +1,35 @@
+package game;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.MouseEvent;
+
+public class SlidingMove extends Move {
+
+    public SlidingMove(Token tokenInstance,int xCord, int yCord) {
+        super(tokenInstance, xCord, yCord);
+    }
+
+
+    @Override
+    public void mousePressed(MouseEvent cursor) {
+
+
+        if (super.getTokenInstance().canBeUsed()){
+            // To find the offSet values so that the cursor can be at the same position of the token while being drag
+            Point startPoint = SwingUtilities.convertPoint(super.getTokenInstance(), cursor.getPoint(), super.getTokenInstance().getParent());
+            super.setOffSets( startPoint.x - super.getTokenInstance().getBounds().x ,startPoint.y - super.getTokenInstance().getBounds().y );
+
+            System.out.println("play");
+            // find valid moves
+            IntersectionPoint currIntersectionPoint = super.getTokenInstance().getIntersectionPoint();
+
+            // Find neighbouring intersection points to the currIntersectionPoint and set them as valid intersection point
+
+
+        }
+    }
+
+
+
+}

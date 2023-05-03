@@ -22,8 +22,10 @@ public class IntersectionPoint extends JComponent {
     /**
      * The Token belongs to this intersection point
      */
-    private Token tokenInstance = null;
+    private Token tokenInstance ;
 
+
+    private boolean isMoveValid ;
     /**
      * Constructor
      * @param x xCoordinate of the intersection point
@@ -33,6 +35,9 @@ public class IntersectionPoint extends JComponent {
 
         GameBoard.getInstance().add(this);
         setBounds(x  -  ( DIAMETER /2 ),y-  ( DIAMETER /2 ), DIAMETER + 8, DIAMETER + 8 );
+
+        tokenInstance = null;
+        isMoveValid = false;
 
     }
 
@@ -72,6 +77,15 @@ public class IntersectionPoint extends JComponent {
      */
     public boolean hasToken(){
         return this.tokenInstance != null;
+    }
+
+    public boolean isMoveValid(){
+        return this.isMoveValid;
+
+    }
+
+    public void setMoveValid(boolean bool){
+        this.isMoveValid = bool;
     }
 
 
