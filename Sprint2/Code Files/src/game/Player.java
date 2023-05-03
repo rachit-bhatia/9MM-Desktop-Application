@@ -10,7 +10,7 @@ public abstract class Player {
     private CurrentStateofMove currentStateofMove;
     public Player(){
         tokenList = new ArrayList<Token>();
-        currentStateofMove = CurrentStateofMove.FLYING;
+        currentStateofMove = CurrentStateofMove.PLACING;
     }
 
 
@@ -19,22 +19,28 @@ public abstract class Player {
         return currentStateofMove;
     }
 
-    // Change the stateOfMove
-    public void changeStateOfMove(CurrentStateofMove newMoveState){
-        this.currentStateofMove = newMoveState;
+    // Check the Player's number of tokens left and update the stateOfMove accordingly
+    public void updateStateOfMove(){
 
-        if (this.currentStateofMove == CurrentStateofMove.SLIDING){
-            for(Token token : tokenList){
+        // If current state of move is flying and all the tokens are already placed
+        if (currentStateofMove == CurrentStateofMove.PLACING && areAllTokensPlaced()){
+
+            // Change the state of move to SLIDING
+            currentStateofMove = CurrentStateofMove.SLIDING;
+            for (Token token : tokenList){
                 token.changeListener(new SlidingMove(token,token.getX(),token.getY()));
             }
+        } else if (currentStateofMove == CurrentStateofMove.SLIDING && tokenList.size() == 3) { // if current state of move is sliding, and player has 3 tokens left
+
+
+            // Change the state of move to FLYING
+            currentStateofMove = CurrentStateofMove.FLYING;
+
+            for (Token token : tokenList){
+                token.changeListener(new FlyingMove(token,token.getX(),token.getY()));
+            }
+
         }
-
-//        if (this.currentStateofMove == CurrentStateofMove.FLYING){
-//            for(Token token : tokenList){
-//                token.changeListener(new FlyingMove(token,token.getX(),token.getY()));
-//            }
-//        }
-
 
 
     }

@@ -1,7 +1,8 @@
 package game;
 
 public enum CurrentStateofMove {
-    FLYING,
+    PLACING,
     SLIDING,
+    FLYING
 
 }
