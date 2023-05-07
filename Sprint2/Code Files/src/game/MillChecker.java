@@ -53,6 +53,13 @@ public class MillChecker {
             }
           }
         }
+        MillChecker tmp = MillChecker.getInstance(this.intersectionPointsList);
+        if (i < 8) {
+          hasMill =  tmp.checkForMills(intersectionPointsList.get(i + 8));
+        }
+        if (i > 16) {
+          hasMill =  tmp.checkForMills(intersectionPointsList.get(i - 8));
+        }
       }
     }
     return hasMill;
