@@ -177,6 +177,7 @@ public class GameBoard extends JPanel {
     public void resetAllIntersectionPoints(){
         for (IntersectionPoint intersectionPoint : intersectionPointsList){
             intersectionPoint.setMoveValid(false);
+            intersectionPoint.setBorder(BorderFactory.createEmptyBorder());
         }
     }
 }

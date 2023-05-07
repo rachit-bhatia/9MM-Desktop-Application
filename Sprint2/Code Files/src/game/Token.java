@@ -37,6 +37,7 @@ public class Token extends JComponent {
 
     private Move currentMoveListener;
 
+    private Player player ;
     /**
      * constructor
      * @param x x coordinate of the Token
@@ -54,6 +55,7 @@ public class Token extends JComponent {
         currentMoveListener = flyingMove;
         this.addMouseListener(flyingMove);
         this.addMouseMotionListener(flyingMove);
+
     }
 
     /**
@@ -121,6 +123,14 @@ public class Token extends JComponent {
 
     public boolean canBeUsed(){
         return this.canBeUsed;
+    }
+
+    public void addPlayer(Player player){
+        this.player = player;
+    }
+
+    public Player getPlayer(){
+        return this.player;
     }
 
 

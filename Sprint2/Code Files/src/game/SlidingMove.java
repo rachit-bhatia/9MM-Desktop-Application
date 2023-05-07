@@ -3,8 +3,9 @@ package game;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 
-public class SlidingMove extends Move {
+public class SlidingMove extends Move implements NeighbourPositionFinder {
 
     public SlidingMove(Token tokenInstance,int xCord, int yCord) {
         super(tokenInstance, xCord, yCord);
@@ -25,7 +26,13 @@ public class SlidingMove extends Move {
             IntersectionPoint currIntersectionPoint = super.getTokenInstance().getIntersectionPoint();
 
             // Find neighbouring intersection points to the currIntersectionPoint and set them as valid intersection point
-
+            ArrayList<IntersectionPoint> neighbourIntersectionPoints = findNeighbouringIntersections(currIntersectionPoint);
+            for (IntersectionPoint intersectionPoint : neighbourIntersectionPoints){
+                if (!intersectionPoint.hasToken()) {
+                    intersectionPoint.setMoveValid(true);
+                    intersectionPoint.setBorder(BorderFactory.createLineBorder(Color.GREEN));
+                }
+            }
 
         }
     }

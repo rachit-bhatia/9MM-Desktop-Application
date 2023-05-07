@@ -108,7 +108,6 @@ public abstract class Move extends MouseAdapter {
 
                     // Add the token to intersection point as an attribute
                     tokenInstance.addTokenToIntersectionPoint(intersectionPoint);
-
                     tokenInstance.setIsTokenPlaced(true);
 
 
@@ -116,6 +115,10 @@ public abstract class Move extends MouseAdapter {
                     GameBoard.getInstance().setComponentZOrder(tokenInstance, 0);
                     GameBoard.getInstance().setComponentZOrder(intersectionPoint, GameBoard.getInstance().getComponentCount()-1); //last element
 
+                    // If current player move is placing , remove the mouseListener
+                    if (tokenInstance.getPlayer().getCurrentStateOfMove() == CurrentStateofMove.PLACING){
+                        tokenInstance.changeListener(null);
+                    }
 
                     // Set the token coordinate at the new location relative to the GameBoard's coordinate system
                     tokenInstance.setLocation(newLocationX, newLocationY);

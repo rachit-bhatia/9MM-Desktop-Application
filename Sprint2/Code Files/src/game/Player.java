@@ -57,6 +57,7 @@ public abstract class Player {
     // Add token to the Player's tokenList
     public void addToken(Token tokenInstance){
         this.tokenList.add(tokenInstance);
+        tokenInstance.addPlayer(this);
     }
 
     // Get the number of tokens left the Player has
