@@ -137,6 +137,7 @@ public abstract class Move extends MouseAdapter {
             if (!foundIntersectionPoint) {
                 // set it back to its original position
                 tokenInstance.setLocation(xCoordinate, yCoordinate);
+                GameBoard.getInstance().resetAllIntersectionPoints();
             }
         }
 

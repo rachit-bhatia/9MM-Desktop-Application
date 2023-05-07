@@ -21,8 +21,6 @@ public class SlidingMove extends Move implements NeighbourPositionFinder {
             Point startPoint = SwingUtilities.convertPoint(super.getTokenInstance(), cursor.getPoint(), super.getTokenInstance().getParent());
             super.setOffSets( startPoint.x - super.getTokenInstance().getBounds().x ,startPoint.y - super.getTokenInstance().getBounds().y );
 
-            System.out.println("play");
-            // find valid moves
             IntersectionPoint currIntersectionPoint = super.getTokenInstance().getIntersectionPoint();
 
             // Find neighbouring intersection points to the currIntersectionPoint and set them as valid intersection point
