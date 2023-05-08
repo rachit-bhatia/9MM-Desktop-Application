@@ -24,8 +24,17 @@ public class IntersectionPoint extends JComponent {
      */
     private Token tokenInstance ;
 
+    /**
+     * boolean value indicating whether the token on the intersection point has been selected for movement
+     */
+    public boolean pointSelected;
 
+    /**
+     * boolean value indicating whether a move is valid
+     */
     private boolean isMoveValid ;
+
+
     /**
      * Constructor
      * @param x xCoordinate of the intersection point
@@ -43,18 +52,25 @@ public class IntersectionPoint extends JComponent {
 
     /**
      * Draw the UI of the Intersection Point
-     * @param tokenShape the <code>Graphics</code> object to protect
+     * @param pointShape the <code>Graphics</code> object to protect
      */
     @Override
-    public void paintComponent(Graphics tokenShape) {
-        tokenShape.setColor(Color.ORANGE);
-        tokenShape.fillOval(3, 3, DIAMETER, DIAMETER);  //fill the position to be of orange colour
+    public void paintComponent(Graphics pointShape) {
+        pointShape.setColor(Color.ORANGE);
+        pointShape.fillOval(3, 3, DIAMETER, DIAMETER);  //fill the position to be of orange colour
 
-        Graphics2D tokenShapeEnhance = (Graphics2D) tokenShape;  //Graphics2D class used to change thickness of borders
-        tokenShapeEnhance.setStroke(new BasicStroke(4));   //border thickness set to 4
-        tokenShapeEnhance.setColor(Color.BLACK);
-        tokenShapeEnhance.drawOval(3, 3, DIAMETER, DIAMETER);  //outline border
+        Graphics2D pointShapeEnhance = (Graphics2D) pointShape;  //Graphics2D class used to change thickness of borders
+        pointShapeEnhance.setStroke(new BasicStroke(4));   //border thickness set to 4
+        pointShapeEnhance.setColor(Color.black);
+
+        //highlight with green border if the token on the intersection point is selected
+        if (pointSelected == true){
+            pointShapeEnhance.setColor(Color.GREEN.darker());
+        }
+
+        pointShapeEnhance.drawOval(3, 3, DIAMETER, DIAMETER);  //outline border
     }
+
 
     /**
      * Adding a Token instance to the IntersectionPoint
