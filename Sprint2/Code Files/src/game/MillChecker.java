@@ -1,6 +1,7 @@
 package game;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class MillChecker {
   private static MillChecker instance;
@@ -60,6 +61,76 @@ public class MillChecker {
         if (i > 16) {
           hasMill =  tmp.checkForMills(intersectionPointsList.get(i - 8));
         }
+      }
+    }
+    return hasMill;
+  }
+
+  private boolean checkForVerticalMill(IntersectionPoint myIntersectionPoint) {
+    boolean hasMill = false;
+    int intersectionIndex = -1;
+    int[] centreIntersections = {9, 11, 13, 15};
+    for (int i = 0; i < intersectionPointsList.size(); i++) {
+      if (intersectionPointsList.get(i) == myIntersectionPoint) {
+        intersectionIndex = i;
+      }
+    }
+    int nextIntersectionIndex = intersectionIndex + 8;
+    int prevIntersectionIndex = intersectionIndex - 8;
+
+    // check whether intersection is vertically centered
+    if (intersectionIndex > 8 && intersectionIndex < 16) {
+      // Check if the adjacent intersections have tokens
+      if (intersectionPointsList.get(nextIntersectionIndex).hasToken() && intersectionPointsList.get(prevIntersectionIndex).hasToken() && intersectionPointsList.get(intersectionIndex).hasToken()) {
+        hasMill = true;
+      }
+    }
+
+    // when intersection is not vertically centered
+    else {
+      MillChecker verticalMillChecker = MillChecker.getInstance(this.intersectionPointsList);
+      // check for outer ring
+      if (intersectionIndex < 8) {
+        hasMill = verticalMillChecker.checkForVerticalMill(intersectionPointsList.get(nextIntersectionIndex));
+      }
+      // check for inner ring
+      if (intersectionIndex > 16) {
+        hasMill = verticalMillChecker.checkForVerticalMill(intersectionPointsList.get(prevIntersectionIndex));
+      }
+    }
+    return hasMill;
+  }
+  private boolean checkForHorizontalMill(IntersectionPoint myIntersectionPoint) {
+    boolean hasMill = false;
+    int intersectionIndex = -1;
+    for (int i = 0; i < intersectionPointsList.size(); i++) {
+      if (intersectionPointsList.get(i) == myIntersectionPoint) {
+        intersectionIndex = i;
+      }
+    }
+    int nextIntersectionIndex = intersectionIndex + 1;
+    int prevIntersectionIndex = intersectionIndex - 1;
+    // If the intersection point is in the centre
+    if (intersectionIndex % 2 == 1) {
+      // If the intersection point is 7, 15 or 23
+      if (intersectionIndex % 8 == 7) {
+        nextIntersectionIndex = intersectionIndex - 7;
+      }
+      // Check if the adjacent intersections have tokens
+      if (intersectionPointsList.get(nextIntersectionIndex).hasToken() && intersectionPointsList.get(prevIntersectionIndex).hasToken() && intersectionPointsList.get(intersectionIndex).hasToken()) {
+        hasMill = true;
+      }
+    }
+
+    // If the intersection point is in the corner
+    else {
+      //  finding adjacent intersections
+      if (intersectionIndex % 8 == 0) {
+        prevIntersectionIndex = intersectionIndex + 7;
+      }
+      MillChecker horizontalMillChecker = MillChecker.getInstance(this.intersectionPointsList);
+      if (horizontalMillChecker.checkForHorizontalMill(intersectionPointsList.get(prevIntersectionIndex)) ||  horizontalMillChecker.checkForHorizontalMill(intersectionPointsList.get(nextIntersectionIndex))) {
+        hasMill = true;
       }
     }
     return hasMill;
