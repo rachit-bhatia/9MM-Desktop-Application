@@ -68,7 +68,7 @@ public abstract class Move extends MouseAdapter implements NeighbourPositionFind
         // Find neighbouring intersection points to the currIntersectionPoint and set them as valid intersection point
         ArrayList<IntersectionPoint> neighbourIntersectionPoints = findNeighbouringIntersections(currIntersectionPoint);
         for (IntersectionPoint intersectionPoint : neighbourIntersectionPoints){
-            intersectionPoint.pointSelected = false;  //set point selection to false once mouse is released
+            intersectionPoint.setPointSelected(false);  //set point selection to false once mouse is released
             intersectionPoint.repaint();  //repaint intersection point with black border again
         }
 

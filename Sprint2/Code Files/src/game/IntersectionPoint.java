@@ -27,7 +27,7 @@ public class IntersectionPoint extends JComponent {
     /**
      * boolean value indicating whether the token on the intersection point has been selected for movement
      */
-    public boolean pointSelected;
+    private boolean pointSelected;
 
     /**
      * boolean value indicating whether a move is valid
@@ -102,6 +102,10 @@ public class IntersectionPoint extends JComponent {
 
     public void setMoveValid(boolean bool){
         this.isMoveValid = bool;
+    }
+
+    public void setPointSelected(boolean pointSelection){
+        this.pointSelected = pointSelection;
     }
 
 
