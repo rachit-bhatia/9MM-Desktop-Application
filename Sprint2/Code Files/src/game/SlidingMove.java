@@ -5,7 +5,7 @@ import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
-public class SlidingMove extends Move {
+public class SlidingMove extends Move implements NeighbourPositionFinder {
 
 
 
@@ -31,7 +31,7 @@ public class SlidingMove extends Move {
                 if (!intersectionPoint.hasToken()) {
                     intersectionPoint.setMoveValid(true);
                     intersectionPoint.setPointSelected(true);  //set point selection to true
-                    intersectionPoint.repaint();  //repainting intersection point with green border
+                    intersectionPoint.repaint();  //repainting intersection point with green border when a token is selected
                 }
             }
 

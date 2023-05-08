@@ -16,7 +16,7 @@ import java.util.ArrayList;
  * Modified by: Rachit Bhatia, Shoumil
  */
 
-public abstract class Move extends MouseAdapter implements NeighbourPositionFinder {
+public abstract class Move extends MouseAdapter{
 
     /**
      * Token instance
@@ -63,18 +63,15 @@ public abstract class Move extends MouseAdapter implements NeighbourPositionFind
     @Override
     public void mouseReleased(MouseEvent cursor) {
 
-        IntersectionPoint currIntersectionPoint = tokenInstance.getIntersectionPoint();  //current intersection point
-
         // Find neighbouring intersection points to the currIntersectionPoint and set them as valid intersection point
-        ArrayList<IntersectionPoint> neighbourIntersectionPoints = findNeighbouringIntersections(currIntersectionPoint);
-        for (IntersectionPoint intersectionPoint : neighbourIntersectionPoints){
+        ArrayList<IntersectionPoint> intersectionPoints = GameBoard.getInstance().getIntersectionPoints();
+        for (IntersectionPoint intersectionPoint : intersectionPoints){
             intersectionPoint.setPointSelected(false);  //set point selection to false once mouse is released
-            intersectionPoint.repaint();  //repaint intersection point with black border again
+            intersectionPoint.repaint();  //repainting all intersection points with black border once mouse is released
         }
 
         if(tokenInstance.canBeUsed()){
             // All the intersectionPoints in the panel
-            ArrayList<IntersectionPoint> intersectionPoints = GameBoard.getInstance().getIntersectionPoints();
 
             boolean foundIntersectionPoint = false;
 
