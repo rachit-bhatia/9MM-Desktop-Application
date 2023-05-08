@@ -1,7 +1,6 @@
 package game;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class MillChecker {
   private static MillChecker instance;
@@ -23,45 +22,22 @@ public class MillChecker {
   // Main function checks for mills formed around an Intersection point ONLY (for now)
   public boolean checkForMills(IntersectionPoint myIntersectionPoint) {
     boolean hasMill = false;
+    MillChecker millChecker = MillChecker.getInstance(this.intersectionPointsList);
+    int intersectionIndex = -1;
     for (int i = 0; i < intersectionPointsList.size(); i++) {
       if (intersectionPointsList.get(i) == myIntersectionPoint) {
-        // if intersection point is at 7, 15, 23
-        if (i % 8 == 7) {
-          if (intersectionPointsList.get(i - 1).hasToken() && intersectionPointsList.get(i - 7).hasToken()) {
-            hasMill = true;
-          }
-        }
-        // if intersection point is at 0, 8, 16
-        else if (i % 8 == 0) {
-          if (intersectionPointsList.get(i + 1).hasToken() && intersectionPointsList.get(i + 7)
-              .hasToken()) {
-            hasMill = true;
-          }
-        }
-        // other intersection points
-        else {
-          if (intersectionPointsList.get(i + 1).hasToken() && intersectionPointsList.get(i - 1).hasToken()) {
-            hasMill = true;
-          }
-        }
-        // checks vertically, only if the intersection point is in the middle (need to implement if a token is added to a side intersection point)
-        // middle intersection point, hence only odd intersections
-        if (i % 2 == 1) {
-          if (i - 8 > 0 && i + 8 < 24) {
-            if (intersectionPointsList.get(i - 8).hasToken() && intersectionPointsList.get(i + 8)
-                .hasToken()) {
-              hasMill = true;
-            }
-          }
-        }
-        MillChecker tmp = MillChecker.getInstance(this.intersectionPointsList);
-        if (i < 8) {
-          hasMill =  tmp.checkForMills(intersectionPointsList.get(i + 8));
-        }
-        if (i > 16) {
-          hasMill =  tmp.checkForMills(intersectionPointsList.get(i - 8));
-        }
+        intersectionIndex = i;
       }
+    }
+    // Checking for vertical mills (only works on centre intersections)
+    if (intersectionIndex % 2 == 1) {
+      if (millChecker.checkForVerticalMill(myIntersectionPoint)) {
+        hasMill = true;
+      }
+    }
+    // Checking for horizontal mills (all intersections)
+    if (millChecker.checkForHorizontalMill(myIntersectionPoint)) {
+      hasMill = true;
     }
     return hasMill;
   }
@@ -69,7 +45,6 @@ public class MillChecker {
   private boolean checkForVerticalMill(IntersectionPoint myIntersectionPoint) {
     boolean hasMill = false;
     int intersectionIndex = -1;
-    int[] centreIntersections = {9, 11, 13, 15};
     for (int i = 0; i < intersectionPointsList.size(); i++) {
       if (intersectionPointsList.get(i) == myIntersectionPoint) {
         intersectionIndex = i;
