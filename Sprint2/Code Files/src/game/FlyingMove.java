@@ -44,6 +44,8 @@ public class FlyingMove extends Move {
             for (IntersectionPoint intersectionPoint : intersectionPoints){
                 if (!intersectionPoint.hasToken()){
                     intersectionPoint.setMoveValid(true);
+                    intersectionPoint.setPointSelected(true);
+                    intersectionPoint.repaint(); //repainting intersection point with green border when a token is selected
                 }
             }
         }
