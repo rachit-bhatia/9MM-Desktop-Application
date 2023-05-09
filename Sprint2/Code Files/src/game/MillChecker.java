@@ -1,3 +1,5 @@
+// NOTE: HAVE TO FIGURE OUT HOW TO DISTINGUISH BETWEEN WHITE AND BLACK
+
 package game;
 
 import java.util.ArrayList;
