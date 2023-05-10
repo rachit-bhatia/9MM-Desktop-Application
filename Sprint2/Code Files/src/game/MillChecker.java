@@ -58,8 +58,14 @@ public class MillChecker {
     // check whether intersection is vertically centered
     if (intersectionIndex > 8 && intersectionIndex < 16) {
       // Check if the adjacent intersections have tokens
-      if (intersectionPointsList.get(nextIntersectionIndex).hasToken() && intersectionPointsList.get(prevIntersectionIndex).hasToken() && intersectionPointsList.get(intersectionIndex).hasToken()) {
-        hasMill = true;
+      if (intersectionPointsList.get(nextIntersectionIndex).hasToken() &&
+          intersectionPointsList.get(prevIntersectionIndex).hasToken() &&
+          intersectionPointsList.get(intersectionIndex).hasToken()) {
+
+        if (intersectionPointsList.get(intersectionIndex).getTokenInstance().getPlayer() == intersectionPointsList.get(prevIntersectionIndex).getTokenInstance().getPlayer() &&
+            intersectionPointsList.get(intersectionIndex).getTokenInstance().getPlayer() == intersectionPointsList.get(nextIntersectionIndex).getTokenInstance().getPlayer()) {
+          hasMill = true;
+        }
       }
     }
 
@@ -94,8 +100,14 @@ public class MillChecker {
         nextIntersectionIndex = intersectionIndex - 7;
       }
       // Check if the adjacent intersections have tokens
-      if (intersectionPointsList.get(nextIntersectionIndex).hasToken() && intersectionPointsList.get(prevIntersectionIndex).hasToken() && intersectionPointsList.get(intersectionIndex).hasToken()) {
-        hasMill = true;
+      if (intersectionPointsList.get(nextIntersectionIndex).hasToken() &&
+          intersectionPointsList.get(prevIntersectionIndex).hasToken() &&
+          intersectionPointsList.get(intersectionIndex).hasToken()) {
+
+        if (intersectionPointsList.get(intersectionIndex).getTokenInstance().getPlayer() == intersectionPointsList.get(prevIntersectionIndex).getTokenInstance().getPlayer() &&
+            intersectionPointsList.get(intersectionIndex).getTokenInstance().getPlayer() == intersectionPointsList.get(nextIntersectionIndex).getTokenInstance().getPlayer()) {
+          hasMill = true;
+        }
       }
     }
 
