@@ -6,17 +6,12 @@ import java.util.ArrayList;
 
 public class MillChecker {
   private static MillChecker instance;
-  private ArrayList<IntersectionPoint> intersectionPointsList;
 
-  // Constructor
-  private MillChecker(ArrayList<IntersectionPoint> intersectionPointsList) {
-    this.intersectionPointsList = intersectionPointsList;
-  }
 
   // Singleton method to get instance
-  public static MillChecker getInstance(ArrayList<IntersectionPoint> intersectionPointsList){
+  public static MillChecker getInstance(){
     if (instance == null) {
-      instance = new MillChecker(intersectionPointsList);
+      instance = new MillChecker();
     }
     return instance;
   }
@@ -24,8 +19,9 @@ public class MillChecker {
   // Main function checks for mills formed around an Intersection point ONLY (for now)
   public boolean checkForMills(IntersectionPoint myIntersectionPoint) {
     boolean hasMill = false;
-    MillChecker millChecker = MillChecker.getInstance(this.intersectionPointsList);
     int intersectionIndex = -1;
+
+    ArrayList<IntersectionPoint> intersectionPointsList = GameBoard.getInstance().getIntersectionPoints();
     for (int i = 0; i < intersectionPointsList.size(); i++) {
       if (intersectionPointsList.get(i) == myIntersectionPoint) {
         intersectionIndex = i;
@@ -33,12 +29,12 @@ public class MillChecker {
     }
     // Checking for vertical mills (only works on centre intersections)
     if (intersectionIndex % 2 == 1) {
-      if (millChecker.checkForVerticalMill(myIntersectionPoint)) {
+      if (this.checkForVerticalMill(myIntersectionPoint)) {
         hasMill = true;
       }
     }
     // Checking for horizontal mills (all intersections)
-    if (millChecker.checkForHorizontalMill(myIntersectionPoint)) {
+    if (this.checkForHorizontalMill(myIntersectionPoint)) {
       hasMill = true;
     }
     return hasMill;
@@ -47,6 +43,8 @@ public class MillChecker {
   private boolean checkForVerticalMill(IntersectionPoint myIntersectionPoint) {
     boolean hasMill = false;
     int intersectionIndex = -1;
+
+    ArrayList<IntersectionPoint> intersectionPointsList = GameBoard.getInstance().getIntersectionPoints();
     for (int i = 0; i < intersectionPointsList.size(); i++) {
       if (intersectionPointsList.get(i) == myIntersectionPoint) {
         intersectionIndex = i;
@@ -71,14 +69,13 @@ public class MillChecker {
 
     // when intersection is not vertically centered
     else {
-      MillChecker verticalMillChecker = MillChecker.getInstance(this.intersectionPointsList);
       // check for outer ring
       if (intersectionIndex < 8) {
-        hasMill = verticalMillChecker.checkForVerticalMill(intersectionPointsList.get(nextIntersectionIndex));
+        hasMill = this.checkForVerticalMill(intersectionPointsList.get(nextIntersectionIndex));
       }
       // check for inner ring
       if (intersectionIndex > 16) {
-        hasMill = verticalMillChecker.checkForVerticalMill(intersectionPointsList.get(prevIntersectionIndex));
+        hasMill = this.checkForVerticalMill(intersectionPointsList.get(prevIntersectionIndex));
       }
     }
     return hasMill;
@@ -86,6 +83,8 @@ public class MillChecker {
   private boolean checkForHorizontalMill(IntersectionPoint myIntersectionPoint) {
     boolean hasMill = false;
     int intersectionIndex = -1;
+
+    ArrayList<IntersectionPoint> intersectionPointsList = GameBoard.getInstance().getIntersectionPoints();
     for (int i = 0; i < intersectionPointsList.size(); i++) {
       if (intersectionPointsList.get(i) == myIntersectionPoint) {
         intersectionIndex = i;
@@ -117,8 +116,8 @@ public class MillChecker {
       if (intersectionIndex % 8 == 0) {
         prevIntersectionIndex = intersectionIndex + 7;
       }
-      MillChecker horizontalMillChecker = MillChecker.getInstance(this.intersectionPointsList);
-      if (horizontalMillChecker.checkForHorizontalMill(intersectionPointsList.get(prevIntersectionIndex)) ||  horizontalMillChecker.checkForHorizontalMill(intersectionPointsList.get(nextIntersectionIndex))) {
+
+      if (this.checkForHorizontalMill(intersectionPointsList.get(prevIntersectionIndex)) ||  this.checkForHorizontalMill(intersectionPointsList.get(nextIntersectionIndex))) {
         hasMill = true;
       }
     }

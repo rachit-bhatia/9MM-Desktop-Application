@@ -116,7 +116,7 @@ public abstract class Move extends MouseAdapter{
                     tokenInstance.setIsTokenPlaced(true);
 
                     // Checking for Mills
-                    System.out.println(MillChecker.getInstance(intersectionPoints).checkForMills(intersectionPoint));
+                    System.out.println(MillChecker.getInstance().checkForMills(intersectionPoint));
 
                     //setting the order of display on the game board: token appears above intersection point
                     GameBoard.getInstance().setComponentZOrder(tokenInstance, 0);
