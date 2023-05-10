@@ -108,6 +108,6 @@ public class IntersectionPoint extends JComponent {
         this.pointSelected = pointSelection;
     }
 
-
+    public Token getTokenInstance() {return this.tokenInstance;}
 
 }
