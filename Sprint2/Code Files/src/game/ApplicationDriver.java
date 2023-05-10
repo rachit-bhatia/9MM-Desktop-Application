@@ -11,13 +11,8 @@ package game;
 public class ApplicationDriver {
 
     /** Driver to run the Application */
+
     public static void main(String[] args) {
-        MainWindow.setupWindow();
-        Game game = Game.getInstance();
-        game.setPlayers(new HumanPlayer(),new HumanPlayer());
-
-        MainWindow.addAllItems();
-
-        game.run();
+        MainWindow.setupMainWindow();
     }
 }

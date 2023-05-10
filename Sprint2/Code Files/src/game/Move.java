@@ -134,7 +134,7 @@ public abstract class Move extends MouseAdapter{
                     foundIntersectionPoint = true;
 
                     Game.getInstance().incrementTurn();
-
+                    GameBoard.getInstance().repaint();
                     GameBoard.getInstance().resetAllIntersectionPoints();
                     break;
                 }
