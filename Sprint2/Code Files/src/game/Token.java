@@ -20,7 +20,7 @@ public class Token extends JComponent {
     /**
      * Radius of Token
      */
-    private final int RADIUS = 50;
+    private final int DIAMETER = 55;
 
     /**
      * intersection point the token belongs to
@@ -31,6 +31,11 @@ public class Token extends JComponent {
      * If a token is already placed on board
      */
     private boolean isTokenPlaced;
+
+    /**
+     * boolean value to indicate if the token is available to be removed
+     */
+    private boolean toRemove;
 
 
     private boolean canBeUsed;
@@ -47,7 +52,7 @@ public class Token extends JComponent {
     public Token(int x, int y, Color color){
 
         tokenColour = color;
-        setBounds(x,y, RADIUS, RADIUS);  //setting the position and size of the token
+        setBounds(x,y, DIAMETER, DIAMETER);  //setting the position and size of the token
         isTokenPlaced = false;
         intersectionPoint = null;
         //enabling the tokens to be moved by mouse actions
@@ -65,7 +70,14 @@ public class Token extends JComponent {
     @Override
     public void paintComponent(Graphics tokenShape) {
         tokenShape.setColor(tokenColour);
-        tokenShape.fillOval(0, 0, getWidth(), getHeight());  //painting an oval
+        tokenShape.fillOval(2, 2, getWidth()-5, getHeight()-5);  //painting an oval
+        
+        if (this.toRemove){
+            Graphics2D tokenShapeEnhance = (Graphics2D) tokenShape;  //Graphics2D class used to change thickness of borders
+            tokenShapeEnhance.setStroke(new BasicStroke(5));   //border thickness set to 4
+            tokenShapeEnhance.setColor(Color.RED);
+            tokenShapeEnhance.drawOval(2,2, getWidth() - 5, getHeight() - 5);
+        }
     }
 
     public void changeListener(Move newMove){
@@ -131,6 +143,10 @@ public class Token extends JComponent {
 
     public Player getPlayer(){
         return this.player;
+    }
+
+    public void setToRemove(boolean isHighlight){
+        this.toRemove = isHighlight;
     }
 
 
