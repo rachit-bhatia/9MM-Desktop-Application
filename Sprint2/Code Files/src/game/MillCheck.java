@@ -7,6 +7,8 @@ import java.util.ArrayList;
 public class MillCheck implements NeighbourPositionFinder {
     private static MillCheck instance;
 
+    // TODO : Add an attribute ArrayList of array{3} Token to store all the tokens currently part of Mill
+
 
     // Singleton method to get instance
     public static MillCheck getInstance() {
@@ -61,6 +63,12 @@ public class MillCheck implements NeighbourPositionFinder {
             }
         }
 
+        if ( numberOfTokensAlignedHorizontal == 3 && numberOfTokensAlignedHorizontal == 3){
+            // TODO : Add both mils formed (tokensInMillHorizontal & tokensInMillVertical to the attribute so that can be checked against later before removal of token
+            System.out.println("Double mills test ");
+            return true;
+        }
+
         if (numberOfTokensAlignedHorizontal == 3){
             // TODO : Add the mill formed (tokensInMillHorizontal) to the attribute so that can be checked against later before removal of token
             return true;
@@ -70,6 +78,8 @@ public class MillCheck implements NeighbourPositionFinder {
             // TODO : Add the mill formed (tokensInMillVertical) to the attribute so that can be checked against later before removal of token
             return true;
         }
+
+
 
         return false;
     }
