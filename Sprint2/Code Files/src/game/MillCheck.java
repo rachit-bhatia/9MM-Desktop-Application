@@ -21,7 +21,7 @@ public class MillCheck implements NeighbourPositionFinder {
     /**
      * Check for vertical and horizontal mill
      * @param intersectionPointInstance the intersection point in which a token is just placed on it
-     * @return True or False boolean
+     * @return True when a mill is formed . Otherwise, False.
      */
     public boolean checkMill(IntersectionPoint intersectionPointInstance) {
 
@@ -31,7 +31,7 @@ public class MillCheck implements NeighbourPositionFinder {
         int numberOfTokensAlignedHorizontal = 1; // Number of tokens aligned horizontally
 
 
-        ArrayList<Token> tokensFoundHorizontal = checkHorizontal(intersectionPointInstance,tokensInMillHorizontal); // Check for tokens aligned horizontally
+        ArrayList<Token> tokensFoundHorizontal = checkHorizontalVertical(intersectionPointInstance,tokensInMillHorizontal,true); // Check for tokens aligned horizontally
 
         while (tokensFoundHorizontal.size() != 0){ // If no tokens aligned horizontally stop the loop
 
@@ -41,7 +41,7 @@ public class MillCheck implements NeighbourPositionFinder {
             } else { // If only one token is found aligned , proceed to check the third intersection point ( happens for the case where token is placed on the
                 // corner most intersection point of a horizontal line)
                 numberOfTokensAlignedHorizontal += 1;
-                tokensFoundHorizontal = checkHorizontal(tokensFoundHorizontal.get(0).getIntersectionPoint(),tokensInMillHorizontal);
+                tokensFoundHorizontal = checkHorizontalVertical(tokensFoundHorizontal.get(0).getIntersectionPoint(),tokensInMillHorizontal,true);
             }
         }
 
@@ -49,7 +49,7 @@ public class MillCheck implements NeighbourPositionFinder {
         int numberOfTokensAlignedVertical = 1; // Number of tokens aligned vertically
         tokensInMillVertical.add(intersectionPointInstance.getTokenInstance()); // First add the token that is just placed on this intersection point
 
-        ArrayList<Token> tokensFoundVertical = checkVertical(intersectionPointInstance,tokensInMillVertical); // Check for tokens aligned vertically
+        ArrayList<Token> tokensFoundVertical = checkHorizontalVertical(intersectionPointInstance,tokensInMillVertical,false); // Check for tokens aligned vertically
 
         while (tokensFoundVertical.size() != 0){ // If no tokens aligned vertically stop the loop
 
@@ -59,11 +59,11 @@ public class MillCheck implements NeighbourPositionFinder {
             } else { // If only one token is found aligned , proceed to check the third intersection point ( happens for the case where token is placed on the
                 // corner most intersection point of a vertical line)
                 numberOfTokensAlignedVertical += 1;
-                tokensFoundVertical = checkVertical(tokensFoundVertical.get(0).getIntersectionPoint(),tokensInMillVertical);
+                tokensFoundVertical = checkHorizontalVertical(tokensFoundVertical.get(0).getIntersectionPoint(),tokensInMillVertical,false);
             }
         }
 
-        if ( numberOfTokensAlignedHorizontal == 3 && numberOfTokensAlignedHorizontal == 3){
+        if ( numberOfTokensAlignedHorizontal == 3 && numberOfTokensAlignedVertical == 3){
             // TODO : Add both mils formed (tokensInMillHorizontal & tokensInMillVertical to the attribute so that can be checked against later before removal of token
             System.out.println("Double mills test ");
             return true;
@@ -86,46 +86,39 @@ public class MillCheck implements NeighbourPositionFinder {
 
     /**
      * Check the horizontal neighbour(s) of an intersection point to see if there is another token of same player next to it
+     * @param bool True if Checking for horizontal alignment , False if checking for vertical alignment
      * @param intersectionPoint intersection point to which the neighbours are being checked
-     * @param tokensInMillHorizontal current tokens that are already found aligned ( to avoid adding the same token found again to the mill)
-     * @return all the tokens found aligned horizontally ( either 1 token or 2 tokens ( middle intersection point) )
+     * @param tokensInMill current tokens that are already found aligned ( to avoid adding the same token found again to the mill)
+     * @return all the tokens found aligned ( either 1 token or 2 tokens ( middle intersection point) )
      */
-    private ArrayList<Token> checkHorizontal(IntersectionPoint intersectionPoint ,ArrayList<Token> tokensInMillHorizontal ){
-        ArrayList<IntersectionPoint> neighbours = findNeighbouringIntersections(intersectionPoint);
-        ArrayList<Token> tokensFoundAlignedHorizontal = new ArrayList<Token>();
+
+    private ArrayList<Token> checkHorizontalVertical(IntersectionPoint intersectionPoint ,ArrayList<Token> tokensInMill , boolean bool ){
+        ArrayList<IntersectionPoint> neighbours = findNeighbouringIntersections(intersectionPoint); // Find neighbours of intersection point given as parameter
+        ArrayList<Token> tokensFoundAligned = new ArrayList<Token>(); // All the tokens found aligned
 
         for (IntersectionPoint neighbour : neighbours){
-            if ( neighbour.getY() == intersectionPoint.getY() ){
-                if (neighbour.hasToken() && (neighbour.getTokenInstance().getPlayer() == intersectionPoint.getTokenInstance().getPlayer()) &&
-                !tokensInMillHorizontal.contains(neighbour.getTokenInstance())){
-                    tokensFoundAlignedHorizontal.add(neighbour.getTokenInstance());
-                    tokensInMillHorizontal.add(neighbour.getTokenInstance());
+
+            if (bool){ // If checking horizontal alignment
+                if ( neighbour.getY() == intersectionPoint.getY() ){
+                    // If horizontal neighbour has a token belongs to same player that is not yet been discovered
+                    if (neighbour.hasToken() && (neighbour.getTokenInstance().getPlayer() == intersectionPoint.getTokenInstance().getPlayer()) &&
+                            !tokensInMill.contains(neighbour.getTokenInstance())){
+                        tokensFoundAligned.add(neighbour.getTokenInstance()); // add the token found to the output return
+                        tokensInMill.add(neighbour.getTokenInstance()); // add the token found to be part of the mill
+                    }
+                }
+            } else{ // If checking vertical alignment
+                if ( neighbour.getX() == intersectionPoint.getX() ){
+                    // If vertical neighbour has a token belongs to same player that is not yet been discovered
+                    if (neighbour.hasToken() && (neighbour.getTokenInstance().getPlayer() == intersectionPoint.getTokenInstance().getPlayer()) &&
+                            !tokensInMill.contains(neighbour.getTokenInstance())){
+                        tokensFoundAligned.add(neighbour.getTokenInstance()); // add the token found to the output return
+                        tokensInMill.add(neighbour.getTokenInstance()); // add the token found to be part of the mill
+                    }
                 }
             }
+
         }
-        return tokensFoundAlignedHorizontal;
-    }
-
-
-    /**
-     * Check the vertical neighbour(s) of an intersection point to see if there is another token of same player next to it
-     * @param intersectionPoint intersection point to which the neighbours are being checked
-     * @param tokensInMillVertical current tokens that are already found aligned ( to avoid adding the same token found again to the mill)
-     * @return all the tokens found aligned vertically ( either 1 token or 2 tokens ( middle intersection point) )
-     */
-    private ArrayList<Token> checkVertical(IntersectionPoint intersectionPoint ,ArrayList<Token> tokensInMillVertical ){
-        ArrayList<IntersectionPoint> neighbours = findNeighbouringIntersections(intersectionPoint);
-        ArrayList<Token> tokensFoundAlignedVertical = new ArrayList<Token>();
-
-        for (IntersectionPoint neighbour : neighbours){
-            if ( neighbour.getX() == intersectionPoint.getX() ){
-                if (neighbour.hasToken() && (neighbour.getTokenInstance().getPlayer() == intersectionPoint.getTokenInstance().getPlayer()) &&
-                        !tokensInMillVertical.contains(neighbour.getTokenInstance())){
-                    tokensFoundAlignedVertical.add(neighbour.getTokenInstance());
-                    tokensInMillVertical.add(neighbour.getTokenInstance());
-                }
-            }
-        }
-        return tokensFoundAlignedVertical;
+        return tokensFoundAligned;
     }
 }
