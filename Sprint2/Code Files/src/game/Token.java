@@ -1,6 +1,7 @@
 package game;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
 
 /**
  * A JComponent representing the Token
@@ -40,7 +41,7 @@ public class Token extends JComponent {
 
     private boolean canBeUsed;
 
-    private Move currentMoveListener;
+    private MouseAdapter currentMoveListener;
 
     private Player player ;
     /**
@@ -80,7 +81,7 @@ public class Token extends JComponent {
         }
     }
 
-    public void changeListener(Move newMove){
+    public void changeListener(MouseAdapter newMove){
         this.removeMouseListener(this.currentMoveListener);
         this.removeMouseMotionListener(this.currentMoveListener);
         this.addMouseListener(newMove);
