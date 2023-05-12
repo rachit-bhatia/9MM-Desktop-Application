@@ -23,15 +23,15 @@ public class Game {
 
     public void run(){
 
-        // While both players still have more than 3 tokens, keep the game running
-        while (player1.getNumberOfTokens() > 3 && player2.getNumberOfTokens() >3){
+        // While both players still have 3 or more tokens, keep the game running
+        while (player1.getNumberOfTokens() >= 3 && player2.getNumberOfTokens() >= 3){
 
             // update state of move if needed
             player1.updateStateOfMove();
 
 
             // While a valid move is not yet made by the player 1
-            while ( this.turn % 2 == 0){
+            while (this.turn % 2 == 0 && player1.getNumberOfTokens() >= 3){
                 player1.setPlayerTurn(true);
             }
 
@@ -42,7 +42,7 @@ public class Game {
             player2.updateStateOfMove();
 
             // While a valid move is not yet made by the player 2
-            while ( this.turn % 2 == 1){
+            while ( this.turn % 2 == 1 && player2.getNumberOfTokens() >= 3){
                 player2.setPlayerTurn(true);
             }
 
