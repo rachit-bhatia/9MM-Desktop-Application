@@ -7,7 +7,7 @@ public abstract class Player {
 
     private ArrayList<Token> tokenList ;
 
-    private CurrentStateofMove currentStateofMove;
+    public CurrentStateofMove currentStateofMove;
     public Player(){
         tokenList = new ArrayList<Token>();
         currentStateofMove = CurrentStateofMove.PLACING;
@@ -30,7 +30,9 @@ public abstract class Player {
             for (Token token : tokenList){
                 token.changeListener(new SlidingMove(token,token.getX(),token.getY()));
             }
-        } else if (currentStateofMove == CurrentStateofMove.SLIDING && tokenList.size() == 3) { // if current state of move is sliding, and player has 3 tokens left
+
+        }
+        if (currentStateofMove == CurrentStateofMove.SLIDING && tokenList.size() == 3) { // if current state of move is sliding, and player has 3 tokens left
 
 
             // Change the state of move to FLYING
@@ -41,7 +43,36 @@ public abstract class Player {
             }
 
         }
+        else if (currentStateofMove == CurrentStateofMove.REMOVING) {
+            if (!areAllTokensPlaced()){
+                currentStateofMove = CurrentStateofMove.PLACING;
+                for (Token token : tokenList){
+                    if (token.isTokenPlaced()){
+                        token.changeListener(null);
+                    }
+                    else{
+                        token.changeListener(new FlyingMove(token, token.getX(), token.getY()));
+                    }
+                }
+            }
 
+            else if (areAllTokensPlaced()) {
+
+                if (tokenList.size() > 3) {
+                    currentStateofMove = CurrentStateofMove.SLIDING;
+                    for (Token token : tokenList) {
+                        token.changeListener(new SlidingMove(token, token.getX(), token.getY()));
+                    }
+                }
+
+                else if (tokenList.size() == 3) {
+                    currentStateofMove = CurrentStateofMove.FLYING;
+                    for (Token token : tokenList) {
+                        token.changeListener(new FlyingMove(token, token.getX(), token.getY()));
+                    }
+                }
+            }
+        }
 
     }
 
