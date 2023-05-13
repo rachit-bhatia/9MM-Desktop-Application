@@ -88,6 +88,10 @@ public class MillCheck implements NeighbourPositionFinder {
             Player curPlayer = intersectionPointInstance.getTokenInstance().getPlayer();
             changeToRemoveState(curPlayer);
         }
+
+        //checking to remove mills when token removed
+        checkIfTokenInMill(intersectionPointInstance.getTokenInstance());
+
         return millFormed;
     }
 
@@ -144,16 +148,21 @@ public class MillCheck implements NeighbourPositionFinder {
             oppPlayer = Game.getInstance().getPlayer1();
         }
 
+        int totalTokensOnBoard = 0; //count of tokens on the board for opponent player
+        int totalTokensInMill = 0; //count of tokens in mills for opponent player
 
         //opponent's tokens are changed to removable state and highlighted red
         for (Token token : oppPlayer.getTokenList()){
             boolean tokenInMill = false; //boolean value to check if the token is part of a mill
             if (token.isTokenPlaced()){
 
+                totalTokensOnBoard++;
+
                 //loop through all mills to check if token is part of mill
                 for (ArrayList<Token> millFound : millTokens){
                     if (millFound.contains(token)){
                         tokenInMill = true;
+                        totalTokensInMill++;
                     }
                 }
 
@@ -166,6 +175,15 @@ public class MillCheck implements NeighbourPositionFinder {
             }
         }
 
+        //tokens in mills can be removed if and only if there is no other token on the board not currently a part of a mill
+        //tokens in mills equal total tokens on board means no other tokens are on board not currently part of a mill
+        if ((totalTokensOnBoard == totalTokensInMill) || (totalTokensOnBoard == totalTokensInMill - 1) ){
+            for (Token token : oppPlayer.getTokenList()){
+                token.setToRemove(true);
+                token.repaint();
+                token.changeListener(new RemoveMove(token),true);
+            }
+        }
 
         //current player's tokens are set to non-movable state to force removal of opponent token
         for (Token token : curPlayer.getTokenList()){
@@ -173,16 +191,17 @@ public class MillCheck implements NeighbourPositionFinder {
                 token.changeListener(null,true);
             }
         }
-
-
-
     }
 
+    /**
+     * removing mills if a token in the mill has moved
+     * @param curToken current token moved
+     */
     public void checkIfTokenInMill(Token curToken){
         ArrayList<Integer> millIndices = new ArrayList<>();
         for (ArrayList<Token> mill: millTokens){
             if (mill.contains(curToken)){
-                millIndices.add(millTokens.indexOf(mill));
+                millIndices.add(millTokens.indexOf(mill));  //index of mill in millTokens array
             }
         }
         for (int index : millIndices){
