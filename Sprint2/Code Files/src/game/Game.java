@@ -1,6 +1,9 @@
 package game;
 
-public class Game {
+
+import javax.swing.*;
+
+public class Game implements NeighbourPositionFinder{
 
     private Player player1;
     private Player player2;
@@ -24,6 +27,7 @@ public class Game {
     public void run(){
 
         // While both players still have 3 or more tokens, keep the game running
+        String endMessage = "Congratulations ";
         while (player1.getNumberOfTokens() >= 3 && player2.getNumberOfTokens() >= 3){
 
             // update state of move if needed
@@ -50,6 +54,15 @@ public class Game {
             player2.setPlayerTurn(false);
 
         }
+
+        if (player1.getTokenList().size() < 3){
+            endMessage += "Player 2!\nYou win the game!";
+        }
+        else if (player2.getTokenList().size() < 3){
+            endMessage += "Player 1!\nYou win the game!";
+        }
+
+        JOptionPane.showMessageDialog(null, endMessage, "Game Over", JOptionPane.PLAIN_MESSAGE);
 
     }
 
