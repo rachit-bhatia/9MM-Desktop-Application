@@ -118,8 +118,24 @@ public abstract class Move extends MouseAdapter{
                     // Checking for Mills and changing player state
                     boolean millFormed = MillCheck.getInstance().checkMill(intersectionPoint);
                     if (millFormed){
-                        tokenInstance.getPlayer().currentStateofMove = CurrentStateofMove.REMOVING;
+                        tokenInstance.getPlayer().setCurrentStateofMove(CurrentStateofMove.REMOVING);
                     }
+
+//                    if (tokenInstance.getPlayer().getCurrentStateofMove() != CurrentStateofMove.REMOVING){
+//                        MillCheck.getInstance().checkIfTokenInMill(tokenInstance);}
+//                    for (ArrayList<Token> mill : millTokens){
+//                        if (mill.contains(tokenInstance) && tokenInstance.getPlayer().getCurrentStateofMove() != CurrentStateofMove.REMOVING){
+//                            millTokens.remove(mill);
+////                            int millTokenCount = 0;
+////                            for (Token tokenInMill : mill){
+////                                if (tokenInMill.getX() == tokenInstance.getX() || tokenInMill.getY() == tokenInstance.getY()){
+////                                    millTokenCount++;
+////                                }
+////                            }
+////                            if (millTokenCount < 3){
+////                                millTokens.remove(mill); }
+//                        }
+//                    }
 
                     //setting the order of display on the game board: token appears above intersection point
                     GameBoard.getInstance().setComponentZOrder(tokenInstance, 0);
@@ -136,9 +152,10 @@ public abstract class Move extends MouseAdapter{
                     yCoordinate = newLocationY;
                     foundIntersectionPoint = true;
 
-                    //turn should remain the same if a mill is found
-                    if (tokenInstance.getPlayer().currentStateofMove != CurrentStateofMove.REMOVING) {
-                        Game.getInstance().incrementTurn();
+
+                    if (tokenInstance.getPlayer().getCurrentStateofMove() != CurrentStateofMove.REMOVING) {
+                        Game.getInstance().incrementTurn(); //turn should remain the same if a mill is found
+                        MillCheck.getInstance().checkIfTokenInMill(tokenInstance);
                     }
                     GameBoard.getInstance().repaint();
                     GameBoard.getInstance().resetAllIntersectionPoints();
