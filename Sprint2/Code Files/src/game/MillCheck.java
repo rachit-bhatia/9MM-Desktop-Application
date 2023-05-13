@@ -160,14 +160,16 @@ public class MillCheck implements NeighbourPositionFinder {
                 if (!tokenInMill){
                     token.setToRemove(true);
                     token.repaint();
-                    token.changeListener(new RemoveMove(token));
+                    token.changeListener(new RemoveMove(token),true);
                 }
             }
         }
 
         //current player's tokens are set to non-movable state to force removal of opponent token
         for (Token token : curPlayer.getTokenList()){
-            token.changeListener(null);
+            if (token.isTokenPlaced()){
+                token.changeListener(null,true);
+            }
         }
     }
 

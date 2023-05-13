@@ -117,9 +117,6 @@ public abstract class Move extends MouseAdapter{
 
                     // Checking for Mills and changing player state
                     boolean millFormed = MillCheck.getInstance().checkMill(intersectionPoint);
-                    if (millFormed){
-                        tokenInstance.getPlayer().setCurrentStateofMove(CurrentStateofMove.REMOVING);
-                    }
 
 //                    if (tokenInstance.getPlayer().getCurrentStateofMove() != CurrentStateofMove.REMOVING){
 //                        MillCheck.getInstance().checkIfTokenInMill(tokenInstance);}
@@ -143,7 +140,7 @@ public abstract class Move extends MouseAdapter{
 
                     // If current player move is placing , remove the mouseListener
                     if (tokenInstance.getPlayer().getCurrentStateOfMove() == CurrentStateofMove.PLACING){
-                        tokenInstance.changeListener(null);
+                        tokenInstance.changeListener(null,false);
                     }
 
                     // Set the token coordinate at the new location relative to the GameBoard's coordinate system
@@ -153,9 +150,9 @@ public abstract class Move extends MouseAdapter{
                     foundIntersectionPoint = true;
 
 
-                    if (tokenInstance.getPlayer().getCurrentStateofMove() != CurrentStateofMove.REMOVING) {
-                        Game.getInstance().incrementTurn(); //turn should remain the same if a mill is found
-                        MillCheck.getInstance().checkIfTokenInMill(tokenInstance);
+                    if (!millFormed) { // If mill is not formed
+                        Game.getInstance().incrementTurn(); // increment turn if mill is not found
+                        MillCheck.getInstance().checkIfTokenInMill(tokenInstance); // if token was part of a mill , remove it as it is no longer part of a mill
                     }
                     GameBoard.getInstance().repaint();
                     GameBoard.getInstance().resetAllIntersectionPoints();

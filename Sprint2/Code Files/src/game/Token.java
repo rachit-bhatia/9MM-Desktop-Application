@@ -2,6 +2,8 @@ package game;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 
 /**
  * A JComponent representing the Token
@@ -81,13 +83,37 @@ public class Token extends JComponent {
         }
     }
 
-    public void changeListener(MouseAdapter newMove){
+    public void changeListener(MouseAdapter newMove , boolean temporary){
         this.removeMouseListener(this.currentMoveListener);
         this.removeMouseMotionListener(this.currentMoveListener);
         this.addMouseListener(newMove);
         this.addMouseMotionListener(newMove);
-        this.currentMoveListener = newMove;
+
+        if (!temporary){ // if not temporary
+            this.currentMoveListener = newMove;
+        }
     }
+
+    /**
+     * Remove temporary listeners and set it back to original listener
+     */
+    public void removeTemporaryListener(){
+        // Remove all the current mouse listeners
+        for (MouseListener temporaryMouseListener : this.getMouseListeners()){
+            this.removeMouseListener(temporaryMouseListener);
+        }
+        // Remove all the current mouse motion listeners
+        for (MouseMotionListener temporaryMouseMotionListener : this.getMouseMotionListeners()){
+            this.removeMouseMotionListener(temporaryMouseMotionListener);
+        }
+
+        // Reset the mouse listener and mouse motion listener back to the original move listener
+        this.addMouseListener(this.currentMoveListener);
+        this.addMouseMotionListener(this.currentMoveListener);
+    }
+
+
+
 
     /**
      *  Add the token to an intersection point

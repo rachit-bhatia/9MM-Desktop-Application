@@ -28,7 +28,7 @@ public abstract class Player {
             // Change the state of move to SLIDING
             currentStateofMove = CurrentStateofMove.SLIDING;
             for (Token token : tokenList){
-                token.changeListener(new SlidingMove(token,token.getX(),token.getY()));
+                token.changeListener(new SlidingMove(token,token.getX(),token.getY()),false);
             }
 
         }
@@ -39,44 +39,44 @@ public abstract class Player {
             currentStateofMove = CurrentStateofMove.FLYING;
 
             for (Token token : tokenList){
-                token.changeListener(new FlyingMove(token,token.getX(),token.getY()));
+                token.changeListener(new FlyingMove(token,token.getX(),token.getY()),false);
             }
 
         }
-        else if (currentStateofMove == CurrentStateofMove.REMOVING) {
-
-            //if all tokens are not on board, the player is still placing their tokens
-            if (!areAllTokensPlaced()){
-                currentStateofMove = CurrentStateofMove.PLACING;
-                for (Token token : tokenList){
-                    if (token.isTokenPlaced()){
-                        token.changeListener(null); //token on the board can't move
-                    }
-                    else{
-                        token.changeListener(new FlyingMove(token, token.getX(), token.getY()));
-                    }
-                }
-            }
-
-            //if all tokens are on the board, then player is in sliding or flying state of move
-            else if (areAllTokensPlaced()) {
-
-                if (tokenList.size() > 3) {
-                    currentStateofMove = CurrentStateofMove.SLIDING;
-                    for (Token token : tokenList) {
-                        token.changeListener(new SlidingMove(token, token.getX(), token.getY()));
-                    }
-                }
-
-                //if player has 3 tokens left, they can move their tokens anywhere on the board
-                else if (tokenList.size() == 3) {
-                    currentStateofMove = CurrentStateofMove.FLYING;
-                    for (Token token : tokenList) {
-                        token.changeListener(new FlyingMove(token, token.getX(), token.getY()));
-                    }
-                }
-            }
-        }
+//        else if (currentStateofMove == CurrentStateofMove.REMOVING) {
+//
+//            //if all tokens are not on board, the player is still placing their tokens
+//            if (!areAllTokensPlaced()){
+//                currentStateofMove = CurrentStateofMove.PLACING;
+//                for (Token token : tokenList){
+//                    if (token.isTokenPlaced()){
+//                        token.changeListener(null); //token on the board can't move
+//                    }
+//                    else{
+//                        token.changeListener(new FlyingMove(token, token.getX(), token.getY()));
+//                    }
+//                }
+//            }
+//
+//            //if all tokens are on the board, then player is in sliding or flying state of move
+//            else if (areAllTokensPlaced()) {
+//
+//                if (tokenList.size() > 3) {
+//                    currentStateofMove = CurrentStateofMove.SLIDING;
+//                    for (Token token : tokenList) {
+//                        token.changeListener(new SlidingMove(token, token.getX(), token.getY()));
+//                    }
+//                }
+//
+//                //if player has 3 tokens left, they can move their tokens anywhere on the board
+//                else if (tokenList.size() == 3) {
+//                    currentStateofMove = CurrentStateofMove.FLYING;
+//                    for (Token token : tokenList) {
+//                        token.changeListener(new FlyingMove(token, token.getX(), token.getY()));
+//                    }
+//                }
+//            }
+//        }
 
     }
 

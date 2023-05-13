@@ -34,6 +34,23 @@ public class RemoveMove extends MouseAdapter {
         tokenInstance.getIntersectionPoint().removeToken();  //removing token from intersection point
         tokenInstance.getPlayer().getTokenList().remove(tokenInstance); //removing token from player's list
 
+
+        for( Token token: Game.getInstance().getPlayer1().getTokenList()){
+            if (token.isTokenPlaced()){
+                token.removeTemporaryListener();
+                System.out.println(" Removed temporary Listner 1");
+            }
+
+        }
+
+        for( Token token: Game.getInstance().getPlayer2().getTokenList()){
+            if (token.isTokenPlaced()){
+                token.removeTemporaryListener();
+                System.out.println(" Removed temporary Listner 2");
+            }
+
+        }
+
         //updating the UI state of the board
         GameBoard.getInstance().revalidate();
         GameBoard.getInstance().repaint();
