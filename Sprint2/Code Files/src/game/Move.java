@@ -115,8 +115,11 @@ public abstract class Move extends MouseAdapter{
                     tokenInstance.addTokenToIntersectionPoint(intersectionPoint);
                     tokenInstance.setIsTokenPlaced(true);
 
-                    // Checking for Mills
-                    System.out.println(MillCheck.getInstance().checkMill(intersectionPoint));
+                    // Checking for Mills and changing player state
+                    boolean millFormed = MillCheck.getInstance().checkMill(intersectionPoint);
+                    if (millFormed){
+                        tokenInstance.getPlayer().currentStateofMove = CurrentStateofMove.REMOVING;
+                    }
 
                     //setting the order of display on the game board: token appears above intersection point
                     GameBoard.getInstance().setComponentZOrder(tokenInstance, 0);
@@ -133,7 +136,10 @@ public abstract class Move extends MouseAdapter{
                     yCoordinate = newLocationY;
                     foundIntersectionPoint = true;
 
-                    Game.getInstance().incrementTurn();
+                    //turn should remain the same if a mill is found
+                    if (tokenInstance.getPlayer().currentStateofMove != CurrentStateofMove.REMOVING) {
+                        Game.getInstance().incrementTurn();
+                    }
                     GameBoard.getInstance().repaint();
                     GameBoard.getInstance().resetAllIntersectionPoints();
                     break;

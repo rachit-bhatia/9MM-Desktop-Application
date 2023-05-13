@@ -24,7 +24,7 @@ public class MillCheck implements NeighbourPositionFinder {
      * @return True when a mill is formed . Otherwise, False.
      */
     public boolean checkMill(IntersectionPoint intersectionPointInstance) {
-
+        boolean millFound = false;
 
         ArrayList<Token> tokensInMillHorizontal = new ArrayList<Token>(); // Tokens in Horizontal Mill
         tokensInMillHorizontal.add(intersectionPointInstance.getTokenInstance()); // First add the token that is just placed on this intersection point
@@ -66,22 +66,26 @@ public class MillCheck implements NeighbourPositionFinder {
         if ( numberOfTokensAlignedHorizontal == 3 && numberOfTokensAlignedVertical == 3){
             // TODO : Add both mils formed (tokensInMillHorizontal & tokensInMillVertical to the attribute so that can be checked against later before removal of token
             System.out.println("Double mills test ");
-            return true;
+            millFound = true;
         }
 
         if (numberOfTokensAlignedHorizontal == 3){
             // TODO : Add the mill formed (tokensInMillHorizontal) to the attribute so that can be checked against later before removal of token
-            return true;
+            millFound = true;
         }
 
         if (numberOfTokensAlignedVertical == 3){
             // TODO : Add the mill formed (tokensInMillVertical) to the attribute so that can be checked against later before removal of token
-            return true;
+            millFound = true;
+        }
+
+        if (millFound){
+            Player curPlayer = intersectionPointInstance.getTokenInstance().getPlayer();
+            changeToRemoveState(curPlayer);
         }
 
 
-
-        return false;
+        return millFound;
     }
 
     /**
@@ -120,5 +124,35 @@ public class MillCheck implements NeighbourPositionFinder {
 
         }
         return tokensFoundAligned;
+    }
+
+    /**
+     * Changes the state of all the tokens on the board and enables token of opponent player to be removed
+     * @param curPlayer current player who has formed a mill
+     */
+    public void changeToRemoveState(Player curPlayer){
+        Player oppPlayer;
+
+        //getting opponent
+        if (curPlayer == Game.getInstance().getPlayer1()){
+            oppPlayer = Game.getInstance().getPlayer2();
+        }
+        else {
+            oppPlayer = Game.getInstance().getPlayer1();
+        }
+
+        //opponent's tokens are changed to removable state and highlighted red
+        for (Token token : oppPlayer.getTokenList()){
+            if (token.isTokenPlaced()){
+                token.setToRemove(true);
+                token.repaint();
+                token.changeListener(new RemoveMove(token));
+            }
+        }
+
+        //current player's tokens are set to non-movable state to force removal of opponent token
+        for (Token token : curPlayer.getTokenList()){
+            token.changeListener(null);
+        }
     }
 }
