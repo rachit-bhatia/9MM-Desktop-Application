@@ -3,12 +3,13 @@
 package game;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class MillCheck implements NeighbourPositionFinder {
     private static MillCheck instance;
 
     // TODO : Add an attribute ArrayList of array{3} Token to store all the tokens currently part of Mill
-
+    private ArrayList<ArrayList<Token>> millTokens = new ArrayList<>();
 
     // Singleton method to get instance
     public static MillCheck getInstance() {
@@ -24,7 +25,8 @@ public class MillCheck implements NeighbourPositionFinder {
      * @return True when a mill is formed . Otherwise, False.
      */
     public boolean checkMill(IntersectionPoint intersectionPointInstance) {
-        boolean millFound = false;
+
+        boolean millFormed = false;
 
         ArrayList<Token> tokensInMillHorizontal = new ArrayList<Token>(); // Tokens in Horizontal Mill
         tokensInMillHorizontal.add(intersectionPointInstance.getTokenInstance()); // First add the token that is just placed on this intersection point
@@ -65,27 +67,28 @@ public class MillCheck implements NeighbourPositionFinder {
 
         if ( numberOfTokensAlignedHorizontal == 3 && numberOfTokensAlignedVertical == 3){
             // TODO : Add both mils formed (tokensInMillHorizontal & tokensInMillVertical to the attribute so that can be checked against later before removal of token
-            System.out.println("Double mills test ");
-            millFound = true;
+            millFormed = true;
+            millTokens.add(tokensInMillHorizontal);
+            millTokens.add(tokensInMillVertical);
         }
 
         if (numberOfTokensAlignedHorizontal == 3){
             // TODO : Add the mill formed (tokensInMillHorizontal) to the attribute so that can be checked against later before removal of token
-            millFound = true;
+            millFormed = true;
+            millTokens.add(tokensInMillHorizontal);
         }
 
         if (numberOfTokensAlignedVertical == 3){
             // TODO : Add the mill formed (tokensInMillVertical) to the attribute so that can be checked against later before removal of token
-            millFound = true;
+            millFormed = true;
+            millTokens.add(tokensInMillVertical);
         }
 
-        if (millFound){
+        if (millFormed){
             Player curPlayer = intersectionPointInstance.getTokenInstance().getPlayer();
             changeToRemoveState(curPlayer);
         }
-
-
-        return millFound;
+        return millFormed;
     }
 
     /**
@@ -143,16 +146,40 @@ public class MillCheck implements NeighbourPositionFinder {
 
         //opponent's tokens are changed to removable state and highlighted red
         for (Token token : oppPlayer.getTokenList()){
+            boolean tokenInMill = false; //boolean value to check if the token is part of a mill
             if (token.isTokenPlaced()){
-                token.setToRemove(true);
-                token.repaint();
-                token.changeListener(new RemoveMove(token));
+
+                //loop through all mills to check if token is part of mill
+                for (ArrayList<Token> millFound : millTokens){
+                    if (millFound.contains(token)){
+                        tokenInMill = true;
+                    }
+                }
+
+                //token cannot be removed if it is part of a mill
+                if (!tokenInMill){
+                    token.setToRemove(true);
+                    token.repaint();
+                    token.changeListener(new RemoveMove(token));
+                }
             }
         }
 
         //current player's tokens are set to non-movable state to force removal of opponent token
         for (Token token : curPlayer.getTokenList()){
             token.changeListener(null);
+        }
+    }
+
+    public void checkIfTokenInMill(Token curToken){
+        ArrayList<Integer> millIndices = new ArrayList<>();
+        for (ArrayList<Token> mill: millTokens){
+            if (mill.contains(curToken)){
+                millIndices.add(millTokens.indexOf(mill));
+            }
+        }
+        for (int index : millIndices){
+            millTokens.remove(index);
         }
     }
 }
