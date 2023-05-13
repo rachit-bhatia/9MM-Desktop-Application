@@ -38,7 +38,6 @@ public class RemoveMove extends MouseAdapter {
         for( Token token: Game.getInstance().getPlayer1().getTokenList()){
             if (token.isTokenPlaced()){
                 token.removeTemporaryListener();
-                System.out.println(" Removed temporary Listner 1");
             }
 
         }
@@ -46,7 +45,6 @@ public class RemoveMove extends MouseAdapter {
         for( Token token: Game.getInstance().getPlayer2().getTokenList()){
             if (token.isTokenPlaced()){
                 token.removeTemporaryListener();
-                System.out.println(" Removed temporary Listner 2");
             }
 
         }
