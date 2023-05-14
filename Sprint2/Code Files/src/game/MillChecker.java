@@ -207,17 +207,17 @@ public class MillChecker implements NeighbourPositionFinder {
         //tokens in mills equal total tokens on board means no other tokens are on board not currently part of a mill
         if ((totalTokensOnBoard == totalTokensInMill) || (totalTokensOnBoard == totalTokensInMill - 1) ){
             for (Token token : oppPlayer.getTokenList()){
-                token.toRemove = true;
-                token.repaint();
-                token.changeListener(new RemoveMove(token),true);
+                if (token.isTokenPlaced()) {
+                    token.toRemove = true;
+                    token.repaint();
+                    token.changeListener(new RemoveMove(token), true);
+                }
             }
         }
 
         //current player's tokens are set to non-movable state to force removal of opponent token
         for (Token token : curPlayer.getTokenList()){
-            if (token.isTokenPlaced()){
-                token.changeListener(null,true);
-            }
+            token.changeListener(null,true);
         }
     }
 

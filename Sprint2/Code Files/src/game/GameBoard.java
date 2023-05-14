@@ -103,12 +103,10 @@ public class GameBoard extends JPanel {
             {boardWidth/2 - boardWidth/8, boardHeight/2}
         };
 
-        for (int[] point : points) {
-            intersectionPointsList.add(new IntersectionPoint(point[0], point[1]));
-        }
-
         // Add the intersection points as components to the GameBoard Panel
-        for (IntersectionPoint intersectionPoint : intersectionPointsList) {
+        for (int[] point : points) {
+            IntersectionPoint intersectionPoint = new IntersectionPoint(point[0], point[1]);
+            intersectionPointsList.add(intersectionPoint);
             this.add(intersectionPoint);
         }
     }

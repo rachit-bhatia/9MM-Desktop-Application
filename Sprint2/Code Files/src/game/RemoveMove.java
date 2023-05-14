@@ -38,17 +38,11 @@ public class RemoveMove extends MouseAdapter {
 
         Game game = Game.getInstance();
         for( Token token: game.getPlayer1().getTokenList()){
-            if (token.isTokenPlaced()){
-                token.removeTemporaryListener();
-            }
-
+            token.removeTemporaryListener();
         }
 
         for( Token token: game.getPlayer2().getTokenList()){
-            if (token.isTokenPlaced()){
-                token.removeTemporaryListener();
-            }
-
+            token.removeTemporaryListener();
         }
 
         //updating the UI state of the board

@@ -145,7 +145,7 @@ public abstract class MainWindow {
         mainPanel.add(playerLabel2);
 
         // adding the background to the game
-        JLabel background = new JLabel(new ImageIcon("project/Sprint2/Code Files/src/game/background.jpeg"));
+        JLabel background = new JLabel(new ImageIcon("Code Files/src/game/background.jpeg"));
         background.setBounds(0, 0, screenDimension.width, screenDimension.height);
         mainPanel.add(background);
 
