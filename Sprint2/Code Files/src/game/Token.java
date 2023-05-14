@@ -1,6 +1,9 @@
 package game;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 
 /**
  * A JComponent representing the Token
@@ -20,7 +23,7 @@ public class Token extends JComponent {
     /**
      * Radius of Token
      */
-    private final int RADIUS = 50;
+    private final int DIAMETER = 55;
 
     /**
      * intersection point the token belongs to
@@ -32,10 +35,19 @@ public class Token extends JComponent {
      */
     private boolean isTokenPlaced;
 
+    /**
+     * boolean value to indicate if the token is available to be removed
+     */
+    public boolean toRemove;
+
+    /**
+     * boolean value indicating whether the token is in a mill
+     */
+    public boolean inMill;
 
     private boolean canBeUsed;
 
-    private Move currentMoveListener;
+    private MouseAdapter currentMoveListener;
 
     private Player player ;
     /**
@@ -47,7 +59,7 @@ public class Token extends JComponent {
     public Token(int x, int y, Color color){
 
         tokenColour = color;
-        setBounds(x,y, RADIUS, RADIUS);  //setting the position and size of the token
+        setBounds(x,y, DIAMETER, DIAMETER);  //setting the position and size of the token
         isTokenPlaced = false;
         intersectionPoint = null;
         //enabling the tokens to be moved by mouse actions
@@ -65,16 +77,54 @@ public class Token extends JComponent {
     @Override
     public void paintComponent(Graphics tokenShape) {
         tokenShape.setColor(tokenColour);
-        tokenShape.fillOval(0, 0, getWidth(), getHeight());  //painting an oval
+        tokenShape.fillOval(2, 2, getWidth()-5, getHeight()-5);  //painting an oval
+
+        if (this.inMill){
+            Graphics2D tokenShapeEnhance = (Graphics2D) tokenShape;  //Graphics2D class used to change thickness of borders
+            tokenShapeEnhance.setStroke(new BasicStroke(5));   //border thickness set to 5
+            tokenShapeEnhance.setColor(Color.BLUE);
+            tokenShapeEnhance.drawOval(2,2, getWidth() - 5, getHeight() - 5);
+        }
+
+        if (this.toRemove){
+            Graphics2D tokenShapeEnhance = (Graphics2D) tokenShape;  //Graphics2D class used to change thickness of borders
+            tokenShapeEnhance.setStroke(new BasicStroke(5));   //border thickness set to 5
+            tokenShapeEnhance.setColor(Color.RED);
+            tokenShapeEnhance.drawOval(2,2, getWidth() - 5, getHeight() - 5);
+        }
     }
 
-    public void changeListener(Move newMove){
+    public void changeListener(MouseAdapter newMove , boolean temporary){
         this.removeMouseListener(this.currentMoveListener);
         this.removeMouseMotionListener(this.currentMoveListener);
         this.addMouseListener(newMove);
         this.addMouseMotionListener(newMove);
-        this.currentMoveListener = newMove;
+
+        if (!temporary){ // if not temporary
+            this.currentMoveListener = newMove;
+        }
     }
+
+    /**
+     * Remove temporary listeners and set it back to original listener
+     */
+    public void removeTemporaryListener(){
+        // Remove all the current mouse listeners
+        for (MouseListener temporaryMouseListener : this.getMouseListeners()){
+            this.removeMouseListener(temporaryMouseListener);
+        }
+        // Remove all the current mouse motion listeners
+        for (MouseMotionListener temporaryMouseMotionListener : this.getMouseMotionListeners()){
+            this.removeMouseMotionListener(temporaryMouseMotionListener);
+        }
+
+        // Reset the mouse listener and mouse motion listener back to the original move listener
+        this.addMouseListener(this.currentMoveListener);
+        this.addMouseMotionListener(this.currentMoveListener);
+    }
+
+
+
 
     /**
      *  Add the token to an intersection point

@@ -12,11 +12,12 @@ public class ApplicationDriver {
 
     /** Driver to run the Application */
     public static void main(String[] args) {
-        MainWindow.setupWindow();
+        MainWindow mainWindow = MainWindow.getInstance();
+        mainWindow.setupWindow();
         Game game = Game.getInstance();
         game.setPlayers(new HumanPlayer(),new HumanPlayer());
 
-        MainWindow.addAllItems();
+        mainWindow.addAllItems();
 
         game.run();
     }
