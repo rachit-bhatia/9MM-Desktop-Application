@@ -2,6 +2,10 @@
 
 package game;
 
+import javax.swing.*;
+import javax.swing.border.BevelBorder;
+import javax.swing.border.EtchedBorder;
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -89,8 +93,21 @@ public class MillCheck implements NeighbourPositionFinder {
             changeToRemoveState(curPlayer);
         }
 
-        //checking to remove mills when token removed
-        checkIfTokenInMill(intersectionPointInstance.getTokenInstance());
+        if (tokensInMillHorizontal.size() == 3){
+            for (Token millToken : tokensInMillHorizontal){
+                millToken.inMill = true;
+                millToken.repaint();
+            }
+        }
+
+        if (tokensInMillVertical.size() == 3){
+            for (Token millToken : tokensInMillVertical){
+                millToken.inMill = true;
+                millToken.repaint();
+            }
+        }
+
+
 
         return millFormed;
     }
@@ -168,7 +185,7 @@ public class MillCheck implements NeighbourPositionFinder {
 
                 //token cannot be removed if it is part of a mill
                 if (!tokenInMill){
-                    token.setToRemove(true);
+                    token.toRemove = true;
                     token.repaint();
                     token.changeListener(new RemoveMove(token),true);
                 }
@@ -179,7 +196,7 @@ public class MillCheck implements NeighbourPositionFinder {
         //tokens in mills equal total tokens on board means no other tokens are on board not currently part of a mill
         if ((totalTokensOnBoard == totalTokensInMill) || (totalTokensOnBoard == totalTokensInMill - 1) ){
             for (Token token : oppPlayer.getTokenList()){
-                token.setToRemove(true);
+                token.toRemove = true;
                 token.repaint();
                 token.changeListener(new RemoveMove(token),true);
             }
@@ -202,6 +219,10 @@ public class MillCheck implements NeighbourPositionFinder {
         for (ArrayList<Token> mill: millTokens){
             if (mill.contains(curToken)){
                 millIndices.add(millTokens.indexOf(mill));  //index of mill in millTokens array
+                for (Token token : mill){
+                    token.inMill = false;
+                    token.repaint();
+                }
             }
         }
         for (int index : millIndices){

@@ -38,8 +38,12 @@ public class Token extends JComponent {
     /**
      * boolean value to indicate if the token is available to be removed
      */
-    private boolean toRemove;
+    public boolean toRemove;
 
+    /**
+     * boolean value indicating whether the token is in a mill
+     */
+    public boolean inMill;
 
     private boolean canBeUsed;
 
@@ -74,10 +78,17 @@ public class Token extends JComponent {
     public void paintComponent(Graphics tokenShape) {
         tokenShape.setColor(tokenColour);
         tokenShape.fillOval(2, 2, getWidth()-5, getHeight()-5);  //painting an oval
-        
+
+        if (this.inMill){
+            Graphics2D tokenShapeEnhance = (Graphics2D) tokenShape;  //Graphics2D class used to change thickness of borders
+            tokenShapeEnhance.setStroke(new BasicStroke(5));   //border thickness set to 5
+            tokenShapeEnhance.setColor(Color.BLUE);
+            tokenShapeEnhance.drawOval(2,2, getWidth() - 5, getHeight() - 5);
+        }
+
         if (this.toRemove){
             Graphics2D tokenShapeEnhance = (Graphics2D) tokenShape;  //Graphics2D class used to change thickness of borders
-            tokenShapeEnhance.setStroke(new BasicStroke(5));   //border thickness set to 4
+            tokenShapeEnhance.setStroke(new BasicStroke(5));   //border thickness set to 5
             tokenShapeEnhance.setColor(Color.RED);
             tokenShapeEnhance.drawOval(2,2, getWidth() - 5, getHeight() - 5);
         }
@@ -170,10 +181,6 @@ public class Token extends JComponent {
 
     public Player getPlayer(){
         return this.player;
-    }
-
-    public void setToRemove(boolean isHighlight){
-        this.toRemove = isHighlight;
     }
 
 

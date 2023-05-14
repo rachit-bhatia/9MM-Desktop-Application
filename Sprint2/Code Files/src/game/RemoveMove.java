@@ -25,7 +25,7 @@ public class RemoveMove extends MouseAdapter {
         for (IntersectionPoint position : GameBoard.getInstance().getIntersectionPoints()){
             Token curToken = position.getTokenInstance();
             if (curToken != null){
-                curToken.setToRemove(false);  //removal state false
+                curToken.toRemove = false ; //removal state false
                 curToken.repaint();
             }
         }
@@ -54,6 +54,9 @@ public class RemoveMove extends MouseAdapter {
         GameBoard.getInstance().repaint();
 
         Game.getInstance().incrementTurn(); //turn increment only after token has been removed
+
+        //checking to remove mills when token removed
+        MillCheck.getInstance().checkIfTokenInMill(tokenInstance);
     }
 }
 

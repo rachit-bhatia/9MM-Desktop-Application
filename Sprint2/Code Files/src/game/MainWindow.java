@@ -36,6 +36,17 @@ public abstract class MainWindow {
     private JPanel mainPanel;
 
     /**
+     * text label for player 1
+     */
+    private JLabel playerLabel1;
+
+    /**
+     * text label for player 2
+     */
+    private JLabel playerLabel2;
+
+
+    /**
      * private constructor
      */
     private MainWindow(){
@@ -75,7 +86,7 @@ public abstract class MainWindow {
         titleText.setForeground(new Color(110, 190, 180).darker().darker());
         titleText.setFont(new Font("Title", Font.BOLD, 50));
         titleText.setVisible(true);
-        titleText.setBounds((int) ((screenDimension.width - 400) / 2), 40, 400, 50);
+        titleText.setBounds((int) ((screenDimension.width - 400) / 2), 40, 385, 50);
         mainPanel.add(titleText);
     }
 
@@ -114,20 +125,24 @@ public abstract class MainWindow {
         int textYCoord = boardHeight + boardSpacing - 30;
 
         //adding the player 1 text label under all black tokens
-        JLabel playerLabel1 = new JLabel("Player 1");
+        playerLabel1 = new JLabel("Player 1");
         playerLabel1.setForeground(Color.BLACK);    //color of the text
         playerLabel1.setFont(new Font("Player 1", Font.BOLD, 20));   //size and style of the text
         playerLabel1.setVisible(true);
-        playerLabel1.setBounds((int) (screenDimension.width/4.5 - 15), textYCoord, 100, 20);   //size of the label bounds
+        playerLabel1.setBounds((int) (screenDimension.width/4.5 - 15), textYCoord, 100, 40);   //size of the label bounds
+        playerLabel1.setHorizontalAlignment(SwingConstants.CENTER);
+        playerLabel1.setVerticalAlignment(SwingConstants.CENTER);
         mainPanel.add(playerLabel1);
 
 
         //adding the player 2 text label under all white tokens
-        JLabel playerLabel2 = new JLabel("Player 2");
+        playerLabel2 = new JLabel("Player 2");
         playerLabel2.setForeground(Color.WHITE);
         playerLabel2.setFont(new Font("Player 2", Font.BOLD, 20));
         playerLabel2.setVisible(true);
-        playerLabel2.setBounds((3*screenDimension.width)/4 - 15, textYCoord, 100, 20);
+        playerLabel2.setBounds((3*screenDimension.width)/4 - 15, textYCoord, 100, 40);
+        playerLabel2.setHorizontalAlignment(SwingConstants.CENTER);
+        playerLabel2.setVerticalAlignment(SwingConstants.CENTER);
         mainPanel.add(playerLabel2);
 
         //setting the game board to be displayed at the bottom of all other elements
@@ -136,5 +151,13 @@ public abstract class MainWindow {
         // Adding the panel container that has all the tokens and intersection points to the frame
         mainWindow.getContentPane().add(mainPanel);
         mainWindow.setVisible(true);    //application window visibility
+    }
+
+    public JLabel getPlayerLabel1(){
+        return  playerLabel1;
+    }
+
+    public JLabel getPlayerLabel2(){
+        return  playerLabel2;
     }
 }
