@@ -120,21 +120,6 @@ public abstract class Move extends MouseAdapter{
                     // Checking for Mills and changing player state
                     boolean millFormed = millChecker.checkMill(intersectionPoint);
 
-//                    if (tokenInstance.getPlayer().getCurrentStateofMove() != CurrentStateofMove.REMOVING){
-//                        MillCheck.getInstance().checkIfTokenInMill(tokenInstance);}
-//                    for (ArrayList<Token> mill : millTokens){
-//                        if (mill.contains(tokenInstance) && tokenInstance.getPlayer().getCurrentStateofMove() != CurrentStateofMove.REMOVING){
-//                            millTokens.remove(mill);
-////                            int millTokenCount = 0;
-////                            for (Token tokenInMill : mill){
-////                                if (tokenInMill.getX() == tokenInstance.getX() || tokenInMill.getY() == tokenInstance.getY()){
-////                                    millTokenCount++;
-////                                }
-////                            }
-////                            if (millTokenCount < 3){
-////                                millTokens.remove(mill); }
-//                        }
-//                    }
 
                     //setting the order of display on the game board: token appears above intersection point
                     gameBoard.setComponentZOrder(tokenInstance, 0);

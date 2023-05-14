@@ -29,7 +29,7 @@ public class Game implements NeighbourPositionFinder{
 
 
     public void run(){
-        System.out.println("Working Directory = " + System.getProperty("user.dir"));
+
         String endMessage = "Congratulations "; //message to be displayed at end of game
 
         //borders acting as player turn identifier
