@@ -29,13 +29,14 @@ public class Game implements NeighbourPositionFinder{
 
 
     public void run(){
-
+        System.out.println("Working Directory = " + System.getProperty("user.dir"));
         String endMessage = "Congratulations "; //message to be displayed at end of game
 
         //borders acting as player turn identifier
         Border playerIdentifier = BorderFactory.createBevelBorder(BevelBorder.RAISED, Color.GREEN.brighter().brighter(), Color.GREEN.darker().darker());
         Border identifierThickness = BorderFactory.createEmptyBorder(1,1,1,1);
 
+        MainWindow mainWindow = MainWindow.getInstance();
 
         boolean player1NoValidMove = false;
         boolean player2NoValidMove = false;
@@ -58,8 +59,8 @@ public class Game implements NeighbourPositionFinder{
                 player1.setPlayerTurn(true);
 
                 //setting player label border to show which player's turn it is
-                MainWindow.getInstance().getPlayerLabel2().setBorder(null);
-                MainWindow.getInstance().getPlayerLabel1().setBorder(BorderFactory.createCompoundBorder(identifierThickness, playerIdentifier));
+                mainWindow.getPlayerLabel2().setBorder(null);
+                mainWindow.getPlayerLabel1().setBorder(BorderFactory.createCompoundBorder(identifierThickness, playerIdentifier));
             }
 
             // After player 1 turn is finished
@@ -82,8 +83,8 @@ public class Game implements NeighbourPositionFinder{
                 player2.setPlayerTurn(true);
 
                 //setting player label border to show which player's turn it is
-                MainWindow.getInstance().getPlayerLabel1().setBorder(null);
-                MainWindow.getInstance().getPlayerLabel2().setBorder(BorderFactory.createCompoundBorder(identifierThickness, playerIdentifier));
+                mainWindow.getPlayerLabel1().setBorder(null);
+                mainWindow.getPlayerLabel2().setBorder(BorderFactory.createCompoundBorder(identifierThickness, playerIdentifier));
             }
 
             // After player 2 turn is finished

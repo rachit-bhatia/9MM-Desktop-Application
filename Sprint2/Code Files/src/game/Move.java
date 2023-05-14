@@ -62,8 +62,9 @@ public abstract class Move extends MouseAdapter{
     @Override
     public void mouseReleased(MouseEvent cursor) {
 
+        GameBoard gameBoard = GameBoard.getInstance();
         // Find neighbouring intersection points to the currIntersectionPoint and set them as valid intersection point
-        ArrayList<IntersectionPoint> intersectionPoints = GameBoard.getInstance().getIntersectionPoints();
+        ArrayList<IntersectionPoint> intersectionPoints = gameBoard.getIntersectionPoints();
         for (IntersectionPoint intersectionPoint : intersectionPoints){
             intersectionPoint.setPointSelected(false);  //set point selection to false once mouse is released
             intersectionPoint.repaint();  //repainting all intersection points with black border once mouse is released
@@ -81,9 +82,9 @@ public abstract class Move extends MouseAdapter{
             for (IntersectionPoint intersectionPoint : intersectionPoints) {
 
                 // If the token instance is not yet placed on the board
-                if (!tokenInstance.getParent().equals(GameBoard.getInstance())){
+                if (!tokenInstance.getParent().equals(gameBoard)){
                     // Change the coordinate system of the intersection point from the GameBoard Panel to the Main Panel which the Token is in
-                    pointToUse = SwingUtilities.convertPoint(GameBoard.getInstance(),intersectionPoint.getX(),intersectionPoint.getY(),intersectionPoint.getParent().getParent());
+                    pointToUse = SwingUtilities.convertPoint(gameBoard,intersectionPoint.getX(),intersectionPoint.getY(),intersectionPoint.getParent().getParent());
                 } else { // If the token is already on the board
                     // Use the coordinate system of the GameBoard that both the Token and Intersection Point are in
                     pointToUse = intersectionPoint.getLocation();
@@ -100,7 +101,7 @@ public abstract class Move extends MouseAdapter{
                     tokenInstance.getParent().remove(tokenInstance);
 
                     // Add the token into the GameBoard panel
-                    GameBoard.getInstance().add(tokenInstance);
+                    gameBoard.add(tokenInstance);
 
                     // If this token previously belongs to another intersection point
                     if (tokenInstance.getIntersectionPoint() != null){
@@ -114,8 +115,10 @@ public abstract class Move extends MouseAdapter{
                     tokenInstance.addTokenToIntersectionPoint(intersectionPoint);
                     tokenInstance.setIsTokenPlaced(true);
 
+
+                    MillChecker millChecker = MillChecker.getInstance();
                     // Checking for Mills and changing player state
-                    boolean millFormed = MillChecker.getInstance().checkMill(intersectionPoint);
+                    boolean millFormed = millChecker.checkMill(intersectionPoint);
 
 //                    if (tokenInstance.getPlayer().getCurrentStateofMove() != CurrentStateofMove.REMOVING){
 //                        MillCheck.getInstance().checkIfTokenInMill(tokenInstance);}
@@ -134,8 +137,8 @@ public abstract class Move extends MouseAdapter{
 //                    }
 
                     //setting the order of display on the game board: token appears above intersection point
-                    GameBoard.getInstance().setComponentZOrder(tokenInstance, 0);
-                    GameBoard.getInstance().setComponentZOrder(intersectionPoint, GameBoard.getInstance().getComponentCount()-1); //last element
+                    gameBoard.setComponentZOrder(tokenInstance, 0);
+                    gameBoard.setComponentZOrder(intersectionPoint, gameBoard.getComponentCount()-1); //last element
 
                     // If current player move is placing , remove the mouseListener
                     if (tokenInstance.getPlayer().getCurrentStateOfMove() == CurrentStateofMove.PLACING){
@@ -149,12 +152,14 @@ public abstract class Move extends MouseAdapter{
                     foundIntersectionPoint = true;
 
 
+
+
                     if (!millFormed) { // If mill is not formed
                         Game.getInstance().incrementTurn(); // increment turn if mill is not found
-                        MillChecker.getInstance().checkIfTokenInMill(tokenInstance); // if token was part of a mill , remove it as it is no longer part of a mill
+                        millChecker.checkIfTokenInMill(tokenInstance); // if token was part of a mill , remove it as it is no longer part of a mill
                     }
-                    GameBoard.getInstance().repaint();
-                    GameBoard.getInstance().resetAllIntersectionPoints();
+                    gameBoard.repaint();
+                    gameBoard.resetAllIntersectionPoints();
                     break;
                 }
             }
@@ -163,7 +168,7 @@ public abstract class Move extends MouseAdapter{
             if (!foundIntersectionPoint) {
                 // set it back to its original position
                 tokenInstance.setLocation(xCoordinate, yCoordinate);
-                GameBoard.getInstance().resetAllIntersectionPoints();
+                gameBoard.resetAllIntersectionPoints();
             }
         }
 

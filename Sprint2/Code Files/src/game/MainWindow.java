@@ -104,17 +104,18 @@ public abstract class MainWindow {
         int boardSpacing = gameBoard.getBounds().y;
         int boardHeight = gameBoard.getBounds().height;
 
+        Game game = Game.getInstance();
 
         //Adding both player's Tokens to the Panel container
         int tokenSpacing = 0;
         for (int i = 1; i <= 4; i++){
             Token tokenPlayer1 = new Token((int) (screenDimension.width/4.5),screenDimension.height/7 + tokenSpacing, Color.BLACK);
             mainPanel.add(tokenPlayer1);
-            Game.getInstance().getPlayer1().addToken(tokenPlayer1);
+            game.getPlayer1().addToken(tokenPlayer1);
 
             Token tokenPlayer2 = new Token((3*screenDimension.width)/4,screenDimension.height/7 + tokenSpacing, Color.WHITE);
             mainPanel.add(tokenPlayer2);
-            Game.getInstance().getPlayer2().addToken(tokenPlayer2);
+            game.getPlayer2().addToken(tokenPlayer2);
 
             tokenSpacing += boardHeight/9 - 5;;
         }
@@ -144,7 +145,7 @@ public abstract class MainWindow {
         mainPanel.add(playerLabel2);
 
         // adding the background to the game
-        JLabel background = new JLabel(new ImageIcon("Code Files/src/game/background.jpeg"));
+        JLabel background = new JLabel(new ImageIcon("project/Sprint2/Code Files/src/game/background.jpeg"));
         background.setBounds(0, 0, screenDimension.width, screenDimension.height);
         mainPanel.add(background);
 

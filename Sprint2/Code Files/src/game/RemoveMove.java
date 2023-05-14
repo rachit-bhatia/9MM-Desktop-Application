@@ -21,8 +21,9 @@ public class RemoveMove extends MouseAdapter {
     @Override
     public void mouseClicked(MouseEvent cursor) {
 
+        GameBoard gameBoard = GameBoard.getInstance();
         //resetting token appearance to remove red highlight of border after selection has been made
-        for (IntersectionPoint position : GameBoard.getInstance().getIntersectionPoints()){
+        for (IntersectionPoint position : gameBoard.getIntersectionPoints()){
             Token curToken = position.getTokenInstance();
             if (curToken != null){
                 curToken.toRemove = false ; //removal state false
@@ -30,19 +31,20 @@ public class RemoveMove extends MouseAdapter {
             }
         }
 
-        GameBoard.getInstance().remove(tokenInstance);  //removing token from game board
+        gameBoard.remove(tokenInstance);  //removing token from game board
         tokenInstance.getIntersectionPoint().removeToken();  //removing token from intersection point
         tokenInstance.getPlayer().getTokenList().remove(tokenInstance); //removing token from player's list
 
 
-        for( Token token: Game.getInstance().getPlayer1().getTokenList()){
+        Game game = Game.getInstance();
+        for( Token token: game.getPlayer1().getTokenList()){
             if (token.isTokenPlaced()){
                 token.removeTemporaryListener();
             }
 
         }
 
-        for( Token token: Game.getInstance().getPlayer2().getTokenList()){
+        for( Token token: game.getPlayer2().getTokenList()){
             if (token.isTokenPlaced()){
                 token.removeTemporaryListener();
             }
@@ -50,10 +52,10 @@ public class RemoveMove extends MouseAdapter {
         }
 
         //updating the UI state of the board
-        GameBoard.getInstance().revalidate();
-        GameBoard.getInstance().repaint();
+        gameBoard.revalidate();
+        gameBoard.repaint();
 
-        Game.getInstance().incrementTurn(); //turn increment only after token has been removed
+        game.incrementTurn(); //turn increment only after token has been removed
 
         //checking to remove mills when token removed
         MillChecker.getInstance().checkIfTokenInMill(tokenInstance);

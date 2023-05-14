@@ -166,12 +166,14 @@ public class MillChecker implements NeighbourPositionFinder {
     public void changeToRemoveState(Player curPlayer){
         Player oppPlayer;
 
+        Game game = Game.getInstance();
         //getting opponent
-        if (curPlayer == Game.getInstance().getPlayer1()){
-            oppPlayer = Game.getInstance().getPlayer2();
+        if (curPlayer == game.getPlayer1()){
+            oppPlayer = game.getPlayer2();
         }
+
         else {
-            oppPlayer = Game.getInstance().getPlayer1();
+            oppPlayer = game.getPlayer1();
         }
 
         int totalTokensOnBoard = 0; //count of tokens on the board for opponent player
