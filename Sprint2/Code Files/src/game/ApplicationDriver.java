@@ -13,12 +13,6 @@ public class ApplicationDriver {
     /** Driver to run the Application */
     public static void main(String[] args) {
         MainWindow mainWindow = MainWindow.getInstance();
-        mainWindow.setupWindow();
-        Game game = Game.getInstance();
-        game.setPlayers(new HumanPlayer(),new HumanPlayer());
-
-        mainWindow.addAllItems();
-
-        game.run();
+        mainWindow.setupHomePageWindow();
     }
 }
