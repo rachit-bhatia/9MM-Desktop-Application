@@ -41,21 +41,18 @@ public class Game implements NeighbourPositionFinder{
         boolean player1NoValidMove = false;
         boolean player2NoValidMove = false;
         // While both players still have 3 or more tokens, keep the game running
-        while (player1.getNumberOfTokens() >= 3 && player2.getNumberOfTokens() >= 3){
+        while (player1.getNumberOfTokens() >= 3 && player2.getNumberOfTokens() >= 3 && !player1NoValidMove && !player2NoValidMove){
 
             // update state of move if needed
             player1.updateStateOfMove();
 
             if (player1.getCurrentStateOfMove() == CurrentStateofMove.SLIDING){
                 player1NoValidMove = checkIfPlayerHasValidSlidingMove(player1);
-                if (player1NoValidMove){
-                    break;
-                }
             }
 
 
             // While a valid move is not yet made by the player 1
-            while (this.turn % 2 == 0 && player1.getNumberOfTokens() >= 3){
+            while (this.turn % 2 == 0 && player1.getNumberOfTokens() >= 3 && !player1NoValidMove && !player2NoValidMove){
                 player1.setPlayerTurn(true);
 
                 //setting player label border to show which player's turn it is
@@ -72,14 +69,11 @@ public class Game implements NeighbourPositionFinder{
 
             if (player2.getCurrentStateOfMove() == CurrentStateofMove.SLIDING){
                 player2NoValidMove = checkIfPlayerHasValidSlidingMove(player2);
-                if (player2NoValidMove){
-                    break;
-                }
             }
 
 
             // While a valid move is not yet made by the player 2
-            while ( this.turn % 2 == 1 && player2.getNumberOfTokens() >= 3){
+            while ( this.turn % 2 == 1 && player2.getNumberOfTokens() >= 3 && !player1NoValidMove && !player2NoValidMove){
                 player2.setPlayerTurn(true);
 
                 //setting player label border to show which player's turn it is
