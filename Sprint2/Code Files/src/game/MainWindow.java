@@ -1,5 +1,7 @@
 package game;
 
+import com.sun.tools.javac.Main;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -14,23 +16,47 @@ import java.awt.*;
 public abstract class MainWindow {
 
     /**
+     * Singleton instance of the class
+     */
+    private static MainWindow instance;
+
+    /**
      * instantiating the main application window
      */
-    private static JFrame mainWindow = new JFrame("9 Men's Morris");
+    private JFrame mainWindow;
 
     /**
      * accessing the dimensions of the screen
      */
-    private static Dimension screenDimension = Toolkit.getDefaultToolkit().getScreenSize();
+    private Dimension screenDimension;
 
     /**
      * instantiating the panel for the main window display
      */
-    private static JPanel mainPanel = new JPanel();
+    private JPanel mainPanel;
 
+    /**
+     * private constructor
+     */
+    private MainWindow(){
+        mainWindow = new JFrame("9 Men's Morris");
+        screenDimension = Toolkit.getDefaultToolkit().getScreenSize();
+        mainPanel  = new JPanel();
+    }
 
+    /**
+     * static getter
+     * @return singleton instance
+     */
+    public static MainWindow getInstance(){
+        if (instance == null) {
+            instance = new MainWindow() {
+            };
+        }
+        return instance;
+    }
 
-    public static void setupWindow(){
+    public void setupWindow(){
         /**
          * Setting the window size and preferences
          */
@@ -54,7 +80,7 @@ public abstract class MainWindow {
     }
 
 
-    public static void addAllItems(){
+    public void addAllItems(){
         /**
          * Creation and addition of the all items (tokens, intersections, game board) into the game
          */
