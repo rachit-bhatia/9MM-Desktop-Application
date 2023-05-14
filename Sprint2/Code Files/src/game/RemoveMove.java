@@ -56,7 +56,7 @@ public class RemoveMove extends MouseAdapter {
         Game.getInstance().incrementTurn(); //turn increment only after token has been removed
 
         //checking to remove mills when token removed
-        MillCheck.getInstance().checkIfTokenInMill(tokenInstance);
+        MillChecker.getInstance().checkIfTokenInMill(tokenInstance);
     }
 }
 

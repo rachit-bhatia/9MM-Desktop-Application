@@ -1,7 +1,6 @@
 package game;
 
 import javax.swing.*;
-import javax.swing.plaf.synth.SynthTextAreaUI;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -116,7 +115,7 @@ public abstract class Move extends MouseAdapter{
                     tokenInstance.setIsTokenPlaced(true);
 
                     // Checking for Mills and changing player state
-                    boolean millFormed = MillCheck.getInstance().checkMill(intersectionPoint);
+                    boolean millFormed = MillChecker.getInstance().checkMill(intersectionPoint);
 
 //                    if (tokenInstance.getPlayer().getCurrentStateofMove() != CurrentStateofMove.REMOVING){
 //                        MillCheck.getInstance().checkIfTokenInMill(tokenInstance);}
@@ -152,7 +151,7 @@ public abstract class Move extends MouseAdapter{
 
                     if (!millFormed) { // If mill is not formed
                         Game.getInstance().incrementTurn(); // increment turn if mill is not found
-                        MillCheck.getInstance().checkIfTokenInMill(tokenInstance); // if token was part of a mill , remove it as it is no longer part of a mill
+                        MillChecker.getInstance().checkIfTokenInMill(tokenInstance); // if token was part of a mill , remove it as it is no longer part of a mill
                     }
                     GameBoard.getInstance().repaint();
                     GameBoard.getInstance().resetAllIntersectionPoints();
