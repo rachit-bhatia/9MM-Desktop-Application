@@ -1,11 +1,6 @@
 package game;
 
-import javax.swing.*;
-import javax.swing.border.BevelBorder;
-import javax.swing.border.EtchedBorder;
-import java.awt.*;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 /**
  * A JComponent representing the Token
