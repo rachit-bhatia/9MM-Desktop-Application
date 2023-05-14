@@ -83,7 +83,7 @@ public abstract class MainWindow {
 
         //setting preferences for the title text and adding it
         JLabel titleText = new JLabel("9 Men's Morris");
-        titleText.setForeground(new Color(110, 190, 180).darker().darker());
+        titleText.setForeground(new Color(230, 255, 141));
         titleText.setFont(new Font("Title", Font.BOLD, 50));
         titleText.setVisible(true);
         titleText.setBounds((int) ((screenDimension.width - 400) / 2), 40, 385, 50);
@@ -145,8 +145,14 @@ public abstract class MainWindow {
         playerLabel2.setVerticalAlignment(SwingConstants.CENTER);
         mainPanel.add(playerLabel2);
 
+        // adding the background to the game
+        JLabel background = new JLabel(new ImageIcon("Code Files/src/game/background.jpeg"));
+        background.setBounds(0, 0, screenDimension.width, screenDimension.height);
+        mainPanel.add(background);
+
         //setting the game board to be displayed at the bottom of all other elements
         mainPanel.setComponentZOrder(gameBoard, mainPanel.getComponentCount()-1);
+        mainPanel.setComponentZOrder(background, mainPanel.getComponentCount()-1);
 
         // Adding the panel container that has all the tokens and intersection points to the frame
         mainWindow.getContentPane().add(mainPanel);
