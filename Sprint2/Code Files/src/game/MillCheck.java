@@ -1,5 +1,3 @@
-// NOTE: HAVE TO FIGURE OUT HOW TO DISTINGUISH BETWEEN WHITE AND BLACK
-
 package game;
 
 import javax.swing.*;
@@ -9,13 +7,27 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/**
+ * A JComponent representing the Token
+ * <p>
+ * Created  by Tan Jun Yu, Shoumil Guha
+ *
+ * @author Tan Jun Yu, Shoumil Guha
+ * Modified by: Rachit Bhatia
+ */
 public class MillCheck implements NeighbourPositionFinder {
+
     private static MillCheck instance;
 
     // TODO : Add an attribute ArrayList of array{3} Token to store all the tokens currently part of Mill
     private ArrayList<ArrayList<Token>> millTokens = new ArrayList<>();
 
-    // Singleton method to get instance
+    /**
+     * Gets the singular instance of the MillChecker.
+     *
+     * @return the instance
+     */
+// Singleton method to get instance
     public static MillCheck getInstance() {
         if (instance == null) {
             instance = new MillCheck();
@@ -25,6 +37,7 @@ public class MillCheck implements NeighbourPositionFinder {
 
     /**
      * Check for vertical and horizontal mill
+     *
      * @param intersectionPointInstance the intersection point in which a token is just placed on it
      * @return True when a mill is formed . Otherwise, False.
      */
@@ -152,6 +165,7 @@ public class MillCheck implements NeighbourPositionFinder {
 
     /**
      * Changes the state of all the tokens on the board and enables token of opponent player to be removed
+     *
      * @param curPlayer current player who has formed a mill
      */
     public void changeToRemoveState(Player curPlayer){
@@ -212,6 +226,7 @@ public class MillCheck implements NeighbourPositionFinder {
 
     /**
      * removing mills if a token in the mill has moved
+     *
      * @param curToken current token moved
      */
     public void checkIfTokenInMill(Token curToken){
