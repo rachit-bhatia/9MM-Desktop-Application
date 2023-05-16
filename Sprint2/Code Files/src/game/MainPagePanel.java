@@ -18,8 +18,8 @@ public class MainPagePanel extends JPanel {
         setPreferredSize(screenDimension);
 
         // Button for Player Vs Player
-        JButton pvpButton = createPlayButton(screenDimension, "Play with Friend");
-        pvpButton.setBounds((screenDimension.width - 300) / 2, 40, 300, 50);
+        JButton pvpButton = createPlayButton(screenDimension, "PLAY WITH A FRIEND");
+        pvpButton.setBounds((screenDimension.width - 300) / 2, screenDimension.height/2, 300, 50);
 
         MainWindow mainWindow = MainWindow.getInstance();
 
@@ -39,9 +39,6 @@ public class MainPagePanel extends JPanel {
             }
 
         });
-
-        JButton pvcButton = createPlayButton(screenDimension, "Play with Computer");
-        pvcButton.setBounds((screenDimension.width - 300) / 2, 125, 300, 50);
 
         mainWindow.pack();
     }

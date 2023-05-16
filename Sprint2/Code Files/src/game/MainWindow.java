@@ -71,7 +71,7 @@ public class MainWindow extends JFrame{
         mainWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  //default closing action
 
         // adding the background to the game
-        JLabel background = new JLabel(new ImageIcon("Code Files/src/game/background.jpeg"));
+        JLabel background = new JLabel(new ImageIcon("Code Files/src/game/homepage.png"));
         background.setBounds(0, 0, screenDimension.width, screenDimension.height);
         mainWindow.add(background);
 
@@ -89,11 +89,11 @@ public class MainWindow extends JFrame{
         mainPanel.setPreferredSize(new Dimension(screenDimension.width, screenDimension.height));
 
         //setting preferences for the title text and adding it
-        JLabel titleText = new JLabel("9 Men's Morris");
-        titleText.setForeground(new Color(255, 230, 141));
+        JLabel titleText = new JLabel("9 MEN'S MORRIS");
+        titleText.setForeground(new Color(255, 249, 253));
         titleText.setFont(new Font("Title", Font.BOLD, 50));
         titleText.setVisible(true);
-        titleText.setBounds((int) ((screenDimension.width - 400) / 2), 40, 385, 50);
+        titleText.setBounds((int) ((screenDimension.width - 400) / 2), 40, 600, 50);
         mainPanel.add(titleText);
         addAllItems();
     }
@@ -155,7 +155,7 @@ public class MainWindow extends JFrame{
         mainPanel.add(playerLabel2);
 
         // adding the background to the game
-        JLabel background = new JLabel(new ImageIcon("Code Files/src/game/background.jpeg"));
+        JLabel background = new JLabel(new ImageIcon("Code Files/src/game/background.png"));
         background.setBounds(0, 0, screenDimension.width, screenDimension.height);
         mainPanel.add(background);
 
