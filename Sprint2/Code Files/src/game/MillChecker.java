@@ -77,12 +77,12 @@ public class MillChecker implements NeighbourPositionFinder {
             }
         }
 
-        if ( numberOfTokensAlignedHorizontal == 3 && numberOfTokensAlignedVertical == 3){
-            // TODO : Add both mils formed (tokensInMillHorizontal & tokensInMillVertical to the attribute so that can be checked against later before removal of token
-            millFormed = true;
-            millTokens.add(tokensInMillHorizontal);
-            millTokens.add(tokensInMillVertical);
-        }
+//        if ( numberOfTokensAlignedHorizontal == 3 && numberOfTokensAlignedVertical == 3){
+//            // TODO : Add both mils formed (tokensInMillHorizontal & tokensInMillVertical to the attribute so that can be checked against later before removal of token
+//            millFormed = true;
+//            millTokens.add(tokensInMillHorizontal);
+//            millTokens.add(tokensInMillVertical);
+//        }
 
         if (numberOfTokensAlignedHorizontal == 3){
             // TODO : Add the mill formed (tokensInMillHorizontal) to the attribute so that can be checked against later before removal of token
@@ -228,17 +228,33 @@ public class MillChecker implements NeighbourPositionFinder {
      */
     public void checkIfTokenInMill(Token curToken){
         ArrayList<Integer> millIndices = new ArrayList<>();
+
+        //iterating through all mills to check if token is in a mill
         for (ArrayList<Token> mill: millTokens){
+
+            //if mill contains the token, the mill needs to be deleted since it is no longer a mill
             if (mill.contains(curToken)){
                 millIndices.add(millTokens.indexOf(mill));  //index of mill in millTokens array
                 for (Token token : mill){
                     token.inMill = false;
-                    token.repaint();
+                    token.repaint();  //repainting to remove the blue highlight
                 }
             }
         }
+
+        //removing the mills which have been distorted
         for (int index : millIndices){
             millTokens.remove(index);
         }
+
+        //iterating through the remaining mills to repaint any token which might have been a part of 2 mills
+        for (ArrayList<Token> remainingMill: millTokens){
+            for (Token token : remainingMill){
+                token.inMill = true;
+                token.repaint();  //resetting the blue highlight for the token which was a part of 2 mills and one of the mills was deleted
+            }
+        }
     }
 }
+
+
