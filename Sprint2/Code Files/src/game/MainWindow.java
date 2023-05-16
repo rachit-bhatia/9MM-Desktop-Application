@@ -81,7 +81,7 @@ public class MainWindow extends JFrame{
         mainWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  //default closing action
 
         // adding the background to the game
-        JLabel background = new JLabel(new ImageIcon("Code Files/src/game/homepage.png"));
+        JLabel background = new JLabel(new ImageIcon("Code Files/src/game/bg_img.png"));
         background.setBounds(0, 0, screenDimension.width, screenDimension.height);
         mainWindow.add(background);
 
@@ -129,7 +129,7 @@ public class MainWindow extends JFrame{
 
         //Adding both player's Tokens to the Panel container
         int tokenSpacing = 0;
-        for (int i = 1; i <= 4; i++){
+        for (int i = 1; i <= 5; i++){
             Token tokenPlayer1 = new Token((int) (screenDimension.width/4.5),screenDimension.height/7 + tokenSpacing, Color.BLACK);
             mainPanel.add(tokenPlayer1);
             game.getPlayer1().addToken(tokenPlayer1);
@@ -147,7 +147,7 @@ public class MainWindow extends JFrame{
         //adding the player 1 text label under all black tokens
         playerLabel1 = new JLabel("Player 1");
         playerLabel1.setForeground(Color.BLACK);    //color of the text
-        playerLabel1.setFont(new Font("Player 1", Font.BOLD, 20));   //size and style of the text
+        playerLabel1.setFont(new Font("Player 1", Font.BOLD, 21));   //size and style of the text
         playerLabel1.setVisible(true);
         playerLabel1.setBounds((int) (screenDimension.width/4.5 - 15), textYCoord, 100, 40);   //size of the label bounds
         playerLabel1.setHorizontalAlignment(SwingConstants.CENTER);
@@ -157,7 +157,7 @@ public class MainWindow extends JFrame{
         int ySpacingBelowLabel = 30;
         playerStateOfMoveLabel1  = new JLabel("PLACING");
         playerStateOfMoveLabel1.setForeground(Color.BLACK);
-        playerStateOfMoveLabel1.setFont(new Font("PLACING", Font.BOLD, 20));   //size and style of the text
+        playerStateOfMoveLabel1.setFont(new Font("PLACING", Font.HANGING_BASELINE, 20));   //size and style of the text
         playerStateOfMoveLabel1.setVisible(true);
         playerStateOfMoveLabel1.setBounds((int) (screenDimension.width/4.5 - 15),textYCoord + ySpacingBelowLabel,100,40);
         playerStateOfMoveLabel1.setHorizontalAlignment(SwingConstants.CENTER);
@@ -168,7 +168,7 @@ public class MainWindow extends JFrame{
         //adding the player 2 text label under all white tokens
         playerLabel2 = new JLabel("Player 2");
         playerLabel2.setForeground(Color.WHITE);
-        playerLabel2.setFont(new Font("Player 2", Font.BOLD, 20));
+        playerLabel2.setFont(new Font("Player 2", Font.BOLD, 21));
         playerLabel2.setVisible(true);
         playerLabel2.setBounds((3*screenDimension.width)/4 - 15, textYCoord, 100, 40);
         playerLabel2.setHorizontalAlignment(SwingConstants.CENTER);
@@ -176,8 +176,8 @@ public class MainWindow extends JFrame{
         mainPanel.add(playerLabel2);
 
         playerStateOfMoveLabel2  = new JLabel("PLACING");
-        playerStateOfMoveLabel2.setForeground(Color.BLACK);
-        playerStateOfMoveLabel2.setFont(new Font("PLACING", Font.BOLD, 20));   //size and style of the text
+        playerStateOfMoveLabel2.setForeground(Color.WHITE);
+        playerStateOfMoveLabel2.setFont(new Font("PLACING", Font.HANGING_BASELINE, 20));   //size and style of the text
         playerStateOfMoveLabel2.setVisible(true);
         playerStateOfMoveLabel2.setBounds((3*screenDimension.width)/4 - 15,textYCoord + ySpacingBelowLabel,100,40);
         playerStateOfMoveLabel2.setHorizontalAlignment(SwingConstants.CENTER);
@@ -185,7 +185,7 @@ public class MainWindow extends JFrame{
         mainPanel.add(playerStateOfMoveLabel2);
 
         // adding the background to the game
-        JLabel background = new JLabel(new ImageIcon("Code Files/src/game/background.png"));
+        JLabel background = new JLabel(new ImageIcon("Code Files/src/game/bg_img.png"));
         background.setBounds(0, 0, screenDimension.width, screenDimension.height);
         mainPanel.add(background);
 

@@ -66,7 +66,7 @@ public class Game implements NeighbourPositionFinder{
         String endMessage = "Congratulations "; //message to be displayed at end of game
 
         //borders acting as player turn identifier
-        Border playerIdentifier = BorderFactory.createBevelBorder(BevelBorder.RAISED, Color.GREEN.brighter().brighter(), Color.GREEN.darker().darker());
+        Border playerIdentifier = BorderFactory.createBevelBorder(BevelBorder.RAISED, Color.orange.brighter().brighter(), Color.orange.darker());
         Border identifierThickness = BorderFactory.createEmptyBorder(1,1,1,1);
 
         MainWindow mainWindow = MainWindow.getInstance();
