@@ -7,18 +7,48 @@ import javax.swing.border.Border;
 import java.awt.*;
 import java.util.ArrayList;
 
+
+/**
+ * Game engine that takes care of switching turns between Player 1 and Player 2 and checking the state of the game to update the moves available for each player
+ * <p>
+ * Created  by Tan Jun Yu
+ *
+ * @author Tan Jun Yu
+ * Modified by: Rachit Bhatia
+ */
 public class Game implements NeighbourPositionFinder{
 
+    /**
+     * Player 1
+     */
     private Player player1;
+
+    /**
+     * Player 2
+     */
     private Player player2;
 
+    /**
+     * Singleton instance
+     */
     private static Game instance = null;
+
+    /**
+     * Current turn of the game
+     */
     private int turn;
 
+    /**
+     * Constructor
+     */
     private Game(){
         this.turn = 0 ;
     }
 
+    /**
+     * Access Game singleton instance publicly
+     * @return Game singleton instance
+     */
     public static Game getInstance(){
         if (instance == null) {
             instance = new Game();
@@ -28,6 +58,9 @@ public class Game implements NeighbourPositionFinder{
     }
 
 
+    /**
+     * Game loop that keeps the game running
+     */
     public void run(){
 
         String endMessage = "Congratulations "; //message to be displayed at end of game
@@ -46,8 +79,11 @@ public class Game implements NeighbourPositionFinder{
             // update state of move if needed
             player1.updateStateOfMove();
 
+            // Display the state of move player 1 is currently in
+            mainWindow.getPlayerStateOfMoveLabel1().setText(player1.getCurrentStateOfMove().toString());
+
             if (player1.getCurrentStateOfMove() == CurrentStateofMove.SLIDING){
-                player1NoValidMove = checkIfPlayerHasValidSlidingMove(player1);
+                player1NoValidMove = checkIfPlayerHasNoValidSlidingMove(player1);
             }
 
 
@@ -67,8 +103,11 @@ public class Game implements NeighbourPositionFinder{
             // update state of move if needed
             player2.updateStateOfMove();
 
+            // Display the state of move player 2 is currently in
+            mainWindow.getPlayerStateOfMoveLabel2().setText(player2.getCurrentStateOfMove().toString());
+
             if (player2.getCurrentStateOfMove() == CurrentStateofMove.SLIDING){
-                player2NoValidMove = checkIfPlayerHasValidSlidingMove(player2);
+                player2NoValidMove = checkIfPlayerHasNoValidSlidingMove(player2);
             }
 
 
@@ -97,22 +136,28 @@ public class Game implements NeighbourPositionFinder{
 
     }
 
-    public boolean checkIfPlayerHasValidSlidingMove(Player player){
+    /**
+     * Check if a Player still has a valid sliding move
+     * @param player player which is being checked if there is a valid sliding move
+     * @return True if there is no valid sliding move can be made. False otherwise
+     */
+    public boolean checkIfPlayerHasNoValidSlidingMove(Player player){
         ArrayList<Token> tokens = player.getTokenList();
 
         boolean noValidMoves = true;
-        for (Token token : tokens){
-            if (token.isTokenPlaced()){
+        for (Token token : tokens){  // Go through all the tokens
+            if (token.isTokenPlaced()){ // If the token is placed
                 IntersectionPoint intersectionPoint = token.getIntersectionPoint();
 
+                // Check if the token has a valid empty adjacent intersection point to slide to
                 for ( IntersectionPoint neighbour : findNeighbouringIntersections(intersectionPoint)){
                     if (!neighbour.hasToken()){
-                        noValidMoves = false;
+                        noValidMoves = false; // There is valid sliding move
                         break;
                     }
                 }
 
-                if (!noValidMoves){
+                if (!noValidMoves){ // If there is one empty adjacent intersection point found , break and return false
                     break;
                 }
 
@@ -121,19 +166,36 @@ public class Game implements NeighbourPositionFinder{
 
         return noValidMoves;
     }
+
+    /**
+     * Getter for player 1
+     * @return Player 1
+     */
     public Player getPlayer1() {
         return player1;
     }
 
+    /**
+     * Getter for player 2
+     * @return Player 2
+     */
     public Player getPlayer2() {
         return player2;
     }
 
+
+    /**
+     * Increment game turn to allow switching of player's turns
+     */
     public void incrementTurn() {
         this.turn = turn + 1;
     }
 
-    // Set players ( HumanPlayer Vs HumanPlayer or HumanPlayer vs ComputerPlayer)
+    /**
+     * Set the players to play in the game ( HumanPlayer vs HumanPlayer or HumanPlayer vs ComputerPlayer
+     * @param player1
+     * @param player2
+     */
     public void setPlayers(Player player1, Player player2){
         this.player1 = player1;
         this.player2 = player2;

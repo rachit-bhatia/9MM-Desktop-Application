@@ -28,7 +28,7 @@ public class FlyingMove extends Move {
     }
 
     /**
-     * Perform the following actions when mouse is pressed
+     * Look for empty intersection points and set them to valid positions to place the token
      * @param cursor the event to be processed
      */
     @Override

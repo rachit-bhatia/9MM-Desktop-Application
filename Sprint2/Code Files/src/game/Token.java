@@ -36,19 +36,28 @@ public class Token extends JComponent {
     private boolean isTokenPlaced;
 
     /**
-     * boolean value to indicate if the token is available to be removed
+     * Boolean value to indicate if the token is available to be removed
      */
     public boolean toRemove;
 
     /**
-     * boolean value indicating whether the token is in a mill
+     * Boolean value indicating whether the token is in a mill
      */
     public boolean inMill;
 
+    /**
+     * If a token can be used
+     */
     private boolean canBeUsed;
 
+    /**
+     * Current mouseListener the token is implementing
+     */
     private MouseAdapter currentMoveListener;
 
+    /**
+     * Player the token belongs to
+     */
     private Player player ;
     /**
      * constructor
@@ -94,6 +103,11 @@ public class Token extends JComponent {
         }
     }
 
+    /**
+     * Change mouseListener and mouseMotionListener of token depending on the currentStateOfMove of player
+     * @param newMove new mouseListener
+     * @param temporary if the mouseListener is temporary . True if temporary .False otherwise
+     */
     public void changeListener(MouseAdapter newMove , boolean temporary){
         this.removeMouseListener(this.currentMoveListener);
         this.removeMouseMotionListener(this.currentMoveListener);
@@ -167,18 +181,34 @@ public class Token extends JComponent {
         return isTokenPlaced;
     }
 
+    /**
+     * Setter for canBeUsed
+     * @param bool True if token can be used. False otherwise
+     */
     public void setCanBeUsed(boolean bool){
         this.canBeUsed = bool;
     }
 
+    /**
+     * Getter for canBeUsed
+     * @return
+     */
     public boolean canBeUsed(){
         return this.canBeUsed;
     }
 
+    /**
+     * Add the Player the token belongs to
+     * @param player
+     */
     public void addPlayer(Player player){
         this.player = player;
     }
 
+    /**
+     * Get the player the token belongs to
+     * @return player which the token belongs to
+     */
     public Player getPlayer(){
         return this.player;
     }

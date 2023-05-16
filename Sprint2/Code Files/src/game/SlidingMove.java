@@ -5,15 +5,33 @@ import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
+
+/**
+ * SlidingMove as a mouseListener to slide tokens to valid adjacent intersection points
+ * <p>
+ * Created by Tan Jun Yu
+ *
+ * @author Rachit Bhatia ,Tan Jun Yu
+ * Modified by: -
+ */
+
 public class SlidingMove extends Move implements NeighbourPositionFinder {
 
 
-
+    /**
+     * Constructor
+     * @param tokenInstance token implementing the SlidingMove mouseListener
+     * @param xCord x coordinate of token
+     * @param yCord y coordinate of token
+     */
     public SlidingMove(Token tokenInstance,int xCord, int yCord) {
         super(tokenInstance, xCord, yCord);
     }
 
-
+    /**
+     * Look for empty adjacent intersection points and set them to valid when mosue is pressed
+     * @param cursor the event to be processed
+     */
     @Override
     public void mousePressed(MouseEvent cursor) {
 

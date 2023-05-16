@@ -3,6 +3,14 @@ package game;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
+/**
+ * NeighbourPositionFinder helps to find adjacent intersection points of an intersection point instance
+ * <p>
+ * Created by Tan Jun Yu
+ *
+ * @author Shoumil
+ * Modified by: Rachit Bhatia, Tan Jun Yu
+ */
 public interface NeighbourPositionFinder {
 
 

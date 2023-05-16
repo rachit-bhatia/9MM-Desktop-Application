@@ -3,26 +3,30 @@ package game;
 import java.util.ArrayList;
 
 /**
- * A JComponent representing the Token
+ * MillChecker that helps to check if a mill is formed when a token is placed at a new position
  * <p>
- * Created  by Tan Jun Yu, Shoumil Guha
+ * Created  by Shoumil Guha
  *
  * @author Tan Jun Yu, Shoumil Guha
  * Modified by: Rachit Bhatia
  */
 public class MillChecker implements NeighbourPositionFinder {
 
+    /**
+     * MillChecker singleton isntance
+     */
     private static MillChecker instance;
 
-    // TODO : Add an attribute ArrayList of array{3} Token to store all the tokens currently part of Mill
+    /**
+     * All the tokens that currently are part of a mill
+     */
     private ArrayList<ArrayList<Token>> millTokens = new ArrayList<>();
 
     /**
      * Gets the singular instance of the MillChecker.
-     *
-     * @return the instance
+     * @return the MillChecker singletoninstance
      */
-// Singleton method to get instance
+
     public static MillChecker getInstance() {
         if (instance == null) {
             instance = new MillChecker();
@@ -223,7 +227,6 @@ public class MillChecker implements NeighbourPositionFinder {
 
     /**
      * removing mills if a token in the mill has moved
-     *
      * @param curToken current token moved
      */
     public void checkIfTokenInMill(Token curToken){

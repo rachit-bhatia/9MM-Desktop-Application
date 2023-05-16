@@ -37,7 +37,7 @@ public class GameBoard extends JPanel {
 
     /**
      * Access GameBoard singleton instance publicly
-     * @return
+     * @return GameBoard instance
      */
     public static GameBoard getInstance(){
         if (instance == null) {
@@ -172,6 +172,9 @@ public class GameBoard extends JPanel {
         return intersectionPointsList;
     }
 
+    /**
+     * Reset all the intersection points back to invalid move whenever a new token is picked up by players
+     */
     public void resetAllIntersectionPoints(){
         for (IntersectionPoint intersectionPoint : intersectionPointsList){
             intersectionPoint.setMoveValid(false);

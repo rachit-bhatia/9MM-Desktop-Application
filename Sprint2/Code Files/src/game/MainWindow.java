@@ -43,6 +43,16 @@ public abstract class MainWindow {
      */
     private JLabel playerLabel2;
 
+    /**
+     * text label for state of move of player 1
+     */
+    private JLabel playerStateOfMoveLabel1;
+
+    /**
+     * text label for state of move of player 2
+     */
+    private JLabel playerStateOfMoveLabel2;
+
 
     /**
      * private constructor
@@ -133,6 +143,16 @@ public abstract class MainWindow {
         playerLabel1.setVerticalAlignment(SwingConstants.CENTER);
         mainPanel.add(playerLabel1);
 
+        int ySpacingBelowLabel = 30;
+        playerStateOfMoveLabel1  = new JLabel("PLACING");
+        playerStateOfMoveLabel1.setForeground(Color.BLACK);
+        playerStateOfMoveLabel1.setFont(new Font("PLACING", Font.BOLD, 20));   //size and style of the text
+        playerStateOfMoveLabel1.setVisible(true);
+        playerStateOfMoveLabel1.setBounds((int) (screenDimension.width/4.5 - 15),textYCoord + ySpacingBelowLabel,100,40);
+        playerStateOfMoveLabel1.setHorizontalAlignment(SwingConstants.CENTER);
+        playerStateOfMoveLabel1.setVerticalAlignment(SwingConstants.CENTER);
+        mainPanel.add(playerStateOfMoveLabel1);
+
 
         //adding the player 2 text label under all white tokens
         playerLabel2 = new JLabel("Player 2");
@@ -143,6 +163,15 @@ public abstract class MainWindow {
         playerLabel2.setHorizontalAlignment(SwingConstants.CENTER);
         playerLabel2.setVerticalAlignment(SwingConstants.CENTER);
         mainPanel.add(playerLabel2);
+
+        playerStateOfMoveLabel2  = new JLabel("PLACING");
+        playerStateOfMoveLabel2.setForeground(Color.BLACK);
+        playerStateOfMoveLabel2.setFont(new Font("PLACING", Font.BOLD, 20));   //size and style of the text
+        playerStateOfMoveLabel2.setVisible(true);
+        playerStateOfMoveLabel2.setBounds((3*screenDimension.width)/4 - 15,textYCoord + ySpacingBelowLabel,100,40);
+        playerStateOfMoveLabel2.setHorizontalAlignment(SwingConstants.CENTER);
+        playerStateOfMoveLabel2.setVerticalAlignment(SwingConstants.CENTER);
+        mainPanel.add(playerStateOfMoveLabel2);
 
         // adding the background to the game
         JLabel background = new JLabel(new ImageIcon("Code Files/src/game/background.jpeg"));
@@ -158,11 +187,35 @@ public abstract class MainWindow {
         mainWindow.setVisible(true);    //application window visibility
     }
 
+    /**
+     * get Player 1 label
+     * @return Player 1 label
+     */
     public JLabel getPlayerLabel1(){
         return  playerLabel1;
     }
 
+    /**
+     * get Player 2 label
+     * @return Player 2 label
+     */
     public JLabel getPlayerLabel2(){
         return  playerLabel2;
+    }
+
+    /**
+     * get Player 1 state of move label
+     * @return Player 1 state of move label
+     */
+    public JLabel getPlayerStateOfMoveLabel1() {
+        return playerStateOfMoveLabel1;
+    }
+
+    /**
+     * get Player 2 state of move label
+     * @return Player 2 state of move label
+     */
+    public JLabel getPlayerStateOfMoveLabel2(){
+        return playerStateOfMoveLabel2;
     }
 }

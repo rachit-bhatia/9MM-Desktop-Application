@@ -2,6 +2,14 @@ package game;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+/**
+ * RemoveMove as a mouseListener to remove tokens
+ * <p>
+ * Created by Rachit Bhatia
+ *
+ * @author Rachit Bhatia
+ * Modified by: Shoumil, Tan Jun Yu
+ */
 
 public class RemoveMove extends MouseAdapter {
 
@@ -10,6 +18,10 @@ public class RemoveMove extends MouseAdapter {
      */
     private Token tokenInstance;
 
+    /**
+     * Constructor
+     * @param tokenInstance token to remove
+     */
     public RemoveMove(Token tokenInstance) {
         this.tokenInstance = tokenInstance;
     }
@@ -57,13 +69,4 @@ public class RemoveMove extends MouseAdapter {
 }
 
 
-//FIXME: DELETE LATER!!
-//                if (position.getTokenInstance().getPlayer().getCurrentStateOfMove() == CurrentStateofMove.PLACING) {
-//                    position.getTokenInstance().changeListener(null);
-//                }
-//                else if (position.getTokenInstance().getPlayer().getCurrentStateOfMove() == CurrentStateofMove.SLIDING) {
-//                    position.getTokenInstance().changeListener(new SlidingMove(position.getTokenInstance(), position.getTokenInstance().getX(), position.getTokenInstance().getY()));
-//                }
-//                else{
-//                    position.getTokenInstance().changeListener(new FlyingMove(position.getTokenInstance(), position.getTokenInstance().getX(), position.getTokenInstance().getY()));
-//                }
+

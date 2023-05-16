@@ -42,7 +42,7 @@ public class IntersectionPoint extends JComponent {
      */
     public IntersectionPoint(int x,int y) {
 
-        GameBoard.getInstance().add(this);
+        GameBoard.  getInstance().add(this);
         setBounds(x  -  ( DIAMETER /2 ),y-  ( DIAMETER /2 ), DIAMETER + 8, DIAMETER + 8 );
 
         tokenInstance = null;
@@ -95,19 +95,35 @@ public class IntersectionPoint extends JComponent {
         return this.tokenInstance != null;
     }
 
+    /**
+     * Getter for isMoveValid
+     * @return True if move is valid . False otherwise
+     */
     public boolean isMoveValid(){
         return this.isMoveValid;
 
     }
 
+    /**
+     * Setter of isMoveValid
+     * @param bool True if move is vali d. False otherwise
+     */
     public void setMoveValid(boolean bool){
         this.isMoveValid = bool;
     }
 
+    /**
+     * Set point as selected for highlighting
+     * @param pointSelection
+     */
     public void setPointSelected(boolean pointSelection){
         this.pointSelected = pointSelection;
     }
 
+    /**
+     * Getter for token that is placed on the intersection point
+     * @return token that is on the intersection point
+     */
     public Token getTokenInstance() {return this.tokenInstance;}
 
 }
