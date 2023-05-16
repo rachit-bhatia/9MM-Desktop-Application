@@ -89,12 +89,13 @@ public class MainWindow extends JFrame{
         mainPanel.setPreferredSize(new Dimension(screenDimension.width, screenDimension.height));
 
         //setting preferences for the title text and adding it
+        /*
         JLabel titleText = new JLabel("9 MEN'S MORRIS");
         titleText.setForeground(new Color(255, 249, 253));
         titleText.setFont(new Font("Title", Font.BOLD, 50));
         titleText.setVisible(true);
         titleText.setBounds((int) ((screenDimension.width - 400) / 2), 40, 600, 50);
-        mainPanel.add(titleText);
+        mainPanel.add(titleText); */
         addAllItems();
     }
 
