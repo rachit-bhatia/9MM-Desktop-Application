@@ -2,6 +2,8 @@ package game;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /**
  * A MainWindow of the Application
@@ -11,17 +13,12 @@ import java.awt.*;
  * @author Rachit Bhatia
  * Modified by: Shoumil
  */
-public abstract class MainWindow {
+public class MainWindow extends JFrame{
 
     /**
      * Singleton instance of the class
      */
-    private static MainWindow instance;
-
-    /**
-     * instantiating the main application window
-     */
-    private JFrame mainWindow;
+    private static MainWindow mainWindow;
 
     /**
      * accessing the dimensions of the screen
@@ -58,7 +55,6 @@ public abstract class MainWindow {
      * private constructor
      */
     private MainWindow(){
-        mainWindow = new JFrame("9 Men's Morris");
         screenDimension = Toolkit.getDefaultToolkit().getScreenSize();
         mainPanel  = new JPanel();
     }
@@ -68,34 +64,49 @@ public abstract class MainWindow {
      * @return singleton instance
      */
     public static MainWindow getInstance(){
-        if (instance == null) {
-            instance = new MainWindow() {
-            };
+        if ( mainWindow == null) {
+            mainWindow = new MainWindow();
+            mainWindow.setTitle("9 Men's Morris");
         }
-        return instance;
+        return mainWindow;
     }
 
-    public void setupWindow(){
+    public void setupHomePageWindow(){
         /**
-         * Setting the window size and preferences
+         * Setting the main home page preferences
          */
         //setting the dimensions of the main window frame based on the screen size
         mainWindow.setSize(screenDimension.width, screenDimension.height);  //window size is of the screen size
         mainWindow.setLocation(0,0);
         mainWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  //default closing action
 
+        // adding the background to the game
+        JLabel background = new JLabel(new ImageIcon("Code Files/src/game/homepage.png"));
+        background.setBounds(0, 0, screenDimension.width, screenDimension.height);
+        mainWindow.add(background);
+
+        mainWindow.add(new MainPagePanel(screenDimension));
+        mainWindow.setVisible(true);
+    }
+
+    public void setupPlayPageWindow(){
+        /**
+         * sets the game page with the board and tokens
+         */
         //setting preferences for the main window panel
         mainPanel.setBackground(new Color(77, 100, 110).brighter());
         mainPanel.setLayout(null);
         mainPanel.setPreferredSize(new Dimension(screenDimension.width, screenDimension.height));
 
         //setting preferences for the title text and adding it
-        JLabel titleText = new JLabel("9 Men's Morris");
-        titleText.setForeground(new Color(230, 255, 141));
+        /*
+        JLabel titleText = new JLabel("9 MEN'S MORRIS");
+        titleText.setForeground(new Color(255, 249, 253));
         titleText.setFont(new Font("Title", Font.BOLD, 50));
         titleText.setVisible(true);
-        titleText.setBounds((int) ((screenDimension.width - 400) / 2), 40, 385, 50);
-        mainPanel.add(titleText);
+        titleText.setBounds((int) ((screenDimension.width - 400) / 2), 40, 600, 50);
+        mainPanel.add(titleText); */
+        addAllItems();
     }
 
 
@@ -174,7 +185,7 @@ public abstract class MainWindow {
         mainPanel.add(playerStateOfMoveLabel2);
 
         // adding the background to the game
-        JLabel background = new JLabel(new ImageIcon("Code Files/src/game/background.jpeg"));
+        JLabel background = new JLabel(new ImageIcon("Code Files/src/game/background.png"));
         background.setBounds(0, 0, screenDimension.width, screenDimension.height);
         mainPanel.add(background);
 

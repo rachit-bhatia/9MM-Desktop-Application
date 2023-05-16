@@ -117,6 +117,10 @@ public abstract class Move extends MouseAdapter{
 
 
                     MillChecker millChecker = MillChecker.getInstance();
+
+                    // if token was part of a mill , remove it as it has been moved and is no longer part of a mill
+                    millChecker.checkIfTokenInMill(tokenInstance);
+
                     // Checking for Mills and changing player state
                     boolean millFormed = millChecker.checkMill(intersectionPoint);
 
@@ -136,13 +140,12 @@ public abstract class Move extends MouseAdapter{
                     yCoordinate = newLocationY;
                     foundIntersectionPoint = true;
 
-
-
-
                     if (!millFormed) { // If mill is not formed
                         Game.getInstance().incrementTurn(); // increment turn if mill is not found
-                        millChecker.checkIfTokenInMill(tokenInstance); // if token was part of a mill , remove it as it is no longer part of a mill
                     }
+
+
+
                     gameBoard.repaint();
                     gameBoard.resetAllIntersectionPoints();
                     break;

@@ -47,6 +47,9 @@ public class GameBoard extends JPanel {
         return instance;
     }
 
+    // adding the background to the game
+    
+
     /**
      * Set the dimensions of GameBoard according to the screen size of user
      * @param screenDimension dimensions of the user's screen
@@ -109,6 +112,11 @@ public class GameBoard extends JPanel {
             intersectionPointsList.add(intersectionPoint);
             this.add(intersectionPoint);
         }
+        /*Dimension screenDimension = Toolkit.getDefaultToolkit().getScreenSize();
+        JLabel board_bg = new JLabel(new ImageIcon("Code Files/src/game/board_bg.png"));
+        board_bg.setBounds(0, 0, screenDimension.width, screenDimension.height);
+        this.add(board_bg);
+        this.setComponentZOrder(board_bg, this.getComponentCount()-1);*/
     }
 
     /**
