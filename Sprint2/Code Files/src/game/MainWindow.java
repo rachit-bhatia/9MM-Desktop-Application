@@ -81,7 +81,7 @@ public class MainWindow extends JFrame{
         mainWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  //default closing action
 
         // adding the background to the game
-        JLabel background = new JLabel(new ImageIcon("Code Files/src/game/bg_img.png"));
+        JLabel background = new JLabel(new ImageIcon("Code Files/src/game/newbg.jpeg"));
         background.setBounds(0, 0, screenDimension.width, screenDimension.height);
         mainWindow.add(background);
 
@@ -185,7 +185,7 @@ public class MainWindow extends JFrame{
         mainPanel.add(playerStateOfMoveLabel2);
 
         // adding the background to the game
-        JLabel background = new JLabel(new ImageIcon("Code Files/src/game/bg_img.png"));
+        JLabel background = new JLabel(new ImageIcon("Code Files/src/game/newbg.jpeg"));
         background.setBounds(0, 0, screenDimension.width, screenDimension.height);
         mainPanel.add(background);
 
