@@ -19,7 +19,7 @@ public class MainPagePanel extends JPanel {
 
         // Button for Player Vs Player
         JButton pvpButton = createPlayButton(screenDimension, "PLAY NOW");
-        pvpButton.setBounds((screenDimension.width - 250) / 2, screenDimension.height/2, 250, 50);
+        pvpButton.setBounds((screenDimension.width - 300) / 2, screenDimension.height/2, 300, 60);
 
         MainWindow mainWindow = MainWindow.getInstance();
 
@@ -48,11 +48,11 @@ public class MainPagePanel extends JPanel {
      */
     public JButton createPlayButton(Dimension screenDimension, String text){
         JButton playButton = new JButton(text);
-        Font pvpFont = new Font(playButton.getFont().getName(), Font.BOLD, 20); //setting font size for button text
+        Font pvpFont = new Font("Times New Roman", Font.BOLD, 30); //setting font size for button text
         playButton.setFont(pvpFont);
 
         //setting button's background and border
-        playButton.setBackground(new Color(218, 177, 123));
+        playButton.setBackground(new Color(211, 179, 134));
         playButton.setOpaque(true);
         playButton.setFocusPainted(false);
         playButton.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createRaisedBevelBorder(), BorderFactory.createLoweredBevelBorder()));

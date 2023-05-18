@@ -86,19 +86,10 @@ public class MainWindow extends JFrame{
         mainWindow.setLocation(0,0);
         mainWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  //default closing action
 
-//         adding the background to the game
-        JLabel background = new JLabel(new ImageIcon("Code Files/src/game/pxfuel2.jpeg"));
+//       adding the background to the game
+        JLabel background = new JLabel(new ImageIcon("Code Files/src/game/homepage.jpeg"));
         background.setBounds(0, 0, screenDimension.width, screenDimension.height);
         mainWindow.add(background);
-
-
-
-        JLabel titleText = new JLabel("9 MEN'S MORRIS");
-        titleText.setForeground(new Color(255, 249, 253));
-        titleText.setFont(new Font("Monotype Corsiva", Font.BOLD, 50));
-        titleText.setVisible(true);
-        titleText.setBounds((screenDimension.width - 400) / 2, 40, 600, 50);
-        mainPanel.add(titleText);
 
         mainWindow.add(new MainPagePanel(screenDimension));
         mainWindow.setVisible(true);
@@ -114,13 +105,12 @@ public class MainWindow extends JFrame{
         mainPanel.setPreferredSize(new Dimension(screenDimension.width, screenDimension.height));
 
         //setting preferences for the title text and adding it
-        /*
         JLabel titleText = new JLabel("9 MEN'S MORRIS");
-        titleText.setForeground(new Color(255, 249, 253));
-        titleText.setFont(new Font("Title", Font.BOLD, 50));
+        titleText.setForeground(new Color(84, 56, 23));
+        titleText.setFont(new Font("Times New Roman", Font.BOLD, 50));
         titleText.setVisible(true);
-        titleText.setBounds((int) ((screenDimension.width - 400) / 2), 40, 600, 50);
-        mainPanel.add(titleText); */
+        titleText.setBounds((screenDimension.width - 400) / 2, 40, 600, 50);
+        mainPanel.add(titleText);
         addAllItems();
     }
 
@@ -200,7 +190,7 @@ public class MainWindow extends JFrame{
         mainPanel.add(playerStateOfMoveLabel2);
 
         // adding the background to the game
-        JLabel background = new JLabel(new ImageIcon("Code Files/src/game/pxfuel.jpeg"));
+        JLabel background = new JLabel(new ImageIcon("Code Files/src/game/gamepage.jpeg"));
         background.setBounds(0, 0, screenDimension.width, screenDimension.height);
         mainPanel.add(background);
 
