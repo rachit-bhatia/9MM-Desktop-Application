@@ -1,9 +1,15 @@
 package game;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.awt.image.ImageObserver;
+import java.awt.image.ImageProducer;
+import java.io.File;
+import java.io.IOException;
 
 /**
  * A MainWindow of the Application
@@ -80,10 +86,19 @@ public class MainWindow extends JFrame{
         mainWindow.setLocation(0,0);
         mainWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  //default closing action
 
-        // adding the background to the game
-        JLabel background = new JLabel(new ImageIcon("Code Files/src/game/download.png"));
+//         adding the background to the game
+        JLabel background = new JLabel(new ImageIcon("Code Files/src/game/pxfuel2.jpeg"));
         background.setBounds(0, 0, screenDimension.width, screenDimension.height);
         mainWindow.add(background);
+
+
+
+        JLabel titleText = new JLabel("9 MEN'S MORRIS");
+        titleText.setForeground(new Color(255, 249, 253));
+        titleText.setFont(new Font("Monotype Corsiva", Font.BOLD, 50));
+        titleText.setVisible(true);
+        titleText.setBounds((screenDimension.width - 400) / 2, 40, 600, 50);
+        mainPanel.add(titleText);
 
         mainWindow.add(new MainPagePanel(screenDimension));
         mainWindow.setVisible(true);
@@ -185,7 +200,7 @@ public class MainWindow extends JFrame{
         mainPanel.add(playerStateOfMoveLabel2);
 
         // adding the background to the game
-        JLabel background = new JLabel(new ImageIcon("Code Files/src/game/download.png"));
+        JLabel background = new JLabel(new ImageIcon("Code Files/src/game/pxfuel.jpeg"));
         background.setBounds(0, 0, screenDimension.width, screenDimension.height);
         mainPanel.add(background);
 
