@@ -1,24 +1,11 @@
 package game;
 
-import javax.imageio.ImageIO;
+import java.net.URL;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
-import java.awt.image.ImageObserver;
-import java.awt.image.ImageProducer;
-import java.io.File;
-import java.io.IOException;
 
-/**
- * A MainWindow of the Application
- * <p>
- * Created  by Rachit Bhatia
- *
- * @author Rachit Bhatia
- * Modified by: Shoumil
- */
 public class MainWindow extends JFrame{
 
     /**
@@ -87,12 +74,17 @@ public class MainWindow extends JFrame{
         mainWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  //default closing action
 
 //      adding the background to the game
-        JLabel background = new JLabel(new ImageIcon("/Code Files/src/backgrounds/homepage.jpeg"));
+        URL image = MainWindow.class.getClassLoader().getResource("homepage.jpeg");
+        JLabel background = new JLabel(new ImageIcon(image));
         background.setBounds(0, 0, screenDimension.width, screenDimension.height);
         mainWindow.add(background);
 
         mainWindow.add(new MainPagePanel(screenDimension));
         mainWindow.setVisible(true);
+
+        Path currentRelativePath = Paths.get("");
+        String s = currentRelativePath.toAbsolutePath().toString();
+        System.out.println("Current absolute path is: " + s);
     }
 
     public void setupPlayPageWindow(){
@@ -190,7 +182,8 @@ public class MainWindow extends JFrame{
         mainPanel.add(playerStateOfMoveLabel2);
 
         // adding the background to the game
-        JLabel background = new JLabel(new ImageIcon("/Users/rachit/Documents/Monash/Y2S2/FIT3077/project/Sprint2/Code Files/src/backgrounds/gamepage.jpeg"));
+        URL image = MainWindow.class.getClassLoader().getResource("gamepage.jpeg");
+        JLabel background = new JLabel(new ImageIcon(image));
         background.setBounds(0, 0, screenDimension.width, screenDimension.height);
         mainPanel.add(background);
 
