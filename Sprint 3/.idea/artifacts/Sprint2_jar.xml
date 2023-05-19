@@ -3,7 +3,6 @@
     <output-path>$PROJECT_DIR$/out/artifacts/Sprint2_jar</output-path>
     <root id="archive" name="Sprint2.jar">
       <element id="module-output" name="Sprint2" />
-      <element id="dir-copy" path="$PROJECT_DIR$/resources" />
     </root>
   </artifact>
 </component>

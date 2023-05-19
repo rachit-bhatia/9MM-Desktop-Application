@@ -231,13 +231,14 @@ public class MillChecker implements NeighbourPositionFinder {
      */
     public void checkIfTokenInMill(Token curToken){
         ArrayList<Integer> millIndices = new ArrayList<>();
+        ArrayList<ArrayList<Token>> millsToRemove = new ArrayList<>();
 
         //iterating through all mills to check if token is in a mill
         for (ArrayList<Token> mill: millTokens){
 
             //if mill contains the token, the mill needs to be deleted since it is no longer a mill
             if (mill.contains(curToken)){
-                millIndices.add(millTokens.indexOf(mill));  //index of mill in millTokens array
+                millsToRemove.add(mill);    //mill in millTokens array
                 for (Token token : mill){
                     token.inMill = false;
                     token.repaint();  //repainting to remove the blue highlight
@@ -246,8 +247,8 @@ public class MillChecker implements NeighbourPositionFinder {
         }
 
         //removing the mills which have been distorted
-        for (int index : millIndices){
-            millTokens.remove(index);
+        for (ArrayList<Token> removableMill : millsToRemove){
+            millTokens.remove(removableMill);
         }
 
         //iterating through the remaining mills to repaint any token which might have been a part of 2 mills
