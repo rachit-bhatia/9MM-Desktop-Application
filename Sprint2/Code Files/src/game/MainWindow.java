@@ -86,8 +86,8 @@ public class MainWindow extends JFrame{
         mainWindow.setLocation(0,0);
         mainWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  //default closing action
 
-//       adding the background to the game
-        JLabel background = new JLabel(new ImageIcon("Code Files/src/game/homepage.jpeg"));
+//      adding the background to the game
+        JLabel background = new JLabel(new ImageIcon("/Code Files/src/backgrounds/homepage.jpeg"));
         background.setBounds(0, 0, screenDimension.width, screenDimension.height);
         mainWindow.add(background);
 
@@ -134,7 +134,7 @@ public class MainWindow extends JFrame{
 
         //Adding both player's Tokens to the Panel container
         int tokenSpacing = 0;
-        for (int i = 1; i <= 5; i++){
+        for (int i = 1; i <= 9; i++){
             Token tokenPlayer1 = new Token((int) (screenDimension.width/4.5),screenDimension.height/7 + tokenSpacing, Color.BLACK);
             mainPanel.add(tokenPlayer1);
             game.getPlayer1().addToken(tokenPlayer1);
@@ -190,7 +190,7 @@ public class MainWindow extends JFrame{
         mainPanel.add(playerStateOfMoveLabel2);
 
         // adding the background to the game
-        JLabel background = new JLabel(new ImageIcon("Code Files/src/game/gamepage.jpeg"));
+        JLabel background = new JLabel(new ImageIcon("/Users/rachit/Documents/Monash/Y2S2/FIT3077/project/Sprint2/Code Files/src/backgrounds/gamepage.jpeg"));
         background.setBounds(0, 0, screenDimension.width, screenDimension.height);
         mainPanel.add(background);
 
