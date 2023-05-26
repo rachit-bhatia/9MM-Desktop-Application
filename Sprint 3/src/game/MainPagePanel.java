@@ -18,7 +18,7 @@ public class MainPagePanel extends JPanel {
         setPreferredSize(screenDimension);
 
         // Button for Player Vs Player
-        JButton pvpButton = createPlayButton(screenDimension, "PLAY NOW");
+        JButton pvpButton = createPlayButton(screenDimension, "Player Vs Player");
         pvpButton.setBounds((screenDimension.width - 300) / 2, screenDimension.height/2, 300, 60);
 
         MainWindow mainWindow = MainWindow.getInstance();
@@ -39,6 +39,32 @@ public class MainPagePanel extends JPanel {
             }
 
         });
+
+
+        // Button for Player Vs Computer
+        JButton pvcButton = createPlayButton(screenDimension, "Player Vs Computer");
+        pvcButton.setBounds((screenDimension.width - 300) / 2, (screenDimension.height/2 + 100), 300, 60);
+
+
+        //defining the action of displaying game board page once button is clicked
+        pvcButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                mainWindow.getContentPane().removeAll();
+
+                Game.getInstance().setPlayers(new HumanPlayer(),new ComputerPlayer());
+                mainWindow.setupPlayPageWindow();
+                mainWindow.getContentPane().revalidate();
+                mainWindow.getContentPane().repaint();
+
+                Thread backgroundThread = new PerformThread();
+                backgroundThread.start();
+            }
+
+        });
+
+
+
 
         mainWindow.pack();
     }

@@ -76,7 +76,6 @@ public class Token extends JComponent {
         currentMoveListener = flyingMove;
         this.addMouseListener(flyingMove);
         this.addMouseMotionListener(flyingMove);
-
     }
 
     /**

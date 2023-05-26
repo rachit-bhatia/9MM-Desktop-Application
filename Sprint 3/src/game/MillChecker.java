@@ -190,11 +190,13 @@ public class MillChecker implements NeighbourPositionFinder {
 
                 totalTokensOnBoard++;
 
+                boolean tokenFound = false;
                 //loop through all mills to check if token is part of mill
                 for (ArrayList<Token> millFound : millTokens){
-                    if (millFound.contains(token)){
+                    if (millFound.contains(token) && !tokenFound){
                         tokenInMill = true;
                         totalTokensInMill++;
+                        tokenFound = true;
                     }
                 }
 
@@ -206,6 +208,7 @@ public class MillChecker implements NeighbourPositionFinder {
                 }
             }
         }
+
 
         //tokens in mills can be removed if and only if there is no other token on the board not currently a part of a mill
         //tokens in mills equal total tokens on board means no other tokens are on board not currently part of a mill
