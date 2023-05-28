@@ -11,7 +11,8 @@
 
     For macOS, if the error regarding "Unidentified developer" is encountered, right-click on the 9MM_DevDynasty.jar file and select 'Open'. Then select 'Open' from the dialog box that appears. If too many errors persist on macOS, proceed running the application on a Windows OS system.
 
-### Building the jar file using IntelliJ IDEA:
+### Creating a new jar file using IntelliJ IDEA:
+- The application can be run by simply launching the provided jar file (9MM_DevDynasty.jar). The steps below describe how the jar file was generated using the IntelliJ IDEA IDE.
 - Go to File > Project Structure
 - Under Artifacts, click on the '+' sign and select JAR > modules with dependencies. Select the main class to be as ApplicationDriver.java
 - Go to Build > Build Artifacts, and select the jar file
