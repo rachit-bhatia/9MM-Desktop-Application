@@ -69,22 +69,13 @@ public class MainWindow extends JFrame{
          * Setting the main home page preferences
          */
         //setting the dimensions of the main window frame based on the screen size
-        mainWindow.setSize(screenDimension.width, screenDimension.height);  //window size is of the screen size
-        mainWindow.setLocation(0,0);
+        mainWindow.setBounds(0, 0, screenDimension.width, screenDimension.height);  //window size is of the screen size
+        mainWindow.setExtendedState(JFrame.MAXIMIZED_BOTH);  //ensuring opening of application in fullscreen
         mainWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  //default closing action
 
-//      adding the background to the game
-        URL image = MainWindow.class.getClassLoader().getResource("homepage.jpeg");
-        JLabel background = new JLabel(new ImageIcon(image));
-        background.setBounds(0, 0, screenDimension.width, screenDimension.height);
-        mainWindow.add(background);
-
-        mainWindow.add(new MainPagePanel(screenDimension));
+        MainPagePanel mainPage = new MainPagePanel(screenDimension);
+        mainWindow.getContentPane().add(mainPage);
         mainWindow.setVisible(true);
-
-        Path currentRelativePath = Paths.get("");
-        String s = currentRelativePath.toAbsolutePath().toString();
-        System.out.println("Current absolute path is: " + s);
     }
 
     public void setupPlayPageWindow(){
