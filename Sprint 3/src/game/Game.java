@@ -89,11 +89,10 @@ public class Game implements NeighbourPositionFinder{
 
             // While a valid move is not yet made by the player 1
             while (this.turn % 2 == 0 && player1.getNumberOfTokens() >= 3 && !player1NoValidMove && !player2NoValidMove){
-                player1.setPlayerTurn(true);
-
                 //setting player label border to show which player's turn it is
                 mainWindow.getPlayerLabel2().setBorder(null);
                 mainWindow.getPlayerLabel1().setBorder(BorderFactory.createCompoundBorder(identifierThickness, playerIdentifier));
+                player1.setPlayerTurn(true);
             }
 
             // After player 1 turn is finished
@@ -113,11 +112,10 @@ public class Game implements NeighbourPositionFinder{
 
             // While a valid move is not yet made by the player 2
             while ( this.turn % 2 == 1 && player2.getNumberOfTokens() >= 3 && !player1NoValidMove && !player2NoValidMove){
-                player2.setPlayerTurn(true);
-
                 //setting player label border to show which player's turn it is
                 mainWindow.getPlayerLabel1().setBorder(null);
                 mainWindow.getPlayerLabel2().setBorder(BorderFactory.createCompoundBorder(identifierThickness, playerIdentifier));
+                player2.setPlayerTurn(true);
             }
 
             // After player 2 turn is finished
