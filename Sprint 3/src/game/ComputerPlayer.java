@@ -21,8 +21,15 @@ public class ComputerPlayer extends Player implements NeighbourPositionFinder,Ra
             // If Computer currentStateOfMove is sliding
             if (this.getCurrentStateOfMove() == CurrentStateofMove.SLIDING){
                 tokenUsed =  generateRandomSlidingMove();
-            }else {// If Computer currentStateOfMove is flying or placing
+            }
+            else {// If Computer currentStateOfMove is flying or placing
                 tokenUsed = generateRandomPlacingFlyingMove();
+            }
+
+            MillChecker millChecker = MillChecker.getInstance();
+            boolean millFormed = millChecker.checkMill(tokenUsed.getIntersectionPoint());
+            if (millFormed){
+               generateRandomRemoveMove();
             }
 
             // Get the new location of the token
@@ -34,6 +41,35 @@ public class ComputerPlayer extends Player implements NeighbourPositionFinder,Ra
             Game.getInstance().incrementTurn(); // Increment turn so that turn is switched back to HumanPlayer
             MainWindow.getInstance().repaint();
         }
+    }
+
+    private void generateRandomRemoveMove(){
+        Player otherPlayer = Game.getInstance().getPlayer1();
+        GameBoard gameBoard = GameBoard.getInstance();
+        int randomTokenIndex = generateRandomNumber(otherPlayer.getNumberOfTokens());
+        Token tokenToBeRemoved = otherPlayer.getTokenList().get(randomTokenIndex);
+
+        //getting removable token which is not part of a mill and which is already on the game board
+        while (!(!tokenToBeRemoved.inMill && tokenToBeRemoved.isTokenPlaced())) {
+            randomTokenIndex = generateRandomNumber(otherPlayer.getNumberOfTokens());
+            tokenToBeRemoved = otherPlayer.getTokenList().get(randomTokenIndex);
+        }
+
+        gameBoard.remove(tokenToBeRemoved);  //removing token from game board
+        tokenToBeRemoved.getIntersectionPoint().removeToken();  //removing token from intersection point
+        tokenToBeRemoved.getPlayer().getTokenList().remove(tokenToBeRemoved); //removing token from player's list
+
+        //resetting token appearance to remove red highlight of border after selection has been made
+        for (IntersectionPoint position : gameBoard.getIntersectionPoints()){
+            Token curToken = position.getTokenInstance();
+            if (curToken != null){
+                curToken.toRemove = false ; //removal state false
+                curToken.repaint();
+            }
+        }
+
+        //checking to remove mills when token removed
+        MillChecker.getInstance().checkIfTokenInMill(tokenToBeRemoved);
     }
 
 
