@@ -32,7 +32,12 @@ public class RemoveMove extends MouseAdapter {
      */
     @Override
     public void mouseClicked(MouseEvent cursor) {
+        RemoveMove.performRemoval(tokenInstance);
+        Game game = Game.getInstance();
+        game.incrementTurn(); //turn increment only after token has been removed
+    }
 
+    public static void performRemoval(Token tokenInstance){
         GameBoard gameBoard = GameBoard.getInstance();
         //resetting token appearance to remove red highlight of border after selection has been made
         for (IntersectionPoint position : gameBoard.getIntersectionPoints()){

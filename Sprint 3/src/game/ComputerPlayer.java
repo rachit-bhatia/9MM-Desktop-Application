@@ -3,6 +3,7 @@ package game;
 import javax.swing.*;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * Computer Player
@@ -11,12 +12,14 @@ import java.util.ArrayList;
  * @author  Tan Jun Yu
  * Modified by: -
  */
-public class ComputerPlayer extends Player implements NeighbourPositionFinder,RandomNumberGenerator{
+public class ComputerPlayer extends Player implements NeighbourPositionFinder{
     @Override
     public void setPlayerTurn(boolean bool) {
         if (bool){ // If current turn is ComputerPlayer turn
             Token tokenUsed ; // random token used
             IntersectionPoint intersectionPointUsed ; // random intersection point used
+
+//            produceDelay(2500);  //delay of 2.5 secs before a move is made to give a better playing experience
 
             // If Computer currentStateOfMove is sliding
             if (this.getCurrentStateOfMove() == CurrentStateofMove.SLIDING){
@@ -26,52 +29,41 @@ public class ComputerPlayer extends Player implements NeighbourPositionFinder,Ra
                 tokenUsed = generateRandomPlacingFlyingMove();
             }
 
+            // Get the new location of the token
+            intersectionPointUsed = tokenUsed.getIntersectionPoint();
+            int newLocationX = intersectionPointUsed.getX() + (intersectionPointUsed.getWidth() / 2) - (tokenUsed.getWidth() / 2);
+            int newLocationY = intersectionPointUsed.getY() + (intersectionPointUsed.getHeight() / 2) - (tokenUsed.getHeight() / 2);
+            tokenUsed.setLocation(newLocationX, newLocationY); // Set the token location to the new location found
+
+            //mill checking and handling operations
             MillChecker millChecker = MillChecker.getInstance();
+            millChecker.checkIfTokenInMill(tokenUsed); //checking removal of mills after every move
             boolean millFormed = millChecker.checkMill(tokenUsed.getIntersectionPoint());
             if (millFormed){
                generateRandomRemoveMove();
             }
 
-            // Get the new location of the token
-            intersectionPointUsed = tokenUsed.getIntersectionPoint();
-            int newLocationX = intersectionPointUsed.getX() + (intersectionPointUsed.getWidth() / 2) - (tokenUsed.getWidth() / 2);
-            int newLocationY = intersectionPointUsed.getY() + (intersectionPointUsed.getHeight() / 2) - (tokenUsed.getHeight() / 2);
-
-            tokenUsed.setLocation(newLocationX, newLocationY); // Set the token location to the new location found
             Game.getInstance().incrementTurn(); // Increment turn so that turn is switched back to HumanPlayer
             MainWindow.getInstance().repaint();
         }
     }
 
-    private void generateRandomRemoveMove(){
-        Player otherPlayer = Game.getInstance().getPlayer1();
-        GameBoard gameBoard = GameBoard.getInstance();
-        int randomTokenIndex = generateRandomNumber(otherPlayer.getNumberOfTokens());
-        Token tokenToBeRemoved = otherPlayer.getTokenList().get(randomTokenIndex);
-
-        //getting removable token which is not part of a mill and which is already on the game board
-        while (!(!tokenToBeRemoved.inMill && tokenToBeRemoved.isTokenPlaced())) {
-            randomTokenIndex = generateRandomNumber(otherPlayer.getNumberOfTokens());
-            tokenToBeRemoved = otherPlayer.getTokenList().get(randomTokenIndex);
-        }
-
-        gameBoard.remove(tokenToBeRemoved);  //removing token from game board
-        tokenToBeRemoved.getIntersectionPoint().removeToken();  //removing token from intersection point
-        tokenToBeRemoved.getPlayer().getTokenList().remove(tokenToBeRemoved); //removing token from player's list
-
-        //resetting token appearance to remove red highlight of border after selection has been made
-        for (IntersectionPoint position : gameBoard.getIntersectionPoints()){
-            Token curToken = position.getTokenInstance();
-            if (curToken != null){
-                curToken.toRemove = false ; //removal state false
-                curToken.repaint();
-            }
-        }
-
-        //checking to remove mills when token removed
-        MillChecker.getInstance().checkIfTokenInMill(tokenToBeRemoved);
+    /**
+     * Generates a random integer between 0 to maxInt.
+     * @return an integer
+     */
+    public int generateRandomNumber(int maxInt) {
+        return new Random().nextInt(maxInt);
     }
 
+    private void produceDelay(int delay){
+        try {
+            PerformThread.sleep(delay);  //thread sleeps for mentioned time delay
+        }
+        catch(InterruptedException newException) {
+            PerformThread.currentThread().interrupt();  //raising interrupt for all thread usages to know about this time delay
+        }
+    }
 
     private Token generateRandomSlidingMove(){
         int randomTokenIndex = generateRandomNumber(this.getNumberOfTokens());
@@ -153,5 +145,21 @@ public class ComputerPlayer extends Player implements NeighbourPositionFinder,Ra
         }
 
         return tokenUsed;
+    }
+
+
+    private void generateRandomRemoveMove(){
+        Player otherPlayer = Game.getInstance().getPlayer1();
+        int randomTokenIndex = generateRandomNumber(otherPlayer.getNumberOfTokens());
+        Token tokenToBeRemoved = otherPlayer.getTokenList().get(randomTokenIndex); //random token generation
+
+        //getting removable token which is not part of a mill and which is already on the game board
+        while (!(!tokenToBeRemoved.inMill && tokenToBeRemoved.isTokenPlaced())) {
+            randomTokenIndex = generateRandomNumber(otherPlayer.getNumberOfTokens());
+            tokenToBeRemoved = otherPlayer.getTokenList().get(randomTokenIndex);
+        }
+
+        produceDelay(4000); //delay of 4 secs before a token is removed to let the player know about the game's state
+        RemoveMove.performRemoval(tokenToBeRemoved); //performing removal action on randomly selected token
     }
 }
