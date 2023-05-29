@@ -23,6 +23,7 @@ public class MainPagePanel extends JPanel {
 
         //setting the title image for the home page
         //TODO: Add the title image using addImage function here
+        this.addImage("coin.png", screenDimension.width/2 - 570, screenDimension.height/2 - 350, 1141, 290);
 
         // Button for Player Vs Player
         JButton pvpButton = createPlayButton(screenDimension, "Play with a Friend", false);
