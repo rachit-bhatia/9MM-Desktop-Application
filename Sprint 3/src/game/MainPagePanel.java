@@ -12,26 +12,28 @@ import java.net.URL;
 public class MainPagePanel extends JPanel {
 
     public MainPagePanel(Dimension screenDimension){
+        int screenWidth = screenDimension.width;
+        int screenHeight = screenDimension.height;
 
         //setting preferences for the main window panel
         this.setBackground(new Color(77, 100, 110).brighter());
         this.setLayout(null);
-        this.setPreferredSize(new Dimension(screenDimension.width, screenDimension.height));
+        this.setPreferredSize(new Dimension(screenWidth, screenHeight));
 
         //setting the background image for the home page
-        this.addImage("homepage.jpeg", 0, 0, screenDimension.width, screenDimension.height);
+        this.addImage("homepage.jpeg", 0, 0, screenWidth, screenHeight);
 
         //setting the title image for the home page
         //TODO: Add the title image using addImage function here
-        this.addImage("coin.png", screenDimension.width/2 - 570, screenDimension.height/2 - 350, 1141, 290);
+        this.addImage("coin.png", screenWidth/2 - 570, screenHeight/2 - 350, 1141, 290);
 
         // Button for Player Vs Player
         JButton pvpButton = createPlayButton(screenDimension, "Play with a Friend", false);
-        pvpButton.setBounds((screenDimension.width - 300) / 2, screenDimension.height/2, 300, 60);
+        pvpButton.setBounds((screenWidth - 300) / 2, screenHeight/2, 300, 60);
 
         // Button for Player Vs Computer
         JButton pvcButton = createPlayButton(screenDimension, "Play against CPU", true);
-        pvcButton.setBounds((screenDimension.width - 300) / 2, (screenDimension.height/2 + 100), 300, 60);
+        pvcButton.setBounds((screenWidth - 300) / 2, (screenHeight/2 + 100), 300, 60);
 
         MainWindow.getInstance().pack();
     }
