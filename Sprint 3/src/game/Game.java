@@ -57,6 +57,14 @@ public class Game implements NeighbourPositionFinder{
         return instance;
     }
 
+    /**
+     * Deletes the game (sets everything back to default)
+     */
+    public static void deleteInstance() {
+        if (instance != null) {
+            instance = new Game();
+        }
+    }
 
     /**
      * Game loop that keeps the game running
@@ -130,8 +138,22 @@ public class Game implements NeighbourPositionFinder{
             endMessage += "Player 1!\nYou win the game!";
         }
 
-        JOptionPane.showMessageDialog(null, endMessage, "Game Over", JOptionPane.PLAIN_MESSAGE);
+        String[] options = {"Go back to the homepage", "Close the program"};
+        var selection = JOptionPane.showOptionDialog(null, endMessage, "Game Over", 0, 3, null, options, options[0]);
 
+        if (selection == 0) {
+            mainWindow.getContentPane().removeAll();
+            MainWindow.regenerate();
+            GameBoard.deleteInstance();
+            mainWindow.getContentPane().revalidate();
+            mainWindow.getContentPane().repaint();
+            mainWindow.setupHomePageWindow();
+
+
+        }
+        if (selection == 1) {
+            System.exit(0);
+        }
     }
 
     /**
