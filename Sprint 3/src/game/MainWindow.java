@@ -64,6 +64,13 @@ public class MainWindow extends JFrame{
         return mainWindow;
     }
 
+    public static void regenerate() {
+        if (mainWindow != null) {
+            mainWindow = new MainWindow();
+            mainWindow.setTitle("9 Men's Morris");
+        }
+    }
+
     public void setupHomePageWindow(){
         /**
          * Setting the main home page preferences
@@ -75,6 +82,7 @@ public class MainWindow extends JFrame{
 
         MainPagePanel mainPage = new MainPagePanel(screenDimension);
         mainWindow.getContentPane().add(mainPage);
+        mainWindow.pack();
         mainWindow.setVisible(true);
     }
 
@@ -113,11 +121,12 @@ public class MainWindow extends JFrame{
         int boardSpacing = gameBoard.getBounds().y;
         int boardHeight = gameBoard.getBounds().height;
 
+
         Game game = Game.getInstance();
 
         //Adding both player's Tokens to the Panel container
         int tokenSpacing = 0;
-        for (int i = 1; i <= 9; i++){
+        for (int i = 1; i <= 3; i++){
             Token tokenPlayer1 = new Token((int) (screenDimension.width/4.5),screenDimension.height/7 + tokenSpacing, Color.BLACK);
             mainPanel.add(tokenPlayer1);
             game.getPlayer1().addToken(tokenPlayer1);
