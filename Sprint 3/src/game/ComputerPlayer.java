@@ -12,7 +12,7 @@ import java.util.Random;
  * @author  Tan Jun Yu
  * Modified by: -
  */
-public class ComputerPlayer extends Player implements NeighbourPositionFinder{
+public class ComputerPlayer extends Player implements NeighbourPositionFinder, TokenRemoval{
     @Override
     public void setPlayerTurn(boolean bool) {
         if (bool){ // If current turn is ComputerPlayer turn
@@ -160,6 +160,6 @@ public class ComputerPlayer extends Player implements NeighbourPositionFinder{
         }
 
         produceDelay(4000); //delay of 4 secs before a token is removed to let the player know about the game's state
-        RemoveMove.performRemoval(tokenToBeRemoved); //performing removal action on randomly selected token
+        performRemoval(tokenToBeRemoved); //performing removal action on randomly selected token
     }
 }
