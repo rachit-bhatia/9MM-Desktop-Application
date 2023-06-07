@@ -1,6 +1,7 @@
 package game;
 
 import javax.swing.*;
+import java.awt.*;
 import java.util.ArrayList;
 
 /**
@@ -95,11 +96,13 @@ public class MillChecker implements NeighbourPositionFinder {
         }
 
         if (millFormed){
-
+            JLabel millFormedLabel = MainWindow.getInstance().getMillLabel();
             if (humanOrComputer){
-                int input = JOptionPane.showConfirmDialog(null,"Removable tokens are highlighted in orange","Congratulations! You've formed a mill." ,JOptionPane.DEFAULT_OPTION);
+                millFormedLabel.setText("Congratulations! You've formed a mill. Removable Tokens are highlighted in ORANGE");
+                millFormedLabel.setForeground(Color.GREEN);
             }else {
-                int input = JOptionPane.showConfirmDialog(null,"ComputerPlayer has formed a mill. Your token will be removed :(","OH NO !!!" ,JOptionPane.DEFAULT_OPTION);
+                millFormedLabel.setText("OH NO!!! Computer has formed a mill. One of your tokens will be removed :(");
+                millFormedLabel.setForeground(Color.RED);
             }
             Player curPlayer = intersectionPointInstance.getTokenInstance().getPlayer();
             changeToRemoveState(curPlayer);

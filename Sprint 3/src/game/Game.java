@@ -90,6 +90,9 @@ public class Game implements NeighbourPositionFinder{
         // While both players still have 3 or more tokens, keep the game running
         while (player1.getNumberOfTokens() >= 3 && player2.getNumberOfTokens() >= 3 && !player1NoValidMove && !player2NoValidMove){
 
+            // Clear mill formed label every turn
+            MainWindow.getInstance().getMillLabel().setText("");
+
             // update state of move if needed
             player1.updateStateOfMove();
 

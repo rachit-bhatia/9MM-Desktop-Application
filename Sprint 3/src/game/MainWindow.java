@@ -43,6 +43,8 @@ public class MainWindow extends JFrame{
      */
     private JLabel playerStateOfMoveLabel2;
 
+    private JLabel millLabel;
+
 
     /**
      * private constructor
@@ -171,6 +173,18 @@ public class MainWindow extends JFrame{
         //y-coordinate of the player level based on board height
         int textYCoord = boardHeight + boardSpacing - 30;
 
+        // Mill Formed Label to alert user a mill is formed
+        int widthAdjustment = 400;
+        int yCoordinate = 90;
+        int widthMillText = 2000;
+        int heightMillText = 50;
+        int millLabelTextSize = 35;
+        millLabel = new JLabel("");
+        millLabel.setVisible(true);
+        millLabel.setBounds((screenDimension.width - widthAdjustment) / 4 , yCoordinate,widthMillText, heightMillText);
+        millLabel.setFont(new Font ("Times New Roman", Font.BOLD, millLabelTextSize));
+        mainPanel.add(millLabel);
+
         // Font adjustments
         int playerLabelFontSize = 21;
         int playerLabelFontWidth = 100;
@@ -262,5 +276,9 @@ public class MainWindow extends JFrame{
      */
     public JLabel getPlayerStateOfMoveLabel2(){
         return playerStateOfMoveLabel2;
+    }
+
+    public JLabel getMillLabel(){
+        return millLabel;
     }
 }
