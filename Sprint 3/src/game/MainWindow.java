@@ -93,17 +93,37 @@ public class MainWindow extends JFrame{
         /**
          * sets the game page with the board and tokens
          */
+
+        // RGB values for Main Window display
+        int redComponentValueMainWindow = 77;
+        int greenComponentValueMainWindow = 100;
+        int blueComponentValueMainWindow = 110;
+
         //setting preferences for the main window panel
-        mainPanel.setBackground(new Color(77, 100, 110).brighter());
+        mainPanel.setBackground(new Color(redComponentValueMainWindow, greenComponentValueMainWindow, blueComponentValueMainWindow).brighter());
         mainPanel.setLayout(null);
         mainPanel.setPreferredSize(new Dimension(screenDimension.width, screenDimension.height));
 
         //setting preferences for the title text and adding it
         JLabel titleText = new JLabel("9 MEN'S MORRIS");
-        titleText.setForeground(new Color(84, 56, 23));
-        titleText.setFont(new Font("Times New Roman", Font.BOLD, 50));
+
+        // RGB values for the Title 9 Men's Morris display
+        int redComponentValueTitle = 84;
+        int greenComponentValueTitle = 56;
+        int blueComponentValueTitle = 23;
+
+        titleText.setForeground(new Color(redComponentValueTitle, greenComponentValueTitle, blueComponentValueTitle));
+        int fontSizeTitleText = 50;
+        titleText.setFont(new Font("Times New Roman", Font.BOLD, fontSizeTitleText));
         titleText.setVisible(true);
-        titleText.setBounds((screenDimension.width - 400) / 2, 40, 600, 50);
+
+        // Adjustment values for Title 9 Men's Morris display
+        int widthAdjustment = 400;
+        int yCoordinate = 40;
+        int widthTitleText = 600;
+        int heightTitleText = 50;
+
+        titleText.setBounds((screenDimension.width - widthAdjustment) / 2, yCoordinate, widthTitleText, heightTitleText);
         mainPanel.add(titleText);
         addAllItems();
     }
@@ -129,27 +149,40 @@ public class MainWindow extends JFrame{
 
         //Adding both player's Tokens to the Panel container
         int tokenSpacing = 0;
-        for (int i = 1; i <= 3; i++){
-            Token tokenPlayer1 = new Token((int) (screenDimension.width/4.5),screenDimension.height/7 + tokenSpacing, Color.BLACK);
+        int tokenSpacingIncrementValue =  boardHeight/9 - 5;
+
+        // Token placement adjustments
+        double player1TokenWidthAdjustment = 4.5;
+        int tokenHeightAdjustment = 7;
+        int player2TokenAdjustment = 4;
+
+        for (int i = 1; i <= 9; i++){
+            Token tokenPlayer1 = new Token((int) (screenDimension.width/player1TokenWidthAdjustment),screenDimension.height/ tokenHeightAdjustment + tokenSpacing, Color.BLACK);
             mainPanel.add(tokenPlayer1);
             game.getPlayer1().addToken(tokenPlayer1);
 
-            Token tokenPlayer2 = new Token((3*screenDimension.width)/4,screenDimension.height/7 + tokenSpacing, Color.WHITE);
+            Token tokenPlayer2 = new Token((3*screenDimension.width)/player2TokenAdjustment,screenDimension.height/tokenHeightAdjustment +  tokenSpacing, Color.WHITE);
             mainPanel.add(tokenPlayer2);
             game.getPlayer2().addToken(tokenPlayer2);
 
-            tokenSpacing += boardHeight/9 - 5;;
+            tokenSpacing += tokenSpacingIncrementValue;
         }
 
         //y-coordinate of the player level based on board height
         int textYCoord = boardHeight + boardSpacing - 30;
 
+        // Font adjustments
+        int playerLabelFontSize = 21;
+        int playerLabelFontWidth = 100;
+        int playerLabelFontHeight = 40;
+        int playerStateOfMoveLabelFontSize = 20;
+
         //adding the player 1 text label under all black tokens
         playerLabel1 = new JLabel("Player 1");
         playerLabel1.setForeground(Color.BLACK);    //color of the text
-        playerLabel1.setFont(new Font("Player 1", Font.BOLD, 21));   //size and style of the text
+        playerLabel1.setFont(new Font("Player 1", Font.BOLD, playerLabelFontSize));   //size and style of the text
         playerLabel1.setVisible(true);
-        playerLabel1.setBounds((int) (screenDimension.width/4.5 - 15), textYCoord, 100, 40);   //size of the label bounds
+        playerLabel1.setBounds((int) (screenDimension.width/4.5 - 15), textYCoord, playerLabelFontWidth, playerLabelFontHeight);   //size of the label bounds
         playerLabel1.setHorizontalAlignment(SwingConstants.CENTER);
         playerLabel1.setVerticalAlignment(SwingConstants.CENTER);
         mainPanel.add(playerLabel1);
@@ -157,9 +190,9 @@ public class MainWindow extends JFrame{
         int ySpacingBelowLabel = 30;
         playerStateOfMoveLabel1  = new JLabel("PLACING");
         playerStateOfMoveLabel1.setForeground(Color.BLACK);
-        playerStateOfMoveLabel1.setFont(new Font("PLACING", Font.HANGING_BASELINE, 20));   //size and style of the text
+        playerStateOfMoveLabel1.setFont(new Font("PLACING", Font.HANGING_BASELINE, playerStateOfMoveLabelFontSize));   //size and style of the text
         playerStateOfMoveLabel1.setVisible(true);
-        playerStateOfMoveLabel1.setBounds((int) (screenDimension.width/4.5 - 15),textYCoord + ySpacingBelowLabel,100,40);
+        playerStateOfMoveLabel1.setBounds((int) (screenDimension.width/4.5 - 15),textYCoord + ySpacingBelowLabel, playerLabelFontWidth, playerLabelFontHeight);
         playerStateOfMoveLabel1.setHorizontalAlignment(SwingConstants.CENTER);
         playerStateOfMoveLabel1.setVerticalAlignment(SwingConstants.CENTER);
         mainPanel.add(playerStateOfMoveLabel1);
@@ -168,18 +201,18 @@ public class MainWindow extends JFrame{
         //adding the player 2 text label under all white tokens
         playerLabel2 = new JLabel("Player 2");
         playerLabel2.setForeground(Color.WHITE);
-        playerLabel2.setFont(new Font("Player 2", Font.BOLD, 21));
+        playerLabel2.setFont(new Font("Player 2", Font.BOLD, playerLabelFontSize));
         playerLabel2.setVisible(true);
-        playerLabel2.setBounds((3*screenDimension.width)/4 - 15, textYCoord, 100, 40);
+        playerLabel2.setBounds((3*screenDimension.width)/4 - 15, textYCoord, playerLabelFontWidth, playerLabelFontHeight);
         playerLabel2.setHorizontalAlignment(SwingConstants.CENTER);
         playerLabel2.setVerticalAlignment(SwingConstants.CENTER);
         mainPanel.add(playerLabel2);
 
         playerStateOfMoveLabel2  = new JLabel("PLACING");
         playerStateOfMoveLabel2.setForeground(Color.WHITE);
-        playerStateOfMoveLabel2.setFont(new Font("PLACING", Font.HANGING_BASELINE, 20));   //size and style of the text
+        playerStateOfMoveLabel2.setFont(new Font("PLACING", Font.HANGING_BASELINE, playerStateOfMoveLabelFontSize));   //size and style of the text
         playerStateOfMoveLabel2.setVisible(true);
-        playerStateOfMoveLabel2.setBounds((3*screenDimension.width)/4 - 15,textYCoord + ySpacingBelowLabel,100,40);
+        playerStateOfMoveLabel2.setBounds((3*screenDimension.width)/4 - 15,textYCoord + ySpacingBelowLabel, playerLabelFontWidth, playerLabelFontHeight);
         playerStateOfMoveLabel2.setHorizontalAlignment(SwingConstants.CENTER);
         playerStateOfMoveLabel2.setVerticalAlignment(SwingConstants.CENTER);
         mainPanel.add(playerStateOfMoveLabel2);
