@@ -54,7 +54,7 @@ public class GameBoard extends JPanel {
     }
 
     /**
-     * Deletes the gameboard (sets everything back to default)
+     * Deletes the game-board (sets everything back to default)
      */
     public static void deleteInstance() {
         instance = null;
