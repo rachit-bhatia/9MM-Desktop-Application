@@ -1,5 +1,6 @@
 package game;
 
+import javax.swing.*;
 import java.util.ArrayList;
 
 /**
@@ -38,9 +39,10 @@ public class MillChecker implements NeighbourPositionFinder {
      * Check for vertical and horizontal mill
      *
      * @param intersectionPointInstance the intersection point in which a token is just placed on it
+     * @param humanOrComputer true if HumanPlayer, false if ComputerPlayer
      * @return True when a mill is formed . Otherwise, False.
      */
-    public boolean checkMill(IntersectionPoint intersectionPointInstance) {
+    public boolean checkMill(IntersectionPoint intersectionPointInstance,boolean humanOrComputer) {
 
         boolean millFormed = false;
 
@@ -81,26 +83,24 @@ public class MillChecker implements NeighbourPositionFinder {
             }
         }
 
-//        if ( numberOfTokensAlignedHorizontal == 3 && numberOfTokensAlignedVertical == 3){
-//            // TODO : Add both mils formed (tokensInMillHorizontal & tokensInMillVertical to the attribute so that can be checked against later before removal of token
-//            millFormed = true;
-//            millTokens.add(tokensInMillHorizontal);
-//            millTokens.add(tokensInMillVertical);
-//        }
 
         if (numberOfTokensAlignedHorizontal == 3){
-            // TODO : Add the mill formed (tokensInMillHorizontal) to the attribute so that can be checked against later before removal of token
             millFormed = true;
             millTokens.add(tokensInMillHorizontal);
         }
 
         if (numberOfTokensAlignedVertical == 3){
-            // TODO : Add the mill formed (tokensInMillVertical) to the attribute so that can be checked against later before removal of token
             millFormed = true;
             millTokens.add(tokensInMillVertical);
         }
 
         if (millFormed){
+
+            if (humanOrComputer){
+                int input = JOptionPane.showConfirmDialog(null,"Removable tokens are highlighted in orange","Congratulations! You've formed a mill." ,JOptionPane.DEFAULT_OPTION);
+            }else {
+                int input = JOptionPane.showConfirmDialog(null,"ComputerPlayer has formed a mill. Your token will be removed :(","OH NO !!!" ,JOptionPane.DEFAULT_OPTION);
+            }
             Player curPlayer = intersectionPointInstance.getTokenInstance().getPlayer();
             changeToRemoveState(curPlayer);
         }

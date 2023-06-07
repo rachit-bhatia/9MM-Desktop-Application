@@ -122,7 +122,7 @@ public abstract class Move extends MouseAdapter{
                     millChecker.checkIfTokenInMill(tokenInstance);
 
                     // Checking for Mills and changing player state
-                    boolean millFormed = millChecker.checkMill(intersectionPoint);
+                    boolean millFormed = millChecker.checkMill(intersectionPoint,true);
 
 
                     //setting the order of display on the game board: token appears above intersection point

@@ -38,7 +38,7 @@ public class ComputerPlayer extends Player implements NeighbourPositionFinder, T
             //mill checking and handling operations
             MillChecker millChecker = MillChecker.getInstance();
             millChecker.checkIfTokenInMill(tokenUsed); //checking removal of mills after every move
-            boolean millFormed = millChecker.checkMill(tokenUsed.getIntersectionPoint());
+            boolean millFormed = millChecker.checkMill(tokenUsed.getIntersectionPoint(),false);
             if (millFormed){
                generateRandomRemoveMove();
             }
