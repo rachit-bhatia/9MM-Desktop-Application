@@ -97,7 +97,8 @@ public class Token extends JComponent {
         if (this.toRemove){
             Graphics2D tokenShapeEnhance = (Graphics2D) tokenShape;  //Graphics2D class used to change thickness of borders
             tokenShapeEnhance.setStroke(new BasicStroke(5));   //border thickness set to 5
-            tokenShapeEnhance.setColor(Color.RED);
+            Color brightOrange = new Color(255, 120, 0);
+            tokenShapeEnhance.setColor(brightOrange);
             tokenShapeEnhance.drawOval(2,2, getWidth() - 5, getHeight() - 5);
         }
     }
