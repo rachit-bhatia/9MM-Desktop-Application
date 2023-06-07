@@ -157,8 +157,9 @@ public class MainWindow extends JFrame{
         double player1TokenWidthAdjustment = 4.5;
         int tokenHeightAdjustment = 7;
         int player2TokenAdjustment = 4;
+        int totalTokenCount = 9;
 
-        for (int i = 1; i <= 9; i++){
+        for (int i = 1; i <= totalTokenCount; i++){
             Token tokenPlayer1 = new Token((int) (screenDimension.width/player1TokenWidthAdjustment),screenDimension.height/ tokenHeightAdjustment + tokenSpacing, Color.BLACK);
             mainPanel.add(tokenPlayer1);
             game.getPlayer1().addToken(tokenPlayer1);

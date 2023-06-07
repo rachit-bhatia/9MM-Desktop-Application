@@ -73,8 +73,8 @@ public class GameBoard extends JPanel {
         double boardHeightAdjustment = 1.35;
         int boardWidth = (int) (screenDimension.width/boardWidthAdjustment);
         int boardHeight = (int) (screenDimension.height/boardHeightAdjustment);
-        int boardX = (int) (screenDimension.width - boardWidth) / 2;
-        int boardY = (int) (screenDimension.height - boardHeight) / 2;
+        int boardX = (screenDimension.width - boardWidth) / 2;
+        int boardY = (screenDimension.height - boardHeight) / 2;
 
         this.setBounds(boardX, boardY, boardWidth, boardHeight);
     }
@@ -132,11 +132,7 @@ public class GameBoard extends JPanel {
             intersectionPointsList.add(intersectionPoint);
             this.add(intersectionPoint);
         }
-        /*Dimension screenDimension = Toolkit.getDefaultToolkit().getScreenSize();
-        JLabel board_bg = new JLabel(new ImageIcon("Code Files/src/game/board_bg.png"));
-        board_bg.setBounds(0, 0, screenDimension.width, screenDimension.height);
-        this.add(board_bg);
-        this.setComponentZOrder(board_bg, this.getComponentCount()-1);*/
+
     }
 
     /**
@@ -150,27 +146,46 @@ public class GameBoard extends JPanel {
         lineShapeEnhance.setColor(Color.BLACK);
         lineShapeEnhance.setStroke(new BasicStroke(8));
 
-        for (int k = 0; k < 24; k += 8) {
-            drawLines(k,k+7, 0, 1, 1, g);
+        int intersectionPointCount = 24;
+        int incrementPosition = 8;
+        int incrementPositionSmall = 1;
+        int firstID = 0;
+        int startPoint;
+        int endPoint;
+
+        // Joining all outer points with lines except final two points
+        int secondID = 1;
+        int lastPointInSquareIndex = 7;
+        for (int k = 0; k < intersectionPointCount; k += incrementPosition) {
+            startPoint = k;
+            endPoint = startPoint + lastPointInSquareIndex;
+            drawLines(startPoint, endPoint, firstID, secondID, incrementPositionSmall, g);
         }
 
         // Joining final two points in each concentric square
-        drawLines(7,24, 0 , -7, 8, g);
+        secondID = -7;
+        startPoint = 7;
+        endPoint = 24;
+        drawLines(startPoint, endPoint, firstID , secondID, incrementPosition, g);
 
         //intersection points ID values for inner section of the board (not part of the square)
-        int firstID = 0;
-        int secondID = 8;
+        secondID = 8;
+        int innerLineCount = 4;
 
         // Joining inner lines that are not part of the square
-        for (int k = 0; k < 4; k++){
-            drawLines(1, 10, firstID, secondID, 8, g);
+        startPoint = 1;
+        endPoint = 10;
+        int incrementInnerLine = -2;
+
+        for (int k = 0; k < innerLineCount; k++){
+            drawLines(startPoint, endPoint, firstID, secondID, incrementPosition, g);
 
             if (firstID == 0) {
                 firstID = 8;
                 secondID = 16; }
 
-            firstID -= 2;
-            secondID -= 2;
+            firstID += incrementInnerLine;
+            secondID += incrementInnerLine;
         }
     }
 
