@@ -31,8 +31,14 @@ public class GameBoard extends JPanel {
     private GameBoard(){
         setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
         setLayout(null);
-        setBackground(new Color(110, 65, 40).brighter());
-        intersectionPointsList = new ArrayList<IntersectionPoint>();
+
+        // RGB values for color of GameBoard UI
+        int redComponentId = 110;
+        int greenComponentId = 65;
+        int blueComponentId = 40;
+
+        setBackground(new Color(redComponentId, greenComponentId, blueComponentId).brighter()); // Set background color of GameBoard
+        intersectionPointsList = new ArrayList<IntersectionPoint>(); // Initialize a list of Intersection Points on the GameBoard
     }
 
     /**
@@ -62,8 +68,11 @@ public class GameBoard extends JPanel {
      * @param screenDimension dimensions of the user's screen
      */
     public void setDimensionsOfBoard(Dimension screenDimension){
-        int boardWidth = (int) (screenDimension.width/2.4);
-        int boardHeight = (int) (screenDimension.height/1.35);
+
+        double boardWidthAdjustment = 2.4;
+        double boardHeightAdjustment = 1.35;
+        int boardWidth = (int) (screenDimension.width/boardWidthAdjustment);
+        int boardHeight = (int) (screenDimension.height/boardHeightAdjustment);
         int boardX = (int) (screenDimension.width - boardWidth) / 2;
         int boardY = (int) (screenDimension.height - boardHeight) / 2;
 
@@ -77,40 +86,44 @@ public class GameBoard extends JPanel {
      */
     public void addIntersections (int boardWidth, int boardHeight){
 
+        int adjustmentOneOverEightOfBoard = 8;
+        int adjustmentHalfOfBoard = 2;
+        int adjustmentOneQuarterOfBoard = 4;
         /*
         The intersection points have to be repeated because of the unique
         coordinates for each point on the board. Thus, they have to be added manually.
         */
+
         int[][] points = {
             // Add 8 points to the outer square
-            {boardWidth/8 , boardHeight/8},
-            {boardWidth/2, boardHeight/8},
-            {boardWidth-boardWidth/8, boardHeight/8},
-            {boardWidth-boardWidth/8, boardHeight/2},
-            {boardWidth-boardWidth/8, boardHeight-boardHeight/8},
-            {boardWidth/2, boardHeight-boardHeight/8},
-            {boardWidth/8, boardHeight-boardHeight/8},
-            {boardWidth/8, boardHeight/2},
+            {boardWidth/adjustmentOneOverEightOfBoard , boardHeight/adjustmentOneOverEightOfBoard},
+            {boardWidth/ adjustmentHalfOfBoard, boardHeight/ adjustmentOneOverEightOfBoard},
+            {boardWidth-boardWidth/ adjustmentOneOverEightOfBoard, boardHeight/ adjustmentOneOverEightOfBoard},
+            {boardWidth-boardWidth/ adjustmentOneOverEightOfBoard, boardHeight/ adjustmentHalfOfBoard},
+            {boardWidth-boardWidth/ adjustmentOneOverEightOfBoard, boardHeight-boardHeight/ adjustmentOneOverEightOfBoard},
+            {boardWidth/ adjustmentHalfOfBoard, boardHeight-boardHeight/ adjustmentOneOverEightOfBoard},
+            {boardWidth/ adjustmentOneOverEightOfBoard, boardHeight-boardHeight/ adjustmentOneOverEightOfBoard},
+            {boardWidth/ adjustmentOneOverEightOfBoard, boardHeight/ adjustmentHalfOfBoard},
 
             // Add 8 points to the middle square
-            {boardWidth/4, boardHeight/4},
-            {boardWidth/2, boardHeight/4},
-            {boardWidth-boardWidth/4, boardHeight/4},
-            {boardWidth-boardWidth/4, boardHeight/2},
-            {boardWidth-boardWidth/4, boardHeight-boardHeight/4},
-            {boardWidth/2, boardHeight-boardHeight/4},
-            {boardWidth/4, boardHeight-boardHeight/4},
-            {boardWidth/4, boardHeight/2},
+            {boardWidth/ adjustmentOneQuarterOfBoard, boardHeight/ adjustmentOneQuarterOfBoard},
+            {boardWidth/ adjustmentHalfOfBoard, boardHeight/ adjustmentOneQuarterOfBoard},
+            {boardWidth-boardWidth/ adjustmentOneQuarterOfBoard, boardHeight/ adjustmentOneQuarterOfBoard},
+            {boardWidth-boardWidth/ adjustmentOneQuarterOfBoard, boardHeight/ adjustmentHalfOfBoard},
+            {boardWidth-boardWidth/ adjustmentOneQuarterOfBoard, boardHeight-boardHeight/ adjustmentOneQuarterOfBoard},
+            {boardWidth/ adjustmentHalfOfBoard, boardHeight-boardHeight/ adjustmentOneQuarterOfBoard},
+            {boardWidth/ adjustmentOneQuarterOfBoard, boardHeight-boardHeight/ adjustmentOneQuarterOfBoard},
+            {boardWidth/ adjustmentOneQuarterOfBoard, boardHeight/ adjustmentHalfOfBoard},
 
             // Add 8 points to the inner square
-            {boardWidth/2 - boardWidth/8, boardHeight/2 - boardHeight/8},
-            {boardWidth/2, boardHeight/2 - boardHeight/8},
-            {boardWidth/2 + boardWidth/8, boardHeight/2 - boardHeight/8},
-            {boardWidth/2 + boardWidth/8, boardHeight/2},
-            {boardWidth/2 + boardWidth/8, boardHeight/2 + boardHeight/8},
-            {boardWidth/2, boardHeight/2 + boardHeight/8},
-            {boardWidth/2 - boardWidth/8, boardHeight/2 + boardHeight/8},
-            {boardWidth/2 - boardWidth/8, boardHeight/2}
+            {boardWidth/ adjustmentHalfOfBoard - boardWidth/ adjustmentOneOverEightOfBoard, boardHeight/ adjustmentHalfOfBoard - boardHeight/ adjustmentOneOverEightOfBoard},
+            {boardWidth/ adjustmentHalfOfBoard, boardHeight/ adjustmentHalfOfBoard - boardHeight/ adjustmentOneOverEightOfBoard},
+            {boardWidth/ adjustmentHalfOfBoard + boardWidth/ adjustmentOneOverEightOfBoard, boardHeight/ adjustmentHalfOfBoard - boardHeight/ adjustmentOneOverEightOfBoard},
+            {boardWidth/ adjustmentHalfOfBoard + boardWidth/ adjustmentOneOverEightOfBoard, boardHeight/ adjustmentHalfOfBoard},
+            {boardWidth/ adjustmentHalfOfBoard + boardWidth/ adjustmentOneOverEightOfBoard, boardHeight/ adjustmentHalfOfBoard + boardHeight/ adjustmentOneOverEightOfBoard},
+            {boardWidth/ adjustmentHalfOfBoard, boardHeight/ adjustmentHalfOfBoard + boardHeight/ adjustmentOneOverEightOfBoard},
+            {boardWidth/ adjustmentHalfOfBoard - boardWidth/ adjustmentOneOverEightOfBoard, boardHeight/ adjustmentHalfOfBoard + boardHeight/ adjustmentOneOverEightOfBoard},
+            {boardWidth/ adjustmentHalfOfBoard - boardWidth/ adjustmentOneOverEightOfBoard, boardHeight/ adjustmentHalfOfBoard}
         };
 
         // Add the intersection points as components to the GameBoard Panel
@@ -137,7 +150,6 @@ public class GameBoard extends JPanel {
         lineShapeEnhance.setColor(Color.BLACK);
         lineShapeEnhance.setStroke(new BasicStroke(8));
 
-        int adjustment = 19;
         for (int k = 0; k < 24; k += 8) {
             drawLines(k,k+7, 0, 1, 1, g);
         }
