@@ -45,6 +45,8 @@ public class Game implements NeighbourPositionFinder{
         this.turn = 0 ;
     }
 
+    private boolean resetDone = false;
+
     /**
      * Access Game singleton instance publicly
      * @return Game singleton instance
@@ -52,6 +54,10 @@ public class Game implements NeighbourPositionFinder{
     public static Game getInstance(){
         if (instance == null) {
             instance = new Game();
+        }
+
+        else if (instance.resetDone){
+            instance = new Game ();
         }
 
         return instance;
@@ -138,19 +144,20 @@ public class Game implements NeighbourPositionFinder{
             endMessage += "Player 1!\nYou win the game!";
         }
 
-        String[] options = {"Go back to the homepage", "Close the program"};
+        String[] options = {"Back to Home", "Quit Application"};
         var selection = JOptionPane.showOptionDialog(null, endMessage, "Game Over", 0, 3, null, options, options[0]);
 
         if (selection == 0) {
             mainWindow.getContentPane().removeAll();
+            instance = new Game();
             MainWindow.regenerate();
-            GameBoard.deleteInstance();
             mainWindow.getContentPane().revalidate();
             mainWindow.getContentPane().repaint();
+//            this.resetDone = true;
+//            getInstance();
             mainWindow.setupHomePageWindow();
-
-
         }
+
         if (selection == 1) {
             System.exit(0);
         }

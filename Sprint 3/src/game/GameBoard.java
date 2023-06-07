@@ -51,12 +51,7 @@ public class GameBoard extends JPanel {
      * Deletes the gameboard (sets everything back to default)
      */
     public static void deleteInstance() {
-        if (instance != null) {
-            for (IntersectionPoint intersectionPoint : instance.intersectionPointsList) {
-                intersectionPoint.removeToken();
-            }
-            instance.revalidate();
-        }
+        instance = null;
     }
 
     // adding the background to the game

@@ -60,14 +60,17 @@ public class MainWindow extends JFrame{
         if ( mainWindow == null) {
             mainWindow = new MainWindow();
             mainWindow.setTitle("9 Men's Morris");
+            mainWindow.setResizable(false);
         }
         return mainWindow;
     }
 
     public static void regenerate() {
         if (mainWindow != null) {
+            mainWindow.getContentPane().removeAll();
             mainWindow = new MainWindow();
             mainWindow.setTitle("9 Men's Morris");
+            mainWindow.setResizable(false);
         }
     }
 

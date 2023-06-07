@@ -69,22 +69,24 @@ public class MainPagePanel extends JPanel {
 
         MainWindow mainWindow = MainWindow.getInstance();
 
-        //defining the other player to differentiate game modes for different buttons
-        Player otherPlayer;
-        if (cpuMode){
-            otherPlayer = new ComputerPlayer();
-        }
-        else{
-            otherPlayer = new HumanPlayer();
-        }
+
 
         //defining the action of displaying game board page once button is clicked
         playButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                //defining the other player to differentiate game modes for different buttons
+                Player otherPlayer;
+                if (cpuMode){
+                    otherPlayer = new ComputerPlayer();
+                }
+                else{
+                    otherPlayer = new HumanPlayer();
+                }
                 mainWindow.getContentPane().removeAll();
 
                 Game.getInstance().setPlayers(new HumanPlayer(), otherPlayer);
+                GameBoard.deleteInstance();
                 mainWindow.setupPlayPageWindow();
                 mainWindow.getContentPane().revalidate();
                 mainWindow.getContentPane().repaint();
