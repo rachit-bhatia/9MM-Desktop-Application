@@ -73,8 +73,8 @@ public class GameBoard extends JPanel {
         double boardHeightAdjustment = 1.35;
         int boardWidth = (int) (screenDimension.width/boardWidthAdjustment);
         int boardHeight = (int) (screenDimension.height/boardHeightAdjustment);
-        int boardX = (int) (screenDimension.width - boardWidth) / 2;
-        int boardY = (int) (screenDimension.height - boardHeight) / 2;
+        int boardX = (screenDimension.width - boardWidth) / 2;
+        int boardY = (screenDimension.height - boardHeight) / 2;
 
         this.setBounds(boardX, boardY, boardWidth, boardHeight);
     }
@@ -132,11 +132,7 @@ public class GameBoard extends JPanel {
             intersectionPointsList.add(intersectionPoint);
             this.add(intersectionPoint);
         }
-        /*Dimension screenDimension = Toolkit.getDefaultToolkit().getScreenSize();
-        JLabel board_bg = new JLabel(new ImageIcon("Code Files/src/game/board_bg.png"));
-        board_bg.setBounds(0, 0, screenDimension.width, screenDimension.height);
-        this.add(board_bg);
-        this.setComponentZOrder(board_bg, this.getComponentCount()-1);*/
+
     }
 
     /**
