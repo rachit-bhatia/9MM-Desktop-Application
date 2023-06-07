@@ -207,7 +207,12 @@ public class MillChecker implements NeighbourPositionFinder {
                 if (!tokenInMill){
                     token.toRemove = true;
                     token.repaint();
-                    token.changeListener(new RemoveMove(token),true);
+                    if (curPlayer.typeIsComputer()) {
+                        token.changeListener(null, true);
+                    }
+                    else {
+                        token.changeListener(new RemoveMove(token), true);
+                    }
                 }
             }
         }

@@ -81,11 +81,11 @@ public class MainPagePanel extends JPanel {
                     otherPlayer = new ComputerPlayer();
                 }
                 else{
-                    otherPlayer = new HumanPlayer();
+                    otherPlayer = new Player();
                 }
                 mainWindow.getContentPane().removeAll();
 
-                Game.getInstance().setPlayers(new HumanPlayer(), otherPlayer);
+                Game.getInstance().setPlayers(new Player(), otherPlayer);
                 GameBoard.voidInstance();
                 mainWindow.setupPlayPageWindow();
                 mainWindow.getContentPane().revalidate();

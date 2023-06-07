@@ -1,8 +1,6 @@
 package game;
 
 import java.net.URL;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import javax.swing.*;
 import java.awt.*;
 
@@ -165,6 +163,18 @@ public class MainWindow extends JFrame{
             mainPanel.add(tokenPlayer1);
             game.getPlayer1().addToken(tokenPlayer1);
 
+            //TODO: Uncomment after simulation
+//            Token tokenPlayer2 = new Token((3*screenDimension.width)/player2TokenAdjustment,screenDimension.height/tokenHeightAdjustment +  tokenSpacing, Color.WHITE);
+//            mainPanel.add(tokenPlayer2);
+//            game.getPlayer2().addToken(tokenPlayer2);
+
+            tokenSpacing += tokenSpacingIncrementValue;
+        }
+
+        //FIXME: Test Code added only for simulating features
+        tokenSpacing = 0;
+        for (int i = 1; i <= 6; i++){
+
             Token tokenPlayer2 = new Token((3*screenDimension.width)/player2TokenAdjustment,screenDimension.height/tokenHeightAdjustment +  tokenSpacing, Color.WHITE);
             mainPanel.add(tokenPlayer2);
             game.getPlayer2().addToken(tokenPlayer2);
@@ -235,7 +245,7 @@ public class MainWindow extends JFrame{
         playerStateOfMoveLabel2.setVerticalAlignment(SwingConstants.CENTER);
         mainPanel.add(playerStateOfMoveLabel2);
 
-        if (Game.getInstance().getPlayer2().getClass().equals(ComputerPlayer.class)){
+        if (Game.getInstance().getPlayer2().typeIsComputer()){
             playerLabel1.setText("YOU");
             playerLabel2.setText("CPU");
         }

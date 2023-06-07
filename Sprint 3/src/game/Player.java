@@ -10,7 +10,7 @@ import java.util.ArrayList;
  * Modified by: Rachit Bhatia
  */
 
-public abstract class Player {
+public class Player {
 
     /**
      * All the tokens that the Player has
@@ -23,11 +23,32 @@ public abstract class Player {
     private CurrentStateofMove currentStateofMove;
 
     /**
+     * boolean value indicating whether the current player is a cpu bot player
+     */
+    protected boolean isComputer;
+
+    /**
      * Constructor
      */
     public Player(){
         tokenList = new ArrayList<Token>();
         currentStateofMove = CurrentStateofMove.PLACING;
+        this.isComputer = false;
+    }
+
+    /**
+     * Set player turn to true that allows all of its tokens to be usable
+     * @param bool
+     */
+    public void setPlayerTurn(boolean bool) {
+
+        boolean tokenCanBeUsed = false;
+        if (bool){
+            tokenCanBeUsed = true;
+        }
+        for(Token token : getTokenList()){
+            token.setCanBeUsed(tokenCanBeUsed); // set all the tokens to be usable
+        }
     }
 
 
@@ -78,12 +99,6 @@ public abstract class Player {
 
 
     /**
-     * Settter for player turn
-     * @param bool True if is player's turn. False otherwise
-     */
-    public abstract void setPlayerTurn(boolean bool);
-
-    /**
      * Add token instance to player arrayList of tokens
      * @param tokenInstance token to be added
      */
@@ -115,6 +130,13 @@ public abstract class Player {
             }
         }
         return allPlaced;
+    }
+
+    /**
+     * getter for player type
+     */
+    public boolean typeIsComputer(){
+        return this.isComputer;
     }
 
 
