@@ -54,14 +54,12 @@ public class GameBoard extends JPanel {
     }
 
     /**
-     * Deletes the game-board (sets everything back to default)
+     * Resets the game-board instance
      */
-    public static void deleteInstance() {
+    public static void voidInstance() {
         instance = null;
     }
 
-    // adding the background to the game
-    
 
     /**
      * Set the dimensions of GameBoard according to the screen size of user

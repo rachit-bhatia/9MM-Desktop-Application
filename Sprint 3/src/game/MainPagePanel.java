@@ -58,7 +58,7 @@ public class MainPagePanel extends JPanel {
         playButton.setFont(pvpFont);
 
         //setting button's background and border
-        playButton.setBackground(new Color(183, 149, 109));
+        playButton.setBackground(new Color(215, 182, 138));
         playButton.setOpaque(true);
         playButton.setFocusPainted(false);
         playButton.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createRaisedBevelBorder(), BorderFactory.createLoweredBevelBorder()));
@@ -86,7 +86,7 @@ public class MainPagePanel extends JPanel {
                 mainWindow.getContentPane().removeAll();
 
                 Game.getInstance().setPlayers(new HumanPlayer(), otherPlayer);
-                GameBoard.deleteInstance();
+                GameBoard.voidInstance();
                 mainWindow.setupPlayPageWindow();
                 mainWindow.getContentPane().revalidate();
                 mainWindow.getContentPane().repaint();

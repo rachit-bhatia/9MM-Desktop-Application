@@ -98,11 +98,11 @@ public class MillChecker implements NeighbourPositionFinder {
         if (millFormed){
             JLabel millFormedLabel = MainWindow.getInstance().getMillLabel();
             if (humanOrComputer){
-                millFormedLabel.setText("Congratulations! You've formed a mill. Removable Tokens are highlighted in ORANGE");
-                millFormedLabel.setForeground(Color.GREEN);
-            }else {
-                millFormedLabel.setText("OH NO!!! Computer has formed a mill. One of your tokens will be removed :(");
-                millFormedLabel.setForeground(Color.RED);
+                millFormedLabel.setText("Woohoo! Mill Formed! Removable Tokens highlighted in PINK");
+            }
+            else {
+                millFormedLabel.setText("OH NO!! CPU formed a mill and will remove 1 of your tokens :(");
+                millFormedLabel.setForeground(Color.RED.darker());
             }
             Player curPlayer = intersectionPointInstance.getTokenInstance().getPlayer();
             changeToRemoveState(curPlayer);

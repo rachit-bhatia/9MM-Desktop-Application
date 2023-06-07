@@ -19,7 +19,7 @@ public class ComputerPlayer extends Player implements NeighbourPositionFinder, T
             Token tokenUsed ; // random token used
             IntersectionPoint intersectionPointUsed ; // random intersection point used
 
-//            produceDelay(2500);  //delay of 2.5 secs before a move is made to give a better playing experience
+            produceDelay(2000);  //delay of 2.5 secs before a move is made to give a better playing experience
 
             // If Computer currentStateOfMove is sliding
             if (this.getCurrentStateOfMove() == CurrentStateofMove.SLIDING){
@@ -159,7 +159,7 @@ public class ComputerPlayer extends Player implements NeighbourPositionFinder, T
             tokenToBeRemoved = otherPlayer.getTokenList().get(randomTokenIndex);
         }
 
-        produceDelay(4000); //delay of 4 secs before a token is removed to let the player know about the game's state
+        produceDelay(5500); //delay of 4 secs before a token is removed to let the player know about the game's state
         performRemoval(tokenToBeRemoved); //performing removal action on randomly selected token
     }
 }

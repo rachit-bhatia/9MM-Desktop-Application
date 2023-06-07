@@ -43,6 +43,9 @@ public class MainWindow extends JFrame{
      */
     private JLabel playerStateOfMoveLabel2;
 
+    /**
+     * text label for mill formation info
+     */
     private JLabel millLabel;
 
 
@@ -67,13 +70,11 @@ public class MainWindow extends JFrame{
         return mainWindow;
     }
 
-    public static void regenerate() {
-        if (mainWindow != null) {
-            mainWindow.getContentPane().removeAll();
-            mainWindow = new MainWindow();
-            mainWindow.setTitle("9 Men's Morris");
-            mainWindow.setResizable(false);
-        }
+    /**
+     * Resets the mainWindow instance
+     */
+    public static void voidInstance() {
+        mainWindow = null;
     }
 
     public void setupHomePageWindow(){
@@ -121,7 +122,7 @@ public class MainWindow extends JFrame{
 
         // Adjustment values for Title 9 Men's Morris display
         int widthAdjustment = 400;
-        int yCoordinate = 40;
+        int yCoordinate = 20;
         int widthTitleText = 600;
         int heightTitleText = 50;
 
@@ -175,15 +176,18 @@ public class MainWindow extends JFrame{
         int textYCoord = boardHeight + boardSpacing - 30;
 
         // Mill Formed Label to alert user a mill is formed
-        int widthAdjustment = 400;
-        int widthMillText = 2000;
+        int yCoordinate = gameBoard.getY() - 50;
+        int widthMillText = 950;
         int heightMillText = 50;
         int millLabelTextSize = 35;
         millLabel = new JLabel("");
         millLabel.setVisible(true);
-        millLabel.setBounds((screenDimension.width - widthAdjustment) / 4 ,gameBoard.getY() - 50 ,widthMillText, heightMillText);
-        millLabel.setFont(new Font ("Times New Roman", Font.BOLD, millLabelTextSize));
+        millLabel.setBounds((screenDimension.width - widthMillText)/2 , yCoordinate, widthMillText, heightMillText);
+        millLabel.setFont(new Font ("Times New Roman", Font.ITALIC, millLabelTextSize));
         mainPanel.add(millLabel);
+        Color darkPink = new Color(180, 48, 87);
+        millLabel.setForeground(darkPink);
+
 
         // Font adjustments
         int playerLabelFontSize = 21;
@@ -216,10 +220,6 @@ public class MainWindow extends JFrame{
         playerLabel2 = new JLabel("Player 2");
         playerLabel2.setForeground(Color.WHITE);
         playerLabel2.setFont(new Font("Player 2", Font.BOLD, playerLabelFontSize));
-
-        if (Game.getInstance().getPlayer2().getClass().equals(ComputerPlayer.class)){
-            playerLabel2.setText("Computer");
-        }
         playerLabel2.setVisible(true);
         playerLabel2.setBounds((3*screenDimension.width)/4 - 15, textYCoord, playerLabelFontWidth, playerLabelFontHeight);
         playerLabel2.setHorizontalAlignment(SwingConstants.CENTER);
@@ -234,6 +234,11 @@ public class MainWindow extends JFrame{
         playerStateOfMoveLabel2.setHorizontalAlignment(SwingConstants.CENTER);
         playerStateOfMoveLabel2.setVerticalAlignment(SwingConstants.CENTER);
         mainPanel.add(playerStateOfMoveLabel2);
+
+        if (Game.getInstance().getPlayer2().getClass().equals(ComputerPlayer.class)){
+            playerLabel1.setText("YOU");
+            playerLabel2.setText("CPU");
+        }
 
         // adding the background to the game
         URL image = MainWindow.class.getClassLoader().getResource("gamepage.jpeg");
