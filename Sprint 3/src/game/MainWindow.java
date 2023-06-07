@@ -176,13 +176,12 @@ public class MainWindow extends JFrame{
 
         // Mill Formed Label to alert user a mill is formed
         int widthAdjustment = 400;
-        int yCoordinate = 90;
         int widthMillText = 2000;
         int heightMillText = 50;
         int millLabelTextSize = 35;
         millLabel = new JLabel("");
         millLabel.setVisible(true);
-        millLabel.setBounds((screenDimension.width - widthAdjustment) / 4 , yCoordinate,widthMillText, heightMillText);
+        millLabel.setBounds((screenDimension.width - widthAdjustment) / 4 ,gameBoard.getY() - 50 ,widthMillText, heightMillText);
         millLabel.setFont(new Font ("Times New Roman", Font.BOLD, millLabelTextSize));
         mainPanel.add(millLabel);
 
@@ -217,6 +216,10 @@ public class MainWindow extends JFrame{
         playerLabel2 = new JLabel("Player 2");
         playerLabel2.setForeground(Color.WHITE);
         playerLabel2.setFont(new Font("Player 2", Font.BOLD, playerLabelFontSize));
+
+        if (Game.getInstance().getPlayer2().getClass().equals(ComputerPlayer.class)){
+            playerLabel2.setText("Computer");
+        }
         playerLabel2.setVisible(true);
         playerLabel2.setBounds((3*screenDimension.width)/4 - 15, textYCoord, playerLabelFontWidth, playerLabelFontHeight);
         playerLabel2.setHorizontalAlignment(SwingConstants.CENTER);

@@ -141,7 +141,12 @@ public class Game implements NeighbourPositionFinder{
         }
 
         if (player1.getTokenList().size() < 3 || player1NoValidMove){
-            endMessage += "Player 2!\nYou win the game!";
+
+            if (Game.getInstance().getPlayer2().getClass().equals(ComputerPlayer.class)){
+                endMessage += "ComputerPlayer win the game!";
+            } else {
+                endMessage += "Player 2!\nYou win the game!";
+            }
         }
         else if (player2.getTokenList().size() < 3 || player2NoValidMove){
             endMessage += "Player 1!\nYou win the game!";
