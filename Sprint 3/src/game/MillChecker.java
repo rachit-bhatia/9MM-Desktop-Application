@@ -84,17 +84,19 @@ public class MillChecker implements NeighbourPositionFinder {
             }
         }
 
-
+        // if a horizontal mill is formed
         if (numberOfTokensAlignedHorizontal == 3){
             millFormed = true;
             millTokens.add(tokensInMillHorizontal);
         }
 
+        // if a vertical mill is formed
         if (numberOfTokensAlignedVertical == 3){
             millFormed = true;
             millTokens.add(tokensInMillVertical);
         }
 
+        // If a mill is formed ( does not matter horizontal or vertical or even both)
         if (millFormed){
             JLabel millFormedLabel = MainWindow.getInstance().getMillLabel();
             if (humanOrComputer){
@@ -108,13 +110,13 @@ public class MillChecker implements NeighbourPositionFinder {
             changeToRemoveState(curPlayer);
         }
 
+        // Paint the borders of the tokens of the mill formed to blue
         if (tokensInMillHorizontal.size() == 3){
             for (Token millToken : tokensInMillHorizontal){
                 millToken.inMill = true;
                 millToken.repaint();
             }
         }
-
         if (tokensInMillVertical.size() == 3){
             for (Token millToken : tokensInMillVertical){
                 millToken.inMill = true;

@@ -77,10 +77,10 @@ public class MainWindow extends JFrame{
         mainWindow = null;
     }
 
+    /**
+     * Setting the main home page preferences
+     */
     public void setupHomePageWindow(){
-        /**
-         * Setting the main home page preferences
-         */
         //setting the dimensions of the main window frame based on the screen size
         mainWindow.setBounds(0, 0, screenDimension.width, screenDimension.height);  //window size is of the screen size
         mainWindow.setExtendedState(JFrame.MAXIMIZED_BOTH);  //ensuring opening of application in fullscreen
@@ -92,10 +92,11 @@ public class MainWindow extends JFrame{
         mainWindow.setVisible(true);
     }
 
+    /**
+     * sets the game page with the board and tokens
+     */
     public void setupPlayPageWindow(){
-        /**
-         * sets the game page with the board and tokens
-         */
+
 
         // RGB values for Main Window display
         int redComponentValueMainWindow = 77;
@@ -131,11 +132,11 @@ public class MainWindow extends JFrame{
         addAllItems();
     }
 
-
+    /**
+     * Creation and addition of the all items (tokens, intersections, game board, buttons) into the game
+     */
     public void addAllItems(){
-        /**
-         * Creation and addition of the all items (tokens, intersections, game board, buttons) into the game
-         */
+
 
         //creating the return button
         String returnText = "Return";
@@ -342,6 +343,10 @@ public class MainWindow extends JFrame{
         return playerStateOfMoveLabel2;
     }
 
+    /**
+     * Getter for mill label
+     * @return mill label
+     */
     public JLabel getMillLabel(){
         return millLabel;
     }

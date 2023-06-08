@@ -1,10 +1,22 @@
 package game;
 
+/**
+ * TokenRemoval action
+ * <p>
+ * Created  by Rachit Bhatia
+ *
+ * @author  Rachit Bhatia
+ * Modified by: -
+ */
 public interface TokenRemoval {
 
+    /**
+     * Perform actions of removing a token
+     * @param tokenInstance the token selected for removal
+     */
     public default void performRemoval(Token tokenInstance){
         GameBoard gameBoard = GameBoard.getInstance();
-        //resetting token appearance to remove red highlight of border after selection has been made
+        //resetting token appearance to remove pink highlight of border after selection has been made
         for (IntersectionPoint position : gameBoard.getIntersectionPoints()){
             Token curToken = position.getTokenInstance();
             if (curToken != null){
@@ -19,10 +31,10 @@ public interface TokenRemoval {
 
 
         Game game = Game.getInstance();
+        // Remove all temporary listeners of the tokens after a selection has been made , so that the game returns to original state
         for( Token token: game.getPlayer1().getTokenList()){
             token.removeTemporaryListener();
         }
-
         for( Token token: game.getPlayer2().getTokenList()){
             token.removeTemporaryListener();
         }

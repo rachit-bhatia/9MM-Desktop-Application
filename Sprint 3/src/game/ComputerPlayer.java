@@ -1,26 +1,32 @@
 package game;
 
-import javax.swing.*;
-import java.lang.reflect.Array;
+
 import java.util.ArrayList;
 import java.util.Random;
 
 /**
- * Computer Player
+ * Computer Player that randomly performs an action depending on the state of move it is currently in
  * <p>
  * Created  by Tan Jun Yu
- * @author  Tan Jun Yu
+ * @author  Tan Jun Yu , Rachit Bhatia
  * Modified by: -
  */
 
 public class ComputerPlayer extends Player implements NeighbourPositionFinder, TokenRemoval{
 
+    /**
+     * Constructor
+     */
     public ComputerPlayer(){
         super();
         this.isComputer = true;
 
     }
 
+    /**
+     * Set the current turn of the game to Computer so that Computer can perform a random move
+     * @param bool boolean true if it is Computer's turn , False otherwise.
+     */
     @Override
     public void setPlayerTurn(boolean bool) {
         if (bool){ // If current turn is ComputerPlayer turn
@@ -58,12 +64,16 @@ public class ComputerPlayer extends Player implements NeighbourPositionFinder, T
 
     /**
      * Generates a random integer between 0 to maxInt.
-     * @return an integer
+     * @return an random integer
      */
     public int generateRandomNumber(int maxInt) {
         return new Random().nextInt(maxInt);
     }
 
+    /**
+     * Produce delay before Computer makes a move
+     * @param delay seconds of delay in ms
+     */
     private void produceDelay(int delay){
         try {
             PerformThread.sleep(delay);  //thread sleeps for mentioned time delay
@@ -73,6 +83,10 @@ public class ComputerPlayer extends Player implements NeighbourPositionFinder, T
         }
     }
 
+    /**
+     * Generate a random sliding move
+     * @return the token that is randomly selected for sliding
+     */
     private Token generateRandomSlidingMove(){
         int randomTokenIndex = generateRandomNumber(this.getNumberOfTokens());
         Token tokenUsed = this.getTokenList().get(randomTokenIndex);
@@ -103,6 +117,10 @@ public class ComputerPlayer extends Player implements NeighbourPositionFinder, T
         return tokenUsed;
     }
 
+    /**
+     * Generate random placing move or flying move
+     * @return the token randomly selected for placing or flying
+     */
     private Token generateRandomPlacingFlyingMove(){
 
         // Random token selected
@@ -156,6 +174,9 @@ public class ComputerPlayer extends Player implements NeighbourPositionFinder, T
     }
 
 
+    /**
+     * Generate a random remove move . Selects a random removable token of the player to be removed .
+     */
     private void generateRandomRemoveMove(){
         Player otherPlayer = Game.getInstance().getPlayer1();
         int randomTokenIndex = generateRandomNumber(otherPlayer.getNumberOfTokens());

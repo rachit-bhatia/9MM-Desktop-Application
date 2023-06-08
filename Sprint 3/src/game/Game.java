@@ -83,8 +83,7 @@ public class Game implements NeighbourPositionFinder{
         // While both players still have 3 or more tokens, keep the game running
         while (player1.getNumberOfTokens() >= 3 && player2.getNumberOfTokens() >= 3 && !player1NoValidMove && !player2NoValidMove){
 
-            // Clear mill formed label every turn
-            MainWindow.getInstance().getMillLabel().setText("");
+
 
             // update state of move if needed
             player1.updateStateOfMove();
@@ -96,7 +95,8 @@ public class Game implements NeighbourPositionFinder{
                 player1NoValidMove = checkIfPlayerHasNoValidSlidingMove(player1);
             }
 
-
+            // Clear mill formed label every turn
+            MainWindow.getInstance().getMillLabel().setText("");
             // While a valid move is not yet made by the player 1
             while (this.turn % 2 == 0 && player1.getNumberOfTokens() >= 3 && !player1NoValidMove && !player2NoValidMove){
                 //setting player label border to show which player's turn it is
@@ -120,6 +120,9 @@ public class Game implements NeighbourPositionFinder{
             }
 
 
+            // Clear mill formed label every turn
+            MainWindow.getInstance().getMillLabel().setText("");
+
             // While a valid move is not yet made by the player 2
             while ( this.turn % 2 == 1 && player2.getNumberOfTokens() >= 3 && !player1NoValidMove && !player2NoValidMove){
                 //setting player label border to show which player's turn it is
@@ -133,6 +136,7 @@ public class Game implements NeighbourPositionFinder{
 
         }
 
+        // If player 1 has less than 3 tokens , player 2 or Computer wins the game
         if (player1.getTokenList().size() < 3 || player1NoValidMove){
 
             if (Game.getInstance().getPlayer2().typeIsComputer()){
@@ -141,6 +145,7 @@ public class Game implements NeighbourPositionFinder{
                 endMessage += "Player 2!\nYou win the game!";
             }
         }
+        // If player 2 has less than 3 tokens , player 1 wins the game
         else if (player2.getTokenList().size() < 3 || player2NoValidMove){
             if (Game.getInstance().getPlayer2().typeIsComputer()){
                 endMessage = "Congratulations! You win the game!";

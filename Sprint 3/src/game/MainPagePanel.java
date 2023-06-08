@@ -11,6 +11,10 @@ import java.net.URL;
  */
 public class MainPagePanel extends JPanel {
 
+    /**
+     * Constructor
+     * @param screenDimension screen dimension of user
+     */
     public MainPagePanel(Dimension screenDimension){
         int screenWidth = screenDimension.width;
         int screenHeight = screenDimension.height;
@@ -24,7 +28,6 @@ public class MainPagePanel extends JPanel {
         this.addImage("homepage.jpeg", 0, 0, screenWidth, screenHeight);
 
         //setting the title image for the home page
-        //TODO: Add the title image using addImage function here
         this.addImage("coin.png", screenWidth/2 - 570, screenHeight/2 - 350, 1141, 290);
 
         // Button for Player Vs Player
