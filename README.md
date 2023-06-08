@@ -9,7 +9,14 @@
 - To install the correct JDK using IntelliJ Idea IDE, navigate to Project Structure in the File menu and choose SDK 17 under Project
 - If there are any issues faced while launching 9MM_DevDynasty.jar, or it cannot be run, the 9MM application can still be launched by simply running the ApplicationDriver class file
 
-    For macOS, if the error regarding "Unidentified developer" is encountered, right-click on the 9MM_DevDynasty.jar file and select 'Open'. Then select 'Open' from the dialog box that appears. If too many errors persist on macOS, proceed running the application on a Windows OS system.
+## For MacOS Users:
+- If when launched, the program says that the file is from an unidentified developer and it cannot be opened, you need to do the following:
+- Launch terminal on your mac (Press `CMD + Space` to open spotlight and type terminal and press `Enter`)
+- Type `sudo xattr -rc <your path to the jar>` or alternatively drag the jar to the terminal after typing `sudo xattr -rc ` (don't forget the space)
+- Press `Enter`
+- You should be now able to run the file on your Mac. The command basically removes quarantine restrictions that MacOS puts on unsigned applications.
+- <b>Note: sudo is a command that gives you unrestricted access to the system. Use carefully.<b>
+- If you get any other errors, I still recommend trying the command, or seeking refuge at stackoverflow :P
 
 ### Creating a new jar file using IntelliJ IDEA:
 - The application can be run by simply launching the provided jar file (9MM_DevDynasty.jar). The steps below describe how the jar file was generated using the IntelliJ IDEA IDE.
