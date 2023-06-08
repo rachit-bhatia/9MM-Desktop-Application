@@ -12,11 +12,13 @@ import java.util.Random;
  * @author  Tan Jun Yu
  * Modified by: -
  */
+
 public class ComputerPlayer extends Player implements NeighbourPositionFinder, TokenRemoval{
 
     public ComputerPlayer(){
         super();
         this.isComputer = true;
+
     }
 
     @Override
@@ -25,7 +27,7 @@ public class ComputerPlayer extends Player implements NeighbourPositionFinder, T
             Token tokenUsed ; // random token used
             IntersectionPoint intersectionPointUsed ; // random intersection point used
 
-//            produceDelay(2000);  //delay of 2 secs before a move is made to give a better playing experience
+            produceDelay(2000);  //delay of 2 secs before a move is made to give a better playing experience
 
             // If Computer currentStateOfMove is sliding
             if (this.getCurrentStateOfMove() == CurrentStateofMove.SLIDING){
@@ -165,7 +167,7 @@ public class ComputerPlayer extends Player implements NeighbourPositionFinder, T
             tokenToBeRemoved = otherPlayer.getTokenList().get(randomTokenIndex);
         }
 
-        produceDelay(10000); //delay of 4 secs before a token is removed to let the player know about the game's state
+        produceDelay(5000); //delay of 5 secs before a token is removed to let the player know about the game's state
         performRemoval(tokenToBeRemoved); //performing removal action on randomly selected token
     }
 }

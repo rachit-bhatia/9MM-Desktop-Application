@@ -138,7 +138,8 @@ public class MainWindow extends JFrame{
          */
 
         //creating the return button
-        JButton backButton = generateButton(screenDimension, "Return");
+        String returnText = "Return";
+        JButton backButton = generateButton(returnText);
         int buttonX = screenDimension.width - 130;
         int buttonY = 20;
         int buttonWidth = 110;
@@ -172,18 +173,6 @@ public class MainWindow extends JFrame{
             Token tokenPlayer1 = new Token((int) (screenDimension.width/player1TokenWidthAdjustment),screenDimension.height/ tokenHeightAdjustment + tokenSpacing, Color.BLACK);
             mainPanel.add(tokenPlayer1);
             game.getPlayer1().addToken(tokenPlayer1);
-
-            //TODO: Uncomment after simulation
-//            Token tokenPlayer2 = new Token((3*screenDimension.width)/player2TokenAdjustment,screenDimension.height/tokenHeightAdjustment +  tokenSpacing, Color.WHITE);
-//            mainPanel.add(tokenPlayer2);
-//            game.getPlayer2().addToken(tokenPlayer2);
-
-            tokenSpacing += tokenSpacingIncrementValue;
-        }
-
-        //FIXME: Test Code added only for simulating features
-        tokenSpacing = 0;
-        for (int i = 1; i <= 3; i++){
 
             Token tokenPlayer2 = new Token((3*screenDimension.width)/player2TokenAdjustment,screenDimension.height/tokenHeightAdjustment +  tokenSpacing, Color.WHITE);
             mainPanel.add(tokenPlayer2);
@@ -279,7 +268,7 @@ public class MainWindow extends JFrame{
      * Generating a button.
      * The settings of the return button are very different from the others hence, a new method needs to be created for it
      */
-    public JButton generateButton(Dimension screenDimension, String text){
+    public JButton generateButton(String text){
         JButton button = new JButton(text);
         Font returnText = new Font("Times New Roman", Font.BOLD, 25); //font size for button text
         button.setFont(returnText);
