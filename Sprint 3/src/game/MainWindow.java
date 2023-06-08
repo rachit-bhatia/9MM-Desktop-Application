@@ -299,6 +299,7 @@ public class MainWindow extends JFrame{
                     //resetting the entire state of the game by resetting every component
                     Game.voidInstance(); //reset game instance to null
                     getContentPane().removeAll();
+                    dispose();
                     MainWindow.voidInstance(); //reset MainWindow instance to null
                     mainWindow = MainWindow.getInstance();
                     getContentPane().revalidate();

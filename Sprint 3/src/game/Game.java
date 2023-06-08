@@ -81,7 +81,7 @@ public class Game implements NeighbourPositionFinder{
         boolean player1NoValidMove = false;
         boolean player2NoValidMove = false;
         // While both players still have 3 or more tokens, keep the game running
-        while (player1.getNumberOfTokens() >= 3 && player2.getNumberOfTokens() >= 3 && !player1NoValidMove && !player2NoValidMove){
+        while (player1.getNumberOfTokens() >= 3 && player2.getNumberOfTokens() >= 3 && !player1NoValidMove && !player2NoValidMove && instance !=null){
 
 
 
@@ -163,6 +163,7 @@ public class Game implements NeighbourPositionFinder{
             voidInstance(); //reset game instance to null
             mainWindow.getContentPane().removeAll();
             MainWindow.voidInstance(); //void instance of main window to enable creation of new instance
+            mainWindow.dispose();
             mainWindow = MainWindow.getInstance();
             mainWindow.getContentPane().revalidate();
             mainWindow.getContentPane().repaint();
