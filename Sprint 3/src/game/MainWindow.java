@@ -1,5 +1,7 @@
 package game;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.net.URL;
 import javax.swing.*;
 import java.awt.*;
@@ -132,8 +134,16 @@ public class MainWindow extends JFrame{
 
     public void addAllItems(){
         /**
-         * Creation and addition of the all items (tokens, intersections, game board) into the game
+         * Creation and addition of the all items (tokens, intersections, game board, buttons) into the game
          */
+
+        //creating the return button
+        JButton backButton = generateButton(screenDimension, "Return");
+        int buttonX = screenDimension.width - 130;
+        int buttonY = 20;
+        int buttonWidth = 110;
+        int buttonHeight = 40;
+        backButton.setBounds(buttonX, buttonY, buttonWidth, buttonHeight);
 
         //creation and addition of game board into the main window panel
         GameBoard gameBoard = GameBoard.getInstance();
@@ -173,7 +183,7 @@ public class MainWindow extends JFrame{
 
         //FIXME: Test Code added only for simulating features
         tokenSpacing = 0;
-        for (int i = 1; i <= 6; i++){
+        for (int i = 1; i <= 3; i++){
 
             Token tokenPlayer2 = new Token((3*screenDimension.width)/player2TokenAdjustment,screenDimension.height/tokenHeightAdjustment +  tokenSpacing, Color.WHITE);
             mainPanel.add(tokenPlayer2);
@@ -264,6 +274,52 @@ public class MainWindow extends JFrame{
         mainWindow.getContentPane().add(mainPanel);
         mainWindow.setVisible(true);    //application window visibility
     }
+
+    /**
+     * Generating a button.
+     * The settings of the return button are very different from the others hence, a new method needs to be created for it
+     */
+    public JButton generateButton(Dimension screenDimension, String text){
+        JButton button = new JButton(text);
+        Font returnText = new Font("Times New Roman", Font.BOLD, 25); //font size for button text
+        button.setFont(returnText);
+        button.setForeground(Color.WHITE);
+
+        //setting button's background and border
+        Color foreground = new Color(89, 69, 63);
+        button.setBackground(foreground);
+        button.setOpaque(true);
+        button.setFocusPainted(false);
+        button.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createRaisedBevelBorder(), BorderFactory.createLoweredBevelBorder()));
+
+        mainPanel.add(button);
+        button.setVisible(true);
+
+        //action performed when button is clicked
+        button.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //defining the other player to differentiate game modes for different buttons
+                String[] returnOptions = {"Quit Game", "Continue Playing"};
+                String returnDialogText = "Are you sure you want to quit the game\nand return to home page?";
+                var selectedOption = JOptionPane.showOptionDialog(null, returnDialogText, "", 0, 3, null, returnOptions, returnOptions[0]);
+
+                //option to quit the game and return to home page
+                if (selectedOption == 0) {
+                    //resetting the entire state of the game by resetting every component
+                    Game.voidInstance(); //reset game instance to null
+                    getContentPane().removeAll();
+                    MainWindow.voidInstance(); //reset MainWindow instance to null
+                    mainWindow = MainWindow.getInstance();
+                    getContentPane().revalidate();
+                    getContentPane().repaint();
+                    setupHomePageWindow();  //set a new game page
+                }
+            }
+        });
+        return button;
+    }
+
 
     /**
      * get Player 1 label

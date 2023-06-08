@@ -58,7 +58,8 @@ public class MainPagePanel extends JPanel {
         playButton.setFont(pvpFont);
 
         //setting button's background and border
-        playButton.setBackground(new Color(215, 182, 138));
+        Color buttonColour = new Color(215, 182, 138);
+        playButton.setBackground(buttonColour);
         playButton.setOpaque(true);
         playButton.setFocusPainted(false);
         playButton.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createRaisedBevelBorder(), BorderFactory.createLoweredBevelBorder()));
