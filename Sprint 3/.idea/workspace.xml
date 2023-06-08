@@ -7,55 +7,60 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5d397243-de5b-49f8-9427-7008dcc5800c" name="Changes" comment="repository cleanup and management">
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/Sprint2_jar.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/Sprint2_jar2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/Sprint2_jar3.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/intellij-javadocs-4.0.1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/9MM_DevDynasty.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Design Docs/.gitkeep" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Design Docs/GameScreenshots_MA_Friday2pm_Team1.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Design Docs/Initialisation Seq Diagram.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Design Docs/MA_Friday2pm_Team1-GroupDeliverables.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Design Docs/Move Validation &amp; Checks Handling Seq Diagram.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Design Docs/Rationale_MA_Friday2pm_Team1.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Design Docs/Removeable State Seq Diagram.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Design Docs/Sliding Move Seq Diagram.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Design Docs/UML-Class-Diagram.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Design Docs/UpdateStateOfMove Seq Diagram.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sprint2.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Video_MA_Friday2pm_Team1.mov" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/coin.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/gamepage.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/homepage.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Code Files.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game/ApplicationDriver.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game/ComputerPlayer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game/CurrentStateofMove.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game/FlyingMove.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game/Game.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game/GameBoard.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game/IntersectionPoint.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game/MainPagePanel.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game/MainWindow.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game/MillChecker.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game/Move.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game/NeighbourPositionFinder.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game/PerformThread.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game/Player.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game/RemoveMove.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game/SlidingMove.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game/Token.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game/TokenRemoval.java" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Archives (previous sprints)/Sprint 3/9MM_DevDynasty 11.35.41 PM.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Archives (previous sprints)/Sprint 3/Initialisation Seq Diagram.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Archives (previous sprints)/Sprint 3/Move Validation &amp; Checks Handling Seq Diagram.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Archives (previous sprints)/Sprint 3/Rationale_MA_Friday2pm_Team1.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Archives (previous sprints)/Sprint 3/Removeable State Seq Diagram.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Archives (previous sprints)/Sprint 3/Sliding Move Seq Diagram.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Archives (previous sprints)/Sprint 3/UpdateStateOfMove Seq Diagram.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Archives (previous sprints)/Sprint 3/Video_MA_Friday2pm_Team1 11.35.41 PM.mov" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Sprint 4/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Sprint 4/.idea/artifacts/Sprint2_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Sprint 4/.idea/artifacts/Sprint2_jar2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Sprint 4/.idea/artifacts/Sprint2_jar3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Sprint 4/.idea/intellij-javadocs-4.0.1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Sprint 4/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Sprint 4/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Sprint 4/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Sprint 4/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Sprint 4/9MM_DevDynasty.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Sprint 4/Design Docs/.gitkeep" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Sprint 4/Design Docs/GameScreenshots_MA_Friday2pm_Team1.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Sprint 4/Design Docs/MA_Friday2pm_Team1-GroupDeliverables.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Sprint 4/Design Docs/MA_Friday2pm_team1-DemoVideoLink.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Sprint 4/Design Docs/UML-Class-Diagram.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Sprint 4/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Sprint 4/Sprint2.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Sprint 4/resources/coin.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Sprint 4/resources/gamepage.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Sprint 4/resources/homepage.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Sprint 4/src/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Sprint 4/src/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Sprint 4/src/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Sprint 4/src/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Sprint 4/src/Code Files.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Sprint 4/src/META-INF/MANIFEST.MF" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Sprint 4/src/game/ApplicationDriver.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Sprint 4/src/game/ComputerPlayer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Sprint 4/src/game/CurrentStateofMove.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Sprint 4/src/game/FlyingMove.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Sprint 4/src/game/Game.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Sprint 4/src/game/GameBoard.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Sprint 4/src/game/IntersectionPoint.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Sprint 4/src/game/MainPagePanel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Sprint 4/src/game/MainWindow.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Sprint 4/src/game/MillChecker.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Sprint 4/src/game/Move.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Sprint 4/src/game/NeighbourPositionFinder.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Sprint 4/src/game/PerformThread.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Sprint 4/src/game/Player.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Sprint 4/src/game/RemoveMove.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Sprint 4/src/game/SlidingMove.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Sprint 4/src/game/Token.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Sprint 4/src/game/TokenRemoval.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Link_to_Demonstration_Video.txt" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -266,13 +271,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1682670626351</updated>
-    </task>
-    <task id="LOCAL-00001" summary="enabled green highlight of positions when token is selected through repainting">
-      <created>1683520397308</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1683520397308</updated>
     </task>
     <task id="LOCAL-00002" summary="using neighbourpointfinder to repaint neighbour positions to black border">
       <created>1683520446740</created>
@@ -603,7 +601,21 @@
       <option name="project" value="LOCAL" />
       <updated>1686238280672</updated>
     </task>
-    <option name="localTasksCounter" value="49" />
+    <task id="LOCAL-00049" summary="repository cleanup and management">
+      <created>1686239888540</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1686239888540</updated>
+    </task>
+    <task id="LOCAL-00050" summary="repository cleanup and management">
+      <created>1686240238382</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1686240238385</updated>
+    </task>
+    <option name="localTasksCounter" value="51" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
