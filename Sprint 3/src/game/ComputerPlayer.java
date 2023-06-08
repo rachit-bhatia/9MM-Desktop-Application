@@ -49,6 +49,8 @@ public class ComputerPlayer extends Player implements NeighbourPositionFinder, T
             int newLocationY = intersectionPointUsed.getY() + (intersectionPointUsed.getHeight() / 2) - (tokenUsed.getHeight() / 2);
             tokenUsed.setLocation(newLocationX, newLocationY); // Set the token location to the new location found
 
+            MainWindow.getInstance().repaint();
+
             //mill checking and handling operations
             MillChecker millChecker = MillChecker.getInstance();
             millChecker.checkIfTokenInMill(tokenUsed); //checking removal of mills after every move
@@ -58,7 +60,7 @@ public class ComputerPlayer extends Player implements NeighbourPositionFinder, T
             }
 
             Game.getInstance().incrementTurn(); // Increment turn so that turn is switched back to HumanPlayer
-            MainWindow.getInstance().repaint();
+
         }
     }
 
