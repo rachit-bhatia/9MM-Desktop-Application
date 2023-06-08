@@ -68,21 +68,20 @@ public class Game implements NeighbourPositionFinder{
     /**
      * Game loop that keeps the game running
      */
-    public void run(){
+    public void run() {
 
         String endMessage = "Congratulations "; //message to be displayed at end of game
 
         //borders acting as player turn identifier
         Border playerIdentifier = BorderFactory.createBevelBorder(BevelBorder.RAISED, Color.orange.brighter().brighter(), Color.orange.darker());
-        Border identifierThickness = BorderFactory.createEmptyBorder(1,1,1,1);
+        Border identifierThickness = BorderFactory.createEmptyBorder(1, 1, 1, 1);
 
         MainWindow mainWindow = MainWindow.getInstance();
 
         boolean player1NoValidMove = false;
         boolean player2NoValidMove = false;
         // While both players still have 3 or more tokens, keep the game running
-        while (player1.getNumberOfTokens() >= 3 && player2.getNumberOfTokens() >= 3 && !player1NoValidMove && !player2NoValidMove && instance !=null){
-
+        while (player1.getNumberOfTokens() >= 3 && player2.getNumberOfTokens() >= 3 && !player1NoValidMove && !player2NoValidMove) {
 
 
             // update state of move if needed
@@ -91,14 +90,14 @@ public class Game implements NeighbourPositionFinder{
             // Display the state of move player 1 is currently in
             mainWindow.getPlayerStateOfMoveLabel1().setText(player1.getCurrentStateOfMove().toString());
 
-            if (player1.getCurrentStateOfMove() == CurrentStateofMove.SLIDING){
+            if (player1.getCurrentStateOfMove() == CurrentStateofMove.SLIDING) {
                 player1NoValidMove = checkIfPlayerHasNoValidSlidingMove(player1);
             }
 
             // Clear mill formed label every turn
             MainWindow.getInstance().getMillLabel().setText("");
             // While a valid move is not yet made by the player 1
-            while (this.turn % 2 == 0 && player1.getNumberOfTokens() >= 3 && !player1NoValidMove && !player2NoValidMove){
+            while (this.turn % 2 == 0 && player1.getNumberOfTokens() >= 3 && !player1NoValidMove && !player2NoValidMove) {
                 //setting player label border to show which player's turn it is
                 mainWindow.getPlayerLabel2().setBorder(null);
                 mainWindow.getPlayerLabel1().setBorder(BorderFactory.createCompoundBorder(identifierThickness, playerIdentifier));
@@ -115,7 +114,7 @@ public class Game implements NeighbourPositionFinder{
             // Display the state of move player 2 is currently in
             mainWindow.getPlayerStateOfMoveLabel2().setText(player2.getCurrentStateOfMove().toString());
 
-            if (player2.getCurrentStateOfMove() == CurrentStateofMove.SLIDING){
+            if (player2.getCurrentStateOfMove() == CurrentStateofMove.SLIDING) {
                 player2NoValidMove = checkIfPlayerHasNoValidSlidingMove(player2);
             }
 
@@ -124,7 +123,7 @@ public class Game implements NeighbourPositionFinder{
             MainWindow.getInstance().getMillLabel().setText("");
 
             // While a valid move is not yet made by the player 2
-            while ( this.turn % 2 == 1 && player2.getNumberOfTokens() >= 3 && !player1NoValidMove && !player2NoValidMove){
+            while (this.turn % 2 == 1 && player2.getNumberOfTokens() >= 3 && !player1NoValidMove && !player2NoValidMove) {
                 //setting player label border to show which player's turn it is
                 mainWindow.getPlayerLabel1().setBorder(null);
                 mainWindow.getPlayerLabel2().setBorder(BorderFactory.createCompoundBorder(identifierThickness, playerIdentifier));
@@ -137,42 +136,45 @@ public class Game implements NeighbourPositionFinder{
         }
 
         // If player 1 has less than 3 tokens , player 2 or Computer wins the game
-        if (player1.getTokenList().size() < 3 || player1NoValidMove){
+        if (player1.getTokenList().size() < 3 || player1NoValidMove) {
 
-            if (Game.getInstance().getPlayer2().typeIsComputer()){
+            if (Game.getInstance().getPlayer2().typeIsComputer()) {
                 endMessage = "Computer wins the game!";
             } else {
                 endMessage += "Player 2!\nYou win the game!";
             }
         }
         // If player 2 has less than 3 tokens , player 1 wins the game
-        else if (player2.getTokenList().size() < 3 || player2NoValidMove){
-            if (Game.getInstance().getPlayer2().typeIsComputer()){
+        else if (player2.getTokenList().size() < 3 || player2NoValidMove) {
+            if (Game.getInstance().getPlayer2().typeIsComputer()) {
                 endMessage = "Congratulations! You win the game!";
             } else {
                 endMessage += "Player 1!\nYou win the game!";
             }
         }
 
-        String[] options = {"Back to Home", "Quit Application"};
-        var selectedOption = JOptionPane.showOptionDialog(null, endMessage, "Game Over", 0, 3, null, options, options[0]);
+        if (player1.getTokenList().size() < 3 || player1NoValidMove || player2.getTokenList().size() < 3 || player2NoValidMove) {
 
-        //option to return to home page
-        if (selectedOption == 0) {
-            //resetting the entire state of the game by resetting every component
-            voidInstance(); //reset game instance to null
-            mainWindow.getContentPane().removeAll();
-            MainWindow.voidInstance(); //void instance of main window to enable creation of new instance
-            mainWindow.dispose();
-            mainWindow = MainWindow.getInstance();
-            mainWindow.getContentPane().revalidate();
-            mainWindow.getContentPane().repaint();
-            mainWindow.setupHomePageWindow();  //set a new game page
-        }
+            String[] options = {"Back to Home", "Quit Application"};
+            var selectedOption = JOptionPane.showOptionDialog(null, endMessage, "Game Over", 0, 3, null, options, options[0]);
 
-        //option to quit the application
-        if (selectedOption == 1) {
-            System.exit(0);
+            //option to return to home page
+            if (selectedOption == 0) {
+                //resetting the entire state of the game by resetting every component
+                voidInstance(); //reset game instance to null
+                mainWindow.getContentPane().removeAll();
+                MainWindow.voidInstance(); //void instance of main window to enable creation of new instance
+                mainWindow.dispose();
+                mainWindow = MainWindow.getInstance();
+                mainWindow.getContentPane().revalidate();
+                mainWindow.getContentPane().repaint();
+                mainWindow.setupHomePageWindow();  //set a new game page
+            }
+
+            //option to quit the application
+            if (selectedOption == 1) {
+                System.exit(0);
+            }
         }
     }
 
