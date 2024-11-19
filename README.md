@@ -1,7 +1,7 @@
 # Nine Men's Morris Desktop Application
 A desktop application for the game Nine Men's Morris developed using Java. The application features both single-player and duo-player modes.
 
-- All the latest Java Code for the application is present in the "Sprint 4.src.game" folder
+- The code for the application is present in the [Sprint 4.src.game](./Sprint%204/src/game) folder
 - Link to the Sprint 4 Demonstration Video - https://youtu.be/BvbwOaWkOL0
 
 ## Steps to run the application:
