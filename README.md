@@ -1,10 +1,11 @@
-# FIT3077_project
+# Nine Men's Morris Desktop Application
+A desktop application for the game Nine Men's Morris developed using Java. The application features both single-player and duo-player modes.
+
 - All the latest Java Code for the application is present in the "Sprint 4.src.game" folder
-- The UML and the Design Rationale docs are present in the "Sprint 4.Design Docs" Folder
 - Link to the Sprint 4 Demonstration Video - https://youtu.be/BvbwOaWkOL0
 
 ## Steps to run the application:
-- The Application can be run by launching the jar file (9MM_DevDynasty.jar) in the Sprint 4 folder
+- The Application can be run by launching the jar file [9MM_DevDynasty.jar](./Sprint%204/9MM_DevDynasty.jar) in the Sprint 4 folder
 - The jar file can be launched on both macOS and Windows (preferably Windows)
 - In order to be able to run the jar file, the device should have at least Java Version 17.0.2 installed. Newer versions will also work.
 - To install the correct JDK using IntelliJ Idea IDE, navigate to Project Structure in the File menu and choose SDK 17 under Project
@@ -12,7 +13,7 @@
 
 ### For MacOS Users:
 - For macOS, if the error regarding "Unidentified developer" is encountered, right-click on the 9MM_DevDynasty.jar file and select 'Open'. Then select 'Open' from the dialog box that appears. If further errors persist on macOS, proceed using the steps below:
-- Launch terminal on your mac (Press `CMD + Space` to open spotlight and type terminal and press `Enter`)
+- Launch terminal on your Mac (Press `CMD + Space` to open spotlight and type terminal and press `Enter`)
 - Type `sudo xattr -rc <your path to the jar>` or alternatively drag the jar to the terminal after typing `sudo xattr -rc ` (don't forget the space)
 - Press `Enter`
 - You should be now able to run the file on your Mac. The command basically removes quarantine restrictions that MacOS puts on unsigned applications.
